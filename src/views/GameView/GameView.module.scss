@@ -1,0 +1,13 @@
+@import '@styles';
+
+.container {
+    @include view;
+
+    & .board {
+        flex: 6;
+    }
+
+    & .keyboard {
+        flex: 4;
+    }
+}
