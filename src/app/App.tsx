@@ -1,11 +1,14 @@
 import './App.scss';
 
 import { GameViewAsync } from '../views/GameView';
+import { GameStoreProvider } from '@shared/stores/GameStore';
 
 const App = () => {
     return (
         <main id='main'>
-            <GameViewAsync />
+            <GameStoreProvider>
+                <GameViewAsync />
+            </GameStoreProvider>
         </main>
     );
 };

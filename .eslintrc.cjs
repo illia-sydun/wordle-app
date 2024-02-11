@@ -19,5 +19,6 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/display-name": "off",
     "react-hooks/exhaustive-deps": "off",
+    "no-case-declarations": "off",
   },
 }

@@ -4,19 +4,22 @@ import { KeyboardGridCell } from './KeyboardGridCell';
 import type { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import type { KeyboardLayout } from '../Keyboard.types.ts';
 import { useKeyPress } from '@shared/hooks/useKeyPress.ts';
-import { CellStatus } from '@shared/types/CellStatus.ts';
+import type { CellStatus } from '@shared/types/CellStatus.ts';
+import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 type KeyboardGridProps = {
-    answers: KeyboardKey[][];
     keyboardLayout: KeyboardLayout;
     onKeyboardKeyPress: (keyboardKey: KeyboardKey) => void;
 };
 
 export const KeyboardGrid = ({
-    answers,
     keyboardLayout,
     onKeyboardKeyPress,
 }: KeyboardGridProps) => {
+    const {
+        state: { answers },
+    } = useGameStore();
+
     // @TODO why
     const flatKeyboardLayout = keyboardLayout.flat();
     const ref = useRef<ElementRef<'div'>>(null);
@@ -51,7 +54,7 @@ export const KeyboardGrid = ({
     }, flatKeyboardLayout);
 
     const getStatus = (key: KeyboardKey): CellStatus => {
-        if (answers.some((a) => a.includes(key))) {
+        if (answers.some((a) => a.value.includes(key))) {
             return 'close_match';
         }
 

@@ -3,24 +3,26 @@ import { Keyboard } from '../../components/Keyboard';
 import styles from './GameView.module.scss';
 import { useState } from 'react';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
+import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 const GameView = () => {
+    const {
+        state: { answers },
+        computed: { indexOfCurrentAnswer },
+        dispatch,
+    } = useGameStore();
+
     // @TODO how to make it not string but Keyboard[]
     const [inputValue, setInputValue] = useState<string>('');
-    const [answers, setAnswers] = useState<KeyboardKey[][]>(
-        Array(6).fill(Array(5).fill('')),
-    );
-    const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleKeyboardKeyPress = (keyboardKey: KeyboardKey) => {
         if (keyboardKey === 'escape') {
             setInputValue('');
-            setCurrentIndex(0);
-            setAnswers(Array(6).fill(Array(5).fill('')));
+            dispatch({ type: 'RESET_ANSWERS' });
             return;
         }
 
-        if (currentIndex === answers.length) {
+        if (indexOfCurrentAnswer === answers.length) {
             return;
         }
 
@@ -38,16 +40,28 @@ const GameView = () => {
 
         if (keyboardKey === 'enter' && newInputValue.length === 5) {
             newInputValue = '';
-            setCurrentIndex(currentIndex + 1);
+            dispatch({
+                type: 'UPDATE_ANSWER',
+                payload: {
+                    index: indexOfCurrentAnswer,
+                    answer: {
+                        isSubmitted: true,
+                    },
+                },
+            });
         } else {
-            setAnswers([
-                ...answers.slice(0, currentIndex),
-                [
-                    ...inputValueArray,
-                    ...Array(5 - inputValueArray.length).fill(''),
-                ],
-                ...answers.slice(currentIndex + 1),
-            ]);
+            dispatch({
+                type: 'UPDATE_ANSWER',
+                payload: {
+                    index: indexOfCurrentAnswer,
+                    answer: {
+                        value: [
+                            ...inputValueArray,
+                            ...Array(5 - inputValueArray.length).fill(''),
+                        ],
+                    },
+                },
+            });
         }
 
         setInputValue(newInputValue);
@@ -58,13 +72,10 @@ const GameView = () => {
             <h2 className={styles.title}>Wordle</h2>
             <input readOnly type='text' value={inputValue} hidden />
             <div className={styles.board}>
-                <Board answers={answers} currentIndex={currentIndex} />
+                <Board />
             </div>
             <div className={styles.keyboard}>
-                <Keyboard
-                    answers={answers}
-                    onKeyboardKeyPress={handleKeyboardKeyPress}
-                />
+                <Keyboard onKeyboardKeyPress={handleKeyboardKeyPress} />
             </div>
         </section>
     );
