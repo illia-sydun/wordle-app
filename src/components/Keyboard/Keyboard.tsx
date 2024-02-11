@@ -1,11 +1,21 @@
 import styles from './Keyboard.module.scss';
 import { KeyboardGrid } from './KeyboardGrid';
-import { KEYBOARD_KEYS } from './Keyboard.constants.ts';
+import { KEYBOARD_LAYOUT } from './Keyboard.constants.ts';
+import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 
-export const Keyboard = () => {
+type KeyboardProps = {
+    answers: KeyboardKey[][];
+    onKeyboardKeyPress: (keyboardKey: KeyboardKey) => void;
+};
+
+export const Keyboard = ({ answers, onKeyboardKeyPress }: KeyboardProps) => {
     return (
         <div className={styles.container}>
-            <KeyboardGrid keys={KEYBOARD_KEYS} />
+            <KeyboardGrid
+                answers={answers}
+                keyboardLayout={KEYBOARD_LAYOUT}
+                onKeyboardKeyPress={onKeyboardKeyPress}
+            />
         </div>
     );
 };

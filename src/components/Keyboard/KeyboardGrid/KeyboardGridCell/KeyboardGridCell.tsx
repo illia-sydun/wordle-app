@@ -1,21 +1,30 @@
 import styles from './KeyboardGridCell.module.scss';
-import { KeyboardKey } from '../../Keyboard.types.ts';
+import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
+import { CellStatus } from '@shared/types/CellStatus.ts';
+import { clsx } from 'clsx';
 
 type KeyboardGridCellProps = {
+    status: CellStatus;
     value: KeyboardKey;
-    onClick: (value: KeyboardGridCellProps['value']) => void;
+    onClick: (value: KeyboardKey) => void;
 };
-export const KeyboardGridCell = ({ value, onClick }: KeyboardGridCellProps) => {
+
+export const KeyboardGridCell = ({
+    value,
+    status,
+    onClick,
+}: KeyboardGridCellProps) => {
     const handleOnClick = () => {
         onClick(value);
     };
 
     return (
-        <div
-            className={styles.container}
+        <button
+            className={clsx(styles.container, styles[status])}
             style={{ gridArea: value }}
-            onClick={handleOnClick}>
+            onClick={handleOnClick}
+            data-value={value}>
             {value}
-        </div>
+        </button>
     );
 };
