@@ -2,28 +2,23 @@ import { BoardGridCell } from './BoardGridCell';
 import styles from './BoardGridRow.module.scss';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { CellStatus } from '@shared/types/CellStatus.ts';
+import { Answer } from '@shared/types/Answer.ts';
 
 type BoardGridRowProps = {
-    answer: KeyboardKey[];
+    answer: Answer;
     word: KeyboardKey[];
-    isSubmitted: boolean;
     isActive: boolean;
 };
-export const BoardGridRow = ({
-    answer,
-    word,
-    isSubmitted,
-    isActive,
-}: BoardGridRowProps) => {
+export const BoardGridRow = ({ answer, word, isActive }: BoardGridRowProps) => {
     const getStatus = (i: number): CellStatus => {
-        if (isSubmitted) {
-            if (word[i] === answer[i]) {
+        if (answer.isSubmitted) {
+            if (word[i] === answer.value[i]) {
                 return 'match';
             }
-            if (word.includes(answer[i])) {
+            if (word.includes(answer.value[i])) {
                 return 'close_match';
             }
-            if (answer[i]) {
+            if (answer.value[i]) {
                 return 'no_match';
             }
         }
@@ -33,13 +28,15 @@ export const BoardGridRow = ({
 
     const getIsActive = (i: number) => {
         return (
-            isActive && !isSubmitted && answer.indexOf('' as KeyboardKey) === i
+            isActive &&
+            !answer.isSubmitted &&
+            answer.value.indexOf('' as KeyboardKey) === i
         );
     };
 
     return (
         <div className={styles.container}>
-            {answer.map((value, i) => {
+            {answer.value.map((value, i) => {
                 return (
                     <BoardGridCell
                         count={i}
@@ -47,7 +44,7 @@ export const BoardGridRow = ({
                         value={value}
                         status={getStatus(i)}
                         isActive={getIsActive(i)}
-                        isSubmitted={isSubmitted}
+                        isSubmitted={answer.isSubmitted}
                     />
                 );
             })}
