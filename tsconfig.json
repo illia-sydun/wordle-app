@@ -22,7 +22,10 @@
         "baseUrl": ".",
         "paths": {
             "@styles": [
-                "src/styles/base"
+                "src/shared/styles/base"
+            ],
+            "@shared/*": [
+                "src/shared/*"
             ]
         }
     },
