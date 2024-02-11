@@ -1,11 +1,68 @@
 @import '@styles';
 
 .container {
-    @include border;
     @include clickable;
-    padding: 1.75rem;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    font-weight: 500;
+
+    position: relative;
+    padding: 1.25rem 1.75rem;
+
+    color: $font-primary;
+    font-size: 2rem;
+    font-weight: 700;
     text-align: center;
+    text-transform: uppercase;
+
+    background-color: $lightgray;
+    box-shadow: 1px 1px 3px $lightgray;
+
+    border-radius: 0.5rem;
+
+    transform-style: preserve-3d;
+    transition: 100ms cubic-bezier(0, 0, 0.6, 1);
+
+    &::before {
+        content: '';
+
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: $gray;
+        box-shadow: 1px 1px 3px $gray;
+        border: 1px solid $border !important;
+        border-radius: 0.5rem;
+
+        transform: translate3d(0.5rem, 0.5rem, -1rem);
+        transition: 100ms cubic-bezier(0, 0, 0.6, 1);
+    }
+
+    &.match {
+        background-color: $success;
+    }
+
+    &.close_match {
+        background-color: $warning;
+    }
+
+    &.no_match {
+        background-color: $disabled;
+    }
+
+    &:is(:active, &[data-is-animated='true']) {
+        transform: translate(0.5rem, 0.5rem);
+
+        &::before {
+            transform: translate3d(0, 0, -1rem);
+        }
+    }
+
+    &:hover {
+        transform: translate(0.25rem, 0.25rem);
+
+        &::before {
+            transform: translate3d(0.25rem, 0.25rem, -1rem);
+        }
+    }
 }

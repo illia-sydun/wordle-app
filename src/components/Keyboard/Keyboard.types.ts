@@ -1,4 +1,3 @@
-import { KEYBOARD_KEYS } from './Keyboard.constants.ts';
+import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 
-export type KeyboardKeys = typeof KEYBOARD_KEYS;
-export type KeyboardKey = KeyboardKeys[number][number];
+export type KeyboardLayout = Array<Array<KeyboardKey>>;

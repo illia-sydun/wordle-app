@@ -1,46 +1,45 @@
 @import '@styles';
 
-@keyframes shake {
-    from {
-        transform: scale(1);
-    }
-    to {
-        transform: scale(1.2);
-    }
-}
-
 .container {
     @include centered;
+    @include border;
+    @include clickable;
+
     flex: 1;
-    border: 1px solid $border;
+
+    font-size: 3rem;
+    font-weight: 700;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 400;
-    font-size: 3.2rem;
     color: $font-primary;
-    user-select: none;
-    cursor: pointer;
 
-    animation-duration: 600ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-    animation-play-state: paused;
-
-    &:hover {
-        animation-play-state: running;
-        animation-name: shake;
+    &[data-is-animated='true'] {
+        animation: flip 750ms 1 linear;
     }
 
-    &.empty {
+    &.active {
+        &::before {
+            content: '|';
+
+            font-size: 75%;
+            font-weight: 300;
+
+            animation: 1.35s blink step-end infinite;
+        }
     }
+
     &.no_match {
-        color: $font-secondary;
+        background-color: $disabled;
+        border-color: transparent;
     }
-    &.direct_match {
-        color: $success;
+
+    &.match {
+        background-color: $success;
+        border-color: transparent;
     }
-    &.indirect_match {
-        color: $warning;
+
+    &.close_match {
+        background-color: $warning;
+        border-color: transparent;
     }
 }
