@@ -1,0 +1,9 @@
+@mixin color-shade($color, $percentage) {
+    @if $percentage > 0 {
+        color: lighten($color, $percentage);
+    } @else if $percentage < 0 {
+        color: darken($color, -$percentage);
+    } @else {
+        color: $color;
+    }
+}

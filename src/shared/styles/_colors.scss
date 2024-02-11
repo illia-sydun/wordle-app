@@ -1,0 +1,23 @@
+$white: #cfcfcf;
+$black: #101010;
+
+$green: #538d4e;
+$green-l-10: lighten($green, 10%);
+
+$yellow: #b59f3b;
+
+$gray: #3a3a3c;
+$lightgray: #818384;
+$darkgray: darkslategray;
+
+$font-primary: $white;
+$font-secondary: $darkgray;
+
+$border: $gray;
+$disabled: $gray;
+
+$success: $green;
+$warning: $yellow;
+
+$background-primary: $black;
+$background-secondary: $gray;

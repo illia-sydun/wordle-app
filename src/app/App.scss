@@ -1,12 +1,18 @@
+@import '@styles';
+
 * {
     box-sizing: border-box;
 }
 
 html {
     font-size: 62.5%;
+    font-family: 'Rubik', sans-serif;
 }
 
-html, body, #root, #main {
+html,
+body,
+#root,
+#main {
     height: 100%;
     width: 100%;
 }
@@ -16,4 +22,5 @@ html, body, #root, #main {
     grid-template: 1fr / 1fr;
     max-width: 1280px;
     margin: 0 auto;
+    background-color: $background-primary;
 }
