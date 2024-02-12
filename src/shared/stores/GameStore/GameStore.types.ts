@@ -1,8 +1,9 @@
 import { Dispatch } from 'react';
 import type { Answer } from '@shared/types/Answer.ts';
-import type { WordOfTheDay } from '@shared/types/Word.ts';
+import type { WordOfTheDay, WordDictionary } from '@shared/types/Word.ts';
 
 export type GameStoreState = {
+    wordDictionary: WordDictionary;
     wordOfTheDay: WordOfTheDay;
     answers: Answer[];
     gameStartedAt: number;

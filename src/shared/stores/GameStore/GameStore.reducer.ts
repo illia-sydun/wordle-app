@@ -3,6 +3,7 @@ import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 
 export const getGameStoreInitialState = (): GameStoreState => ({
+    wordDictionary: WORD_DICTIONARY,
     wordOfTheDay: WORD_DICTIONARY[0],
     gameStartedAt: 0,
     answers: Array.from({ length: 6 }, () => ({

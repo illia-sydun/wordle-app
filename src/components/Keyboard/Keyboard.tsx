@@ -6,6 +6,7 @@ import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 export const Keyboard = () => {
     const {
+        state: { wordDictionary },
         computed: {
             isGameOver,
             currentAnswer,
@@ -23,6 +24,10 @@ export const Keyboard = () => {
         }
 
         if (isGameOver) {
+            return;
+        }
+
+        if (keyboardKey === 'meta') {
             return;
         }
 
@@ -64,10 +69,18 @@ export const Keyboard = () => {
                 return;
             }
 
-            dispatch({
-                type: 'SUBMIT_ANSWER',
-                payload: indexOfCurrentAnswer,
-            });
+            if (
+                wordDictionary.some(
+                    (wordDictionary) =>
+                        wordDictionary.word ===
+                        updatedCurrentAnswerValue.join(''),
+                )
+            ) {
+                dispatch({
+                    type: 'SUBMIT_ANSWER',
+                    payload: indexOfCurrentAnswer,
+                });
+            }
         } else {
             dispatch({
                 type: 'UPDATE_ANSWER_VALUE',
