@@ -1,6 +1,8 @@
 import { ReactNode, useMemo, useReducer } from 'react';
-import { GAME_STORE_INITIAL_STATE } from './GameStore.constants.ts';
-import { GameStoreReducer } from './GameStore.reducer.ts';
+import {
+    GameStoreReducer,
+    getGameStoreInitialState,
+} from './GameStore.reducer.ts';
 import { GameStoreContext } from './GameStore.context.ts';
 import type { GameStoreProviderValue } from './GameStore.types.ts';
 
@@ -11,7 +13,7 @@ type Props = {
 export const GameStoreProvider = ({ children }: Props) => {
     const [state, dispatch] = useReducer(
         GameStoreReducer,
-        GAME_STORE_INITIAL_STATE,
+        getGameStoreInitialState(),
     );
 
     const value: GameStoreProviderValue = useMemo(
