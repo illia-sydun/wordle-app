@@ -7,22 +7,32 @@
 
     flex: 1;
 
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
     color: $font-primary;
 
-    &[data-is-animated='true'] {
+    &[data-is-flipping-animation='true'] {
         animation: flip 750ms 1 linear;
+        transition:
+            background-color,
+            border-color 150ms;
+        transition-property: background-color, border-color;
+    }
+
+    &[data-is-pulsing-animation='true'] {
+        animation: pulse 100ms 1 ease-in-out;
+        transition-delay: unset !important;
+        animation-delay: unset !important;
     }
 
     &.active {
         &::before {
             content: '|';
 
-            font-size: 90%;
-            font-weight: 300;
+            font-size: 2.25rem;
+            font-weight: 600;
 
             animation: 1.35s blink step-end infinite;
         }

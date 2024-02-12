@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { CellStatus } from '@shared/types/CellStatus.ts';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { useBooleanState } from '@shared/hooks/useBooleanState.ts';
-import { useEffect } from 'react';
+import { useDeferredValue, useEffect, useMemo } from 'react';
 
 interface BoardGridCellProps {
     count: number;
@@ -20,25 +20,46 @@ export const BoardGridCell = ({
     isActive,
     isSubmitted,
 }: BoardGridCellProps) => {
-    const animationState = useBooleanState();
+    // @TODO those animations look like anti-pattern
+    const flipAnimationState = useBooleanState();
+    const pulseAnimationState = useBooleanState();
+
+    const prevValue = useDeferredValue(value);
 
     useEffect(() => {
-        animationState.handleSetValue(isSubmitted);
+        if (isSubmitted) {
+            flipAnimationState.handleSetValue(true);
+        }
     }, [isSubmitted]);
+
+    useEffect(() => {
+        if (!prevValue && value !== prevValue) {
+            pulseAnimationState.handleSetValue(true);
+        }
+    }, [value]);
+
+    const handleEndAnimation = () => {
+        flipAnimationState.handleSetFalse();
+        pulseAnimationState.handleSetFalse();
+    };
+
+    const computedStyles = useMemo(
+        () => ({
+            transitionDelay: `${count * 300}ms`,
+            animationDelay: `${count * 250}ms`,
+        }),
+        [count],
+    );
 
     return (
         <div
             className={clsx(styles.container, styles[status], {
                 [styles.active]: isActive,
             })}
-            style={{
-                transition: `background-color, border-color 150ms`,
-                transitionDelay: `${count * 300}ms`,
-                transitionProperty: 'background-color, border-color',
-                animationDelay: `${count * 250}ms`,
-            }}
-            data-is-animated={animationState.value}
-            onAnimationEnd={animationState.handleSetFalse}>
+            style={computedStyles}
+            data-is-flipping-animation={flipAnimationState.value}
+            data-is-pulsing-animation={pulseAnimationState.value}
+            onAnimationEnd={handleEndAnimation}>
             {value}
         </div>
     );
