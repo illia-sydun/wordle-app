@@ -9,8 +9,6 @@ export const useKeyPress = (
 ) => {
     const onKeyDown = useCallback(
         (event: KeyboardEvent) => {
-            console.log(event.key);
-
             const isWantedKeyPressed = keys.some(
                 (key) => event.key.toLowerCase() === key.toLowerCase(),
             );

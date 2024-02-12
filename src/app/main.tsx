@@ -4,7 +4,8 @@ import App from './App.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
+    // @TODO weird double render brakes the code
     <React.StrictMode>
-        <App />
+        <App />,
     </React.StrictMode>,
 );

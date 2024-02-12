@@ -1,16 +1,27 @@
 import { Dispatch } from 'react';
 import type { Answer } from '@shared/types/Answer.ts';
+import type { WordOfTheDay } from '@shared/types/Word.ts';
 
 export type GameStoreState = {
+    wordOfTheDay: WordOfTheDay;
     answers: Answer[];
+    gameStartedAt: number;
 };
 
 export type GameStoreAction =
     | {
-          type: 'UPDATE_ANSWER';
-          payload: { index: number; answer: Partial<Answer> };
+          type: 'UPDATE_ANSWER_VALUE';
+          payload: {
+              index: number;
+              value: GameStoreState['answers'][number]['value'];
+          };
       }
-    | { type: 'RESET_ANSWERS' };
+    | {
+          type: 'SUBMIT_ANSWER';
+          payload: number;
+      }
+    | { type: 'SET_WORD_OF_THE_DAY'; payload: GameStoreState['wordOfTheDay'] }
+    | { type: 'RESET' };
 
 export type GameStoreProviderValue = {
     state: GameStoreState;
