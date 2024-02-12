@@ -5,12 +5,13 @@ import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 export const BoardGrid = () => {
     const {
-        state: { answers, wordOfTheDay },
+        state: { answers, wordOfTheDay, gameStartedAt },
         computed: { indexOfCurrentAnswer },
     } = useGameStore();
 
+    // @TODO resetting with key? hmmm...
     return (
-        <div className={styles.container}>
+        <div key={gameStartedAt} className={styles.container}>
             {answers.map((answer, i) => {
                 const isActive = indexOfCurrentAnswer === i;
                 return (

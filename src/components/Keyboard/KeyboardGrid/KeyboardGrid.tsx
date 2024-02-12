@@ -4,8 +4,6 @@ import { KeyboardGridCell } from './KeyboardGridCell';
 import type { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import type { KeyboardLayout } from '../Keyboard.types.ts';
 import { useKeyPress } from '@shared/hooks/useKeyPress.ts';
-import type { CellStatus } from '@shared/types/CellStatus.ts';
-import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 type KeyboardGridProps = {
     keyboardLayout: KeyboardLayout;
@@ -16,10 +14,6 @@ export const KeyboardGrid = ({
     keyboardLayout,
     onKeyboardKeyPress,
 }: KeyboardGridProps) => {
-    const {
-        state: { answers },
-    } = useGameStore();
-
     // @TODO why
     const flatKeyboardLayout = keyboardLayout.flat();
     const ref = useRef<ElementRef<'div'>>(null);
@@ -53,14 +47,6 @@ export const KeyboardGrid = ({
         }
     }, flatKeyboardLayout);
 
-    const getStatus = (key: KeyboardKey): CellStatus => {
-        if (answers.some((a) => a.value.includes(key))) {
-            return 'close_match';
-        }
-
-        return 'empty';
-    };
-
     // @TODO flattening keyboardLayout doesn't look good
     return (
         <div className={styles.container} ref={ref}>
@@ -69,7 +55,7 @@ export const KeyboardGrid = ({
                     key={key}
                     value={key}
                     onClick={onKeyboardKeyPress}
-                    status={getStatus(key)}
+                    status={'empty'}
                 />
             ))}
         </div>
