@@ -26,6 +26,7 @@ export const KEYBOARD_KEY = {
     N: 'n',
     M: 'm',
     ENTER: 'enter',
+    META: 'meta',
     BACKSPACE: 'backspace',
     ESCAPE: 'escape',
 } as const;
