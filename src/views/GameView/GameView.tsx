@@ -8,7 +8,6 @@ const GameView = () => {
 
     return (
         <section className={styles.container}>
-            <h2 className={styles.title}>Wordle</h2>
             <div className={styles.board}>
                 <Board />
             </div>

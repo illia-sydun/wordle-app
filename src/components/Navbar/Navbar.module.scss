@@ -1,0 +1,17 @@
+@import '@styles';
+
+.container {
+    @include centered;
+    @include border;
+
+    border-top: unset;
+    border-left: unset;
+    border-right: unset;
+
+    & .title {
+        font-family: serif;
+        font-size: 3.5rem;
+        text-align: center;
+        margin: 0;
+    }
+}
