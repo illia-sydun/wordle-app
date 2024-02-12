@@ -1,16 +1,13 @@
 import { BoardGridRow } from './BoardGridRow';
 import styles from './BoardGrid.module.scss';
 import type { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { WORD } from '../../../views/GameView/useWord.ts';
 import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 export const BoardGrid = () => {
     const {
-        state: { answers },
+        state: { answers, wordOfTheDay },
         computed: { indexOfCurrentAnswer },
     } = useGameStore();
-
-    const { word } = WORD;
 
     return (
         <div className={styles.container}>
@@ -20,7 +17,7 @@ export const BoardGrid = () => {
                     <BoardGridRow
                         key={i}
                         answer={answer}
-                        word={word.split('') as KeyboardKey[]}
+                        word={wordOfTheDay.word.split('') as KeyboardKey[]}
                         isActive={isActive}
                     />
                 );
