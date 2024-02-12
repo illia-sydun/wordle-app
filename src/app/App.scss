@@ -19,7 +19,7 @@ body,
 
 #main {
     display: grid;
-    grid-template: 1fr / 1fr;
+    grid-template: 6rem 1fr / 1fr;
     max-width: 1280px;
     margin: 0 auto;
     background-color: $background-primary;
