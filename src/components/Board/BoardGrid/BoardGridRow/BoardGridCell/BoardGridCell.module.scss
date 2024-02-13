@@ -12,6 +12,8 @@
     text-align: center;
     text-transform: uppercase;
     color: $font-primary;
+    // @TODO add color
+    text-shadow: 1px 1px 2px #10101020;
 
     &[data-is-flipping-animation='true'] {
         animation: flip 750ms 1 linear;

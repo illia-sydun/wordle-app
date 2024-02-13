@@ -18,7 +18,11 @@
     border-radius: 0.5rem;
 
     transform-style: preserve-3d;
-    transition: 100ms cubic-bezier(0, 0, 0.6, 1);
+    transition:
+        100ms cubic-bezier(0, 0, 0.6, 1),
+        background-color,
+        border-color,
+        color 100ms;
 
     &::before {
         content: '';
@@ -38,17 +42,27 @@
 
     &.match {
         background-color: $success;
+        border-color: $success;
     }
 
     &.close_match {
         background-color: $warning;
+        border-color: $warning;
     }
 
     &.no_match {
         background-color: $disabled;
+        color: $lightgray;
+        border-color: $disabled;
     }
 
-    &:is(:active, &[data-is-animated='true']) {
+    &[data-is-clicking-animation='true'][data-status='no_match'] {
+        animation: shake 150ms 1 ease-in-out alternate;
+    }
+
+    &:is(:active, &[data-is-clicking-animation='true']):not(
+            &[data-status='no_match']
+        ) {
         transform: translate(0.5rem, 0.5rem);
 
         &::before {
@@ -56,7 +70,20 @@
         }
     }
 
-    &:hover {
+    // @TODO use :is?
+    &:active[data-status='no_match'] {
+        animation: shake 150ms 1 ease-in-out alternate;
+    }
+
+    // @TODO wtf
+    &:focus,
+    &:active {
+        outline-color: $lightgray;
+    }
+
+    &:hover:not([data-status='no_match']) {
+        // @TODO border and outline colors
+        border-color: unset;
         transform: translate(0.25rem, 0.25rem);
 
         &::before {

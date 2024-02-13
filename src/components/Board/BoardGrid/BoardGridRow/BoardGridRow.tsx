@@ -11,18 +11,18 @@ type BoardGridRowProps = {
     word: KeyboardKey[];
 };
 export const BoardGridRow = ({ answer, word }: BoardGridRowProps) => {
-    const flipAnimationState = useBooleanState();
+    const shakeAnimationState = useBooleanState();
 
     const isInvalidAnswer = answer.status === 'invalid';
 
     useEffect(() => {
         if (isInvalidAnswer) {
-            flipAnimationState.handleSetValue(true);
+            shakeAnimationState.handleSetValue(true);
         }
     }, [isInvalidAnswer]);
 
     const handleEndAnimation = () => {
-        flipAnimationState.handleSetFalse();
+        shakeAnimationState.handleSetFalse();
     };
 
     const getStatus = (i: number): CellStatus => {
@@ -51,7 +51,7 @@ export const BoardGridRow = ({ answer, word }: BoardGridRowProps) => {
     return (
         <div
             className={styles.container}
-            data-is-flipping-animation={flipAnimationState.value}
+            data-is-shaking-animation={shakeAnimationState.value}
             onAnimationEnd={handleEndAnimation}>
             {answer.value.map((value, i) => {
                 return (
