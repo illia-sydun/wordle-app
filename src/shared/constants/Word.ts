@@ -1025,4 +1025,133 @@ export const WORD_DICTIONARY = [
             { id: 'shrek-hint-4', label: 'Married to Fiona' },
         ],
     },
+    {
+        word: 'opium',
+        hints: [
+            {
+                id: 'opium-hint-1',
+                label: 'A narcotic obtained from a kind of poppy',
+            },
+            {
+                id: 'opium-hint-2',
+                label: 'Used historically for pain relief and recreation',
+            },
+            { id: 'opium-hint-3', label: 'Can be addictive' },
+            {
+                id: 'opium-hint-4',
+                label: 'Associated with wars in China in the 19th century',
+            },
+        ],
+    },
+    {
+        word: 'onion',
+        hints: [
+            { id: 'onion-hint-1', label: 'A vegetable with layers' },
+            { id: 'onion-hint-2', label: 'Can make you cry when cutting it' },
+            { id: 'onion-hint-3', label: 'Used in cooking for flavor' },
+            {
+                id: 'onion-hint-4',
+                label: 'Comes in varieties like red, white, and yellow',
+            },
+        ],
+    },
+    {
+        word: 'topic',
+        hints: [
+            { id: 'topic-hint-1', label: 'Subject of discussion' },
+            {
+                id: 'topic-hint-2',
+                label: 'Can be chosen for essays or debates',
+            },
+            { id: 'topic-hint-3', label: 'A particular area of study' },
+            {
+                id: 'topic-hint-4',
+                label: 'Often researched or explored in depth',
+            },
+        ],
+    },
+    {
+        word: 'stock',
+        hints: [
+            { id: 'stock-hint-1', label: 'Shares in a company' },
+            {
+                id: 'stock-hint-2',
+                label: 'Liquid made by boiling bones and vegetables',
+            },
+            {
+                id: 'stock-hint-3',
+                label: 'Supply of goods kept on hand for sale',
+            },
+            { id: 'stock-hint-4', label: 'Can also refer to a rifle’s handle' },
+        ],
+    },
+    {
+        word: 'quark',
+        hints: [
+            { id: 'quark-hint-1', label: 'A type of elementary particle' },
+            { id: 'quark-hint-2', label: 'Fundamental constituent of matter' },
+            {
+                id: 'quark-hint-3',
+                label: 'Comes in flavors like up, down, and strange',
+            },
+            {
+                id: 'quark-hint-4',
+                label: 'Not observed directly but inferred from hadron behavior',
+            },
+        ],
+    },
+    {
+        word: 'zesty',
+        hints: [
+            { id: 'zesty-hint-1', label: 'Pleasantly pungent or spicy' },
+            { id: 'zesty-hint-2', label: 'Full of flavor' },
+            { id: 'zesty-hint-3', label: 'Often describes citrus peel' },
+            { id: 'zesty-hint-4', label: 'Lively and enthusiastic' },
+        ],
+    },
+    {
+        word: 'vivid',
+        hints: [
+            { id: 'vivid-hint-1', label: 'Strikingly bright or intense' },
+            {
+                id: 'vivid-hint-2',
+                label: 'Produces a strong or clear impression on the senses',
+            },
+            {
+                id: 'vivid-hint-3',
+                label: 'Often used to describe colors or memories',
+            },
+            { id: 'vivid-hint-4', label: 'Very clear, detailed, or lifelike' },
+        ],
+    },
+    {
+        word: 'glyph',
+        hints: [
+            { id: 'glyph-hint-1', label: 'A pictograph or other symbol' },
+            { id: 'glyph-hint-2', label: 'Carved in relief or inscribed' },
+            { id: 'glyph-hint-3', label: 'Used in writing or as decoration' },
+            {
+                id: 'glyph-hint-4',
+                label: 'Found in ancient and modern scripts',
+            },
+        ],
+    },
+    {
+        word: 'fjord',
+        hints: [
+            {
+                id: 'fjord-hint-1',
+                label: 'Long, narrow inlet with steep sides or cliffs',
+            },
+            { id: 'fjord-hint-2', label: 'Created by glacial erosion' },
+            {
+                id: 'fjord-hint-3',
+                label: 'Found in Norway and other glaciated regions',
+            },
+            {
+                id: 'fjord-hint-4',
+                label: 'Deep waterway often used for navigation',
+            },
+        ],
+    },
 ] as const;
