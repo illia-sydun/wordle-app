@@ -18,8 +18,11 @@ export type GameStoreAction =
           };
       }
     | {
-          type: 'SUBMIT_ANSWER';
-          payload: number;
+          type: 'UPDATE_ANSWER_STATUS';
+          payload: {
+              index: number;
+              status: GameStoreState['answers'][number]['status'];
+          };
       }
     | { type: 'SET_WORD_OF_THE_DAY'; payload: GameStoreState['wordOfTheDay'] }
     | { type: 'RESET' };

@@ -11,10 +11,8 @@ type Props = {
 };
 
 export const GameStoreProvider = ({ children }: Props) => {
-    const [state, dispatch] = useReducer(
-        GameStoreReducer,
-        getGameStoreInitialState(),
-    );
+    const initialState = useMemo(getGameStoreInitialState, []);
+    const [state, dispatch] = useReducer(GameStoreReducer, initialState);
 
     const value: GameStoreProviderValue = useMemo(
         () => ({ state, dispatch }),
