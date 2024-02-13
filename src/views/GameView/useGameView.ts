@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from 'react';
-import { GameStoreContext } from '@shared/stores/GameStore/GameStore.context.ts';
+import { GameStoreContext } from '../../stores/GameStore/GameStore.context.ts';
 import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
 
 export const useGameView = () => {
@@ -10,7 +10,11 @@ export const useGameView = () => {
             WORD_DICTIONARY[
                 Math.ceil(Math.random() * WORD_DICTIONARY.length - 1)
             ];
-        dispatch({ type: 'SET_WORD_OF_THE_DAY', payload: wordOfTheDay });
+        if (wordOfTheDay.word.length === 5) {
+            dispatch({ type: 'SET_WORD_OF_THE_DAY', payload: wordOfTheDay });
+        } else {
+            dispatch({ type: 'RESET' });
+        }
     }, [dispatch]);
 
     useEffect(() => {
