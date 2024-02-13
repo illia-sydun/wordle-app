@@ -7,7 +7,9 @@ export const useGameStore = () => {
     const stringifiedAnswers = JSON.stringify(state.answers);
 
     const indexOfCurrentAnswer = useMemo(() => {
-        const index = state.answers.findIndex((answer) => !answer.isSubmitted);
+        const index = state.answers.findIndex(
+            (answer) => answer.status !== 'submitted',
+        );
         const lastIndex = state.answers.length - 1;
         return index === -1 ? lastIndex : index;
     }, [stringifiedAnswers]);
@@ -29,7 +31,8 @@ export const useGameStore = () => {
     }, [stringifiedCurrentAnswer]);
 
     const isGameOver =
-        !currentAnswer || state.answers[state.answers.length - 1].isSubmitted;
+        !currentAnswer ||
+        state.answers[state.answers.length - 1].status === 'submitted';
 
     const computed = useMemo(
         () => ({

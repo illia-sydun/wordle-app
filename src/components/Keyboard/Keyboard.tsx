@@ -6,7 +6,7 @@ import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 export const Keyboard = () => {
     const {
-        state: { wordDictionary },
+        state: { wordDictionary, answers },
         computed: {
             isGameOver,
             currentAnswer,
@@ -69,18 +69,26 @@ export const Keyboard = () => {
                 return;
             }
 
-            if (
-                wordDictionary.some(
-                    (wordDictionary) =>
-                        wordDictionary.word ===
+            const isWordFromDictionary = wordDictionary.some(
+                (wordDictionary) =>
+                    wordDictionary.word === updatedCurrentAnswerValue.join(''),
+            );
+            const isWordAlreadySubmitted = answers
+                .filter((_, index) => index !== indexOfCurrentAnswer)
+                .some(
+                    (answer) =>
+                        answer.value.join('') ===
                         updatedCurrentAnswerValue.join(''),
-                )
-            ) {
-                dispatch({
-                    type: 'SUBMIT_ANSWER',
-                    payload: indexOfCurrentAnswer,
-                });
-            }
+                );
+            const isValidWord = isWordFromDictionary && !isWordAlreadySubmitted;
+
+            dispatch({
+                type: 'UPDATE_ANSWER_STATUS',
+                payload: {
+                    index: indexOfCurrentAnswer,
+                    status: isValidWord ? 'submitted' : 'invalid',
+                },
+            });
         } else {
             dispatch({
                 type: 'UPDATE_ANSWER_VALUE',

@@ -3,15 +3,30 @@ import styles from './BoardGridRow.module.scss';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { CellStatus } from '@shared/types/CellStatus.ts';
 import { Answer } from '@shared/types/Answer.ts';
+import { useBooleanState } from '@shared/hooks/useBooleanState.ts';
+import { useEffect } from 'react';
 
 type BoardGridRowProps = {
     answer: Answer;
     word: KeyboardKey[];
-    isActive: boolean;
 };
-export const BoardGridRow = ({ answer, word, isActive }: BoardGridRowProps) => {
+export const BoardGridRow = ({ answer, word }: BoardGridRowProps) => {
+    const flipAnimationState = useBooleanState();
+
+    const isInvalidAnswer = answer.status === 'invalid';
+
+    useEffect(() => {
+        if (isInvalidAnswer) {
+            flipAnimationState.handleSetValue(true);
+        }
+    }, [isInvalidAnswer]);
+
+    const handleEndAnimation = () => {
+        flipAnimationState.handleSetFalse();
+    };
+
     const getStatus = (i: number): CellStatus => {
-        if (answer.isSubmitted) {
+        if (answer.status === 'submitted') {
             if (word[i] === answer.value[i]) {
                 return 'match';
             }
@@ -28,14 +43,16 @@ export const BoardGridRow = ({ answer, word, isActive }: BoardGridRowProps) => {
 
     const getIsActive = (i: number) => {
         return (
-            isActive &&
-            !answer.isSubmitted &&
+            answer.status === 'active' &&
             answer.value.indexOf('' as KeyboardKey) === i
         );
     };
 
     return (
-        <div className={styles.container}>
+        <div
+            className={styles.container}
+            data-is-flipping-animation={flipAnimationState.value}
+            onAnimationEnd={handleEndAnimation}>
             {answer.value.map((value, i) => {
                 return (
                     <BoardGridCell
@@ -44,7 +61,7 @@ export const BoardGridRow = ({ answer, word, isActive }: BoardGridRowProps) => {
                         value={value}
                         status={getStatus(i)}
                         isActive={getIsActive(i)}
-                        isSubmitted={answer.isSubmitted}
+                        isSubmitted={answer.status === 'submitted'}
                     />
                 );
             })}
