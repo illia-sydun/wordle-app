@@ -23,7 +23,8 @@ export const KeyboardGridCell = ({
             className={clsx(styles.container, styles[status])}
             style={{ gridArea: value }}
             onClick={handleOnClick}
-            data-value={value}>
+            data-value={value}
+            data-status={status}>
             {value}
         </button>
     );

@@ -6,7 +6,7 @@ import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 
 export const Keyboard = () => {
     const {
-        state: { wordDictionary, answers },
+        state: { wordDictionary, answers, keyState },
         computed: {
             isGameOver,
             currentAnswer,
@@ -28,6 +28,13 @@ export const Keyboard = () => {
         }
 
         if (keyboardKey === 'meta') {
+            return;
+        }
+
+        if (
+            keyState[keyboardKey]?.column === -1 &&
+            keyState[keyboardKey]?.visited
+        ) {
             return;
         }
 
