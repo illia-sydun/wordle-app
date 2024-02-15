@@ -6,6 +6,7 @@ import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
 export const BoardGrid = () => {
     const {
         state: { answers, wordOfTheDay, gameStartedAt },
+        computed: { indexOfCurrentAnswer, indexOfCurrentAnswerActiveCell },
     } = useGameStore();
 
     // @TODO resetting with key? hmmm...
@@ -14,6 +15,8 @@ export const BoardGrid = () => {
             {answers.map((answer, i) => {
                 return (
                     <BoardGridRow
+                        isActive={i === indexOfCurrentAnswer}
+                        indexOfActiveCell={indexOfCurrentAnswerActiveCell}
                         key={i}
                         answer={answer}
                         word={wordOfTheDay.word.split('') as KeyboardKey[]}

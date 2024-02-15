@@ -27,18 +27,11 @@ export const KeyboardGrid = ({
     // @TODO use hook?
     const handleAnimateKeyboardGridCellClick = (keyboardKey: KeyboardKey) => {
         const keyboardGridCell = ref.current?.querySelector(
-            `[data-value='${keyboardKey}']`,
+            `[data-keyboard-grid-cell-value='${keyboardKey}']`,
         );
 
         if (keyboardGridCell instanceof HTMLButtonElement) {
-            keyboardGridCell.setAttribute('data-is-clicking-animation', 'true');
             keyboardGridCell.click();
-            setTimeout(() => {
-                keyboardGridCell.setAttribute(
-                    'data-is-clicking-animation',
-                    'false',
-                );
-            }, 250);
         }
     };
 
@@ -49,7 +42,7 @@ export const KeyboardGrid = ({
         }
         if (event.target instanceof HTMLButtonElement) {
             const keyboardKey: KeyboardKey | null = event.target.getAttribute(
-                'data-value',
+                'data-keyboard-grid-cell-value',
             ) as KeyboardKey;
 
             if (keyboardKey) {
@@ -72,7 +65,7 @@ export const KeyboardGrid = ({
         return 'empty';
     };
 
-    // @TODO flattening keyboardLayout doesn't look good
+    // @TODO styling grid rows?
     return (
         <div className={styles.container} ref={ref}>
             {flatKeyboardLayout.map((key) => (

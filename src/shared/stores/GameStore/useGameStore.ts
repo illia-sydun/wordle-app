@@ -37,9 +37,9 @@ export const useGameStore = () => {
     const computed = useMemo(
         () => ({
             indexOfCurrentAnswer,
+            indexOfCurrentAnswerActiveCell,
             currentAnswer,
             isGameOver,
-            indexOfCurrentAnswerActiveCell,
         }),
         [
             indexOfCurrentAnswer,
