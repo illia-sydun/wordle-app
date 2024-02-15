@@ -31,7 +31,7 @@
 
 @keyframes shake {
     0% {
-        transform: translateX(0) scale(1.05);
+        transform: translateX(0);
     }
     25% {
         transform: translateX(0.5rem);
@@ -43,6 +43,6 @@
         transform: translateX(0.5rem);
     }
     100% {
-        transform: translateX(0) scale(1);
+        transform: translateX(0);
     }
 }
