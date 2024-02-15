@@ -28,3 +28,12 @@
         @include clicked;
     }
 }
+
+@mixin animation-shake {
+    animation: shake 150ms 1 ease-in-out alternate;
+}
+
+@mixin animation-remove-delay {
+    transition-delay: unset !important;
+    animation-delay: unset !important;
+}

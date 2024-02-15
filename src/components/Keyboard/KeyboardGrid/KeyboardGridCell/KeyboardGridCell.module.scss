@@ -56,12 +56,12 @@
         border-color: $disabled;
     }
 
-    &[data-is-clicking-animation='true'][data-status='no_match'] {
-        animation: shake 150ms 1 ease-in-out alternate;
+    &[data-is-clicking-transition='true'][data-keyboard-grid-cell-status='no_match'] {
+        @include animation-shake;
     }
 
-    &:is(:active, &[data-is-clicking-animation='true']):not(
-            &[data-status='no_match']
+    &:is(:active, &[data-is-clicking-transition='true']):not(
+            &[data-keyboard-grid-cell-status='no_match']
         ) {
         transform: translate(0.5rem, 0.5rem);
 
@@ -71,8 +71,8 @@
     }
 
     // @TODO use :is?
-    &:active[data-status='no_match'] {
-        animation: shake 150ms 1 ease-in-out alternate;
+    &:active[data-keyboard-grid-cell-status='no_match'] {
+        @include animation-shake;
     }
 
     // @TODO wtf
@@ -81,7 +81,7 @@
         outline-color: $lightgray;
     }
 
-    &:hover:not([data-status='no_match']) {
+    &:hover:not([data-keyboard-grid-cell-status='no_match']) {
         // @TODO border and outline colors
         border-color: unset;
         transform: translate(0.25rem, 0.25rem);

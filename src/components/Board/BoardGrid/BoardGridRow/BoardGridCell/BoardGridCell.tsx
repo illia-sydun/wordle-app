@@ -23,6 +23,7 @@ export const BoardGridCell = ({
     // @TODO those animations look like anti-pattern
     const flipAnimationState = useBooleanState();
     const pulseAnimationState = useBooleanState();
+    const shakeAnimationState = useBooleanState();
 
     const prevValue = useDeferredValue(value);
 
@@ -38,9 +39,16 @@ export const BoardGridCell = ({
         }
     }, [value]);
 
-    const handleEndAnimation = () => {
+    // @TODO type
+    const handleAnimationEnd = (e) => {
         flipAnimationState.handleSetFalse();
         pulseAnimationState.handleSetFalse();
+        shakeAnimationState.handleSetFalse();
+
+        // @TODO everytime doing that is a bs
+        e.target.setAttribute('data-is-flipping-animation', 'false');
+        e.target.setAttribute('data-is-pulsing-animation', 'false');
+        e.target.setAttribute('data-is-shaking-animation', 'false');
     };
 
     const computedStyles = useMemo(
@@ -59,7 +67,9 @@ export const BoardGridCell = ({
             style={computedStyles}
             data-is-flipping-animation={flipAnimationState.value}
             data-is-pulsing-animation={pulseAnimationState.value}
-            onAnimationEnd={handleEndAnimation}>
+            data-is-shaking-animation={shakeAnimationState.value}
+            data-is-active-board-grid-cell={isActive}
+            onAnimationEnd={handleAnimationEnd}>
             {value}
         </div>
     );

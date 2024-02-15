@@ -9,8 +9,15 @@ import { useEffect } from 'react';
 type BoardGridRowProps = {
     answer: Answer;
     word: KeyboardKey[];
+    isActive: boolean;
+    indexOfActiveCell: number;
 };
-export const BoardGridRow = ({ answer, word }: BoardGridRowProps) => {
+export const BoardGridRow = ({
+    answer,
+    word,
+    isActive,
+    indexOfActiveCell,
+}: BoardGridRowProps) => {
     const shakeAnimationState = useBooleanState();
 
     const isInvalidAnswer = answer.status === 'invalid';
@@ -21,10 +28,14 @@ export const BoardGridRow = ({ answer, word }: BoardGridRowProps) => {
         }
     }, [isInvalidAnswer]);
 
-    const handleEndAnimation = () => {
+    // @TODO type
+    const handleAnimationEnd = (e) => {
         shakeAnimationState.handleSetFalse();
+
+        e.target.setAttribute('data-is-shaking-animation', 'false');
     };
 
+    // @TODO extract to hook
     const getStatus = (i: number): CellStatus => {
         if (answer.status === 'submitted') {
             if (word[i] === answer.value[i]) {
@@ -42,17 +53,15 @@ export const BoardGridRow = ({ answer, word }: BoardGridRowProps) => {
     };
 
     const getIsActive = (i: number) => {
-        return (
-            answer.status === 'active' &&
-            answer.value.indexOf('' as KeyboardKey) === i
-        );
+        return isActive && i === indexOfActiveCell && !answer.value[i];
     };
 
     return (
         <div
             className={styles.container}
             data-is-shaking-animation={shakeAnimationState.value}
-            onAnimationEnd={handleEndAnimation}>
+            onAnimationEnd={handleAnimationEnd}
+            data-is-active-board-grid-row={isActive}>
             {answer.value.map((value, i) => {
                 return (
                     <BoardGridCell

@@ -27,14 +27,27 @@ export const Keyboard = () => {
             return;
         }
 
-        if (keyboardKey === 'meta') {
-            return;
-        }
+        // if (keyboardKey === 'meta') {
+        //     return;
+        // }
 
         if (
             keyState[keyboardKey]?.column === -1 &&
             keyState[keyboardKey]?.visited
         ) {
+            // @TODO it's a complete bs!
+            const activeBoardGridCell = document.querySelector(
+                `[data-is-active-board-grid-cell='true']`,
+            );
+
+            if (activeBoardGridCell instanceof HTMLDivElement) {
+                activeBoardGridCell.setAttribute(
+                    'data-is-shaking-animation',
+                    'true',
+                );
+                activeBoardGridCell.click();
+            }
+
             return;
         }
 
@@ -73,6 +86,18 @@ export const Keyboard = () => {
             if (
                 !updatedCurrentAnswerValue[updatedCurrentAnswerValue.length - 1]
             ) {
+                // @TODO it's a complete bs!!!
+                const activeBoardGridRow = document.querySelector(
+                    `[data-is-active-board-grid-row='true']`,
+                );
+
+                if (activeBoardGridRow instanceof HTMLDivElement) {
+                    activeBoardGridRow?.setAttribute(
+                        'data-is-shaking-animation',
+                        'true',
+                    );
+                }
+
                 return;
             }
 
@@ -89,13 +114,41 @@ export const Keyboard = () => {
                 );
             const isValidWord = isWordFromDictionary && !isWordAlreadySubmitted;
 
-            dispatch({
-                type: 'UPDATE_ANSWER_STATUS',
-                payload: {
-                    index: indexOfCurrentAnswer,
-                    status: isValidWord ? 'submitted' : 'invalid',
-                },
-            });
+            /*
+                add prop active cell
+                add prop for active row
+                maybe keep it in store, maybe not
+             */
+            if (!isValidWord) {
+                // @TODO it's a complete bs!!! and copied!!! and doesnt work as theres no active when all cells filled!!
+                const activeBoardGridRow = document.querySelector(
+                    `[data-is-active-board-grid-row='true']`,
+                );
+
+                if (activeBoardGridRow instanceof HTMLDivElement) {
+                    activeBoardGridRow?.setAttribute(
+                        'data-is-shaking-animation',
+                        'true',
+                    );
+                }
+                if (currentAnswer.status !== 'invalid') {
+                    dispatch({
+                        type: 'UPDATE_ANSWER_STATUS',
+                        payload: {
+                            index: indexOfCurrentAnswer,
+                            status: 'invalid',
+                        },
+                    });
+                }
+            } else {
+                dispatch({
+                    type: 'UPDATE_ANSWER_STATUS',
+                    payload: {
+                        index: indexOfCurrentAnswer,
+                        status: 'submitted',
+                    },
+                });
+            }
         } else {
             dispatch({
                 type: 'UPDATE_ANSWER_VALUE',

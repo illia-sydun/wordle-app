@@ -14,16 +14,6 @@
     color: $font-primary;
     text-shadow: 1px 1px 2px $shadow;
 
-    &[data-is-flipping-animation='true'] {
-        animation: flip 750ms 1 linear;
-    }
-
-    &[data-is-pulsing-animation='true'] {
-        animation: pulse 100ms 1 ease-in-out;
-        transition-delay: unset !important;
-        animation-delay: unset !important;
-    }
-
     &.active {
         &::before {
             content: '|';
@@ -48,5 +38,19 @@
     &.close_match {
         background-color: $warning;
         border-color: transparent;
+    }
+
+    &[data-is-flipping-animation='true'] {
+        animation: flip 750ms 1 linear;
+    }
+
+    &[data-is-pulsing-animation='true'] {
+        @include animation-remove-delay;
+        animation: pulse 100ms 1 ease-in-out;
+    }
+
+    &[data-is-shaking-animation='true'] {
+        @include animation-remove-delay;
+        @include animation-shake;
     }
 }
