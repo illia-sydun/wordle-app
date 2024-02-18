@@ -8,3 +8,19 @@
         '. . . z x c v b n m . .';
     gap: 1.25rem;
 }
+
+.row {
+    display: contents;
+    &.row-1 {
+        & > * {
+            margin-left: -50%;
+            margin-right: 50%;
+        }
+    }
+    &.row-2 {
+        & > * {
+            margin-left: -100%;
+            margin-right: 100%;
+        }
+    }
+}

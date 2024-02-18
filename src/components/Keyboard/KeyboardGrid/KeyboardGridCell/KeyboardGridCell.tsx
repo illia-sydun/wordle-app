@@ -24,10 +24,11 @@ export const KeyboardGridCell = ({
     };
 
     const handleOnClick = () => {
-        clickTransitionState.handleSetTrue();
+        clickTransitionState.handleToggle();
         onClick(value);
     };
 
+    // @OTOD theres an issue with transition when click on key with mouse and hold focus
     return (
         <button
             className={clsx(styles.container, styles[status])}

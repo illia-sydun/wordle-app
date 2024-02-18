@@ -6,6 +6,7 @@ import type { KeyboardLayout } from '../Keyboard.types.ts';
 import type { CellStatus } from '@shared/types/CellStatus.ts';
 import { useKeyPress } from '@shared/hooks/useKeyPress.ts';
 import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
+import { clsx } from 'clsx';
 
 type KeyboardGridProps = {
     keyboardLayout: KeyboardLayout;
@@ -41,6 +42,17 @@ export const KeyboardGrid = ({
             handleAnimateKeyboardGridCellClick(keyboardKey);
         }
         if (event.target instanceof HTMLButtonElement) {
+            /*
+                // @TODO
+                I want to get rid of data-atributes at all. how to achieve this?
+                1. I use it for animations. Find animation library.
+                2. Would it handle mouse events in css file?
+                3. I use it in querySelector to trigger animations from other componnets in the app.
+                It does look like jquery and I don't like it. What if each item would just have its id
+                and i'll trigger those animations thanks to global store like redux?
+                but how to make them on-time animations? need to find a solution.
+
+            */
             const keyboardKey: KeyboardKey | null = event.target.getAttribute(
                 'data-keyboard-grid-cell-value',
             ) as KeyboardKey;
@@ -68,13 +80,17 @@ export const KeyboardGrid = ({
     // @TODO styling grid rows?
     return (
         <div className={styles.container} ref={ref}>
-            {flatKeyboardLayout.map((key) => (
-                <KeyboardGridCell
-                    key={key}
-                    value={key}
-                    onClick={onKeyboardKeyPress}
-                    status={getStatus(key)}
-                />
+            {keyboardLayout.map((row, i) => (
+                <div className={clsx(styles.row, styles[`row-${i}`])} key={i}>
+                    {row.map((key) => (
+                        <KeyboardGridCell
+                            key={key}
+                            value={key}
+                            onClick={onKeyboardKeyPress}
+                            status={getStatus(key)}
+                        />
+                    ))}
+                </div>
             ))}
         </div>
     );
