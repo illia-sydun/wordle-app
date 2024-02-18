@@ -90,4 +90,10 @@
             transform: translate3d(0.25rem, 0.25rem, -1rem);
         }
     }
+
+    &[data-keyboard-grid-cell-value='enter'],
+    &[data-keyboard-grid-cell-value='backspace'],
+    &[data-keyboard-grid-cell-value='escape'] {
+        margin: unset;
+    }
 }
