@@ -17,10 +17,8 @@ export const KeyboardGridCell = ({
 }: KeyboardGridCellProps) => {
     const clickTransitionState = useBooleanState();
 
-    // @TODO type
-    const handleTransitionEnd = (e) => {
+    const handleTransitionEnd = () => {
         clickTransitionState.handleSetFalse();
-        e.target.setAttribute('data-is-clicking-transition', 'false');
     };
 
     const handleOnClick = () => {
