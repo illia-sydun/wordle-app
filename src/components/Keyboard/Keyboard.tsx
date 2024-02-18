@@ -45,7 +45,6 @@ export const Keyboard = () => {
                     'data-is-shaking-animation',
                     'true',
                 );
-                activeBoardGridCell.click();
             }
 
             return;
