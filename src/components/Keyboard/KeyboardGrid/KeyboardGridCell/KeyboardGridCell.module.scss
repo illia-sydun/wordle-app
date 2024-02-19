@@ -40,6 +40,13 @@
         transition: 100ms cubic-bezier(0, 0, 0.6, 1);
     }
 
+    &:hover,
+    &:focus,
+    &:active {
+        outline-color: $lightgray;
+        border-color: unset;
+    }
+
     &.match {
         background-color: $success;
         border-color: $success;
@@ -56,34 +63,11 @@
         border-color: $disabled;
     }
 
-    &[data-is-clicking-transition='true'][data-keyboard-grid-cell-status='no_match'] {
+    &.shake {
         @include animation-shake;
     }
 
-    &:is(:active, &[data-is-clicking-transition='true']):not(
-            &[data-keyboard-grid-cell-status='no_match']
-        ) {
-        transform: translate(0.5rem, 0.5rem);
-
-        &::before {
-            transform: translate3d(0, 0, -1rem);
-        }
-    }
-
-    // @TODO use :is?
-    &:active[data-keyboard-grid-cell-status='no_match'] {
-        @include animation-shake;
-    }
-
-    // @TODO wtf
-    &:focus,
-    &:active {
-        outline-color: $lightgray;
-    }
-
-    &:hover:not([data-keyboard-grid-cell-status='no_match']) {
-        // @TODO border and outline colors
-        border-color: unset;
+    &.half_click {
         transform: translate(0.25rem, 0.25rem);
 
         &::before {
@@ -91,9 +75,11 @@
         }
     }
 
-    &[data-keyboard-grid-cell-value='enter'],
-    &[data-keyboard-grid-cell-value='backspace'],
-    &[data-keyboard-grid-cell-value='escape'] {
-        margin: unset;
+    &.click {
+        transform: translate(0.5rem, 0.5rem);
+
+        &::before {
+            transform: translate3d(0, 0, -1rem);
+        }
     }
 }

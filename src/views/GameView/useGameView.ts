@@ -5,6 +5,7 @@ import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
 export const useGameView = () => {
     const { state, dispatch } = useContext(GameStoreContext);
 
+    // done in mobx
     const initWordOfTheDay = useCallback(() => {
         const wordOfTheDay =
             WORD_DICTIONARY[
@@ -17,6 +18,7 @@ export const useGameView = () => {
         }
     }, [dispatch]);
 
+    // done in mobx
     useEffect(() => {
         if (!state.gameStartedAt) {
             initWordOfTheDay();

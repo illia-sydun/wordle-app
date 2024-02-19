@@ -47,8 +47,8 @@ export const GameStoreReducer = (
     const answers = [...state.answers];
     const keyState = { ...state.keyState };
 
-    console.log(action);
     switch (action.type) {
+        // done in mobx
         case 'UPDATE_ANSWER_VALUE':
             answers[action.payload.index].value = action.payload.value;
             answers[action.payload.index].status = 'active';
@@ -58,6 +58,7 @@ export const GameStoreReducer = (
                 answers,
             };
 
+        // done in mobx
         case 'UPDATE_ANSWER_STATUS':
             answers[action.payload.index].status = action.payload.status;
 
@@ -81,6 +82,7 @@ export const GameStoreReducer = (
                 answers,
             };
 
+        // done in mobx
         case 'SET_WORD_OF_THE_DAY':
             const wordOfTheDay = action.payload;
 
@@ -94,6 +96,7 @@ export const GameStoreReducer = (
                 gameStartedAt: Date.now(),
             };
 
+        // not ideally but done in mobx
         case 'RESET':
             return getGameStoreInitialState();
 

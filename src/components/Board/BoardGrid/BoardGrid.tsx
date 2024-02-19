@@ -1,28 +1,18 @@
 import { BoardGridRow } from './BoardGridRow';
 import styles from './BoardGrid.module.scss';
-import type { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { useGameStore } from '@shared/stores/GameStore/useGameStore.ts';
+import { useMobxStores } from '@shared/stores/useMobx.ts';
+import { observer } from 'mobx-react-lite';
 
-export const BoardGrid = () => {
+export const BoardGrid = observer(() => {
     const {
-        state: { answers, wordOfTheDay, gameStartedAt },
-        computed: { indexOfCurrentAnswer, indexOfCurrentAnswerActiveCell },
-    } = useGameStore();
+        boardStore: { rows },
+    } = useMobxStores();
 
-    // @TODO resetting with key? hmmm...
     return (
-        <div key={gameStartedAt} className={styles.container}>
-            {answers.map((answer, i) => {
-                return (
-                    <BoardGridRow
-                        isActive={i === indexOfCurrentAnswer}
-                        indexOfActiveCell={indexOfCurrentAnswerActiveCell}
-                        key={i}
-                        answer={answer}
-                        word={wordOfTheDay.word.split('') as KeyboardKey[]}
-                    />
-                );
+        <div className={styles.container}>
+            {rows.map((row) => {
+                return <BoardGridRow key={`row-${row.index}`} row={row} />;
             })}
         </div>
     );
-};
+});
