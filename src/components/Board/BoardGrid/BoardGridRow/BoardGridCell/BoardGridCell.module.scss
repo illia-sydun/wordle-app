@@ -14,7 +14,7 @@
     color: $font-primary;
     text-shadow: 1px 1px 2px $shadow;
 
-    &.active {
+    &.active:empty {
         &::before {
             content: '|';
 
@@ -40,16 +40,16 @@
         border-color: transparent;
     }
 
-    &[data-is-flipping-animation='true'] {
+    &.flip {
         animation: flip 750ms 1 linear;
     }
 
-    &[data-is-pulsing-animation='true'] {
+    &.pulse {
         @include animation-remove-delay;
         animation: pulse 100ms 1 ease-in-out;
     }
 
-    &[data-is-shaking-animation='true'] {
+    &.shake {
         @include animation-remove-delay;
         @include animation-shake;
     }

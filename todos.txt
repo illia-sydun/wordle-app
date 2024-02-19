@@ -1,0 +1,8 @@
+*   1. style keyboard status reveal effect
+    2. add hints
+    3. add fonts
+    4. remove setTimeout on enter press.  maybe show a dialog with confirmation first
+        to give escape time to animate and prevent mistake presses
+*   5. handle game over state, fail and success states.
+  + 6. get rid of repeat key press
+    7.  add dark mode switch

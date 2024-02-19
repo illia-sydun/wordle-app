@@ -6,7 +6,7 @@
     flex-direction: row;
     gap: 0.75rem;
 
-    &[data-is-shaking-animation='true'] {
+    &.shake {
         @include animation-shake;
     }
 }

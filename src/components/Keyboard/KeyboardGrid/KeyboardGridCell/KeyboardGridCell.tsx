@@ -1,42 +1,51 @@
 import styles from './KeyboardGridCell.module.scss';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { CellStatus } from '@shared/types/CellStatus.ts';
 import { clsx } from 'clsx';
-import { useBooleanState } from '@shared/hooks/useBooleanState.ts';
+import { observer } from 'mobx-react-lite';
+import { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
 
 type KeyboardGridCellProps = {
-    status: CellStatus;
-    value: KeyboardKey;
+    cell: KeyStore;
     onClick: (value: KeyboardKey) => void;
 };
 
-export const KeyboardGridCell = ({
-    value,
-    status,
-    onClick,
-}: KeyboardGridCellProps) => {
-    const clickTransitionState = useBooleanState();
+export const KeyboardGridCell = observer(
+    ({ cell, onClick }: KeyboardGridCellProps) => {
+        const handleOnClick = () => {
+            onClick(cell.value);
+        };
 
-    const handleTransitionEnd = () => {
-        clickTransitionState.handleSetFalse();
-    };
+        const startHalfClickAnimation = () => {
+            cell.startAnimation('half_click');
+        };
 
-    const handleOnClick = () => {
-        clickTransitionState.handleToggle();
-        onClick(value);
-    };
+        const handleStopGenericAnimations = () => {
+            if (cell.animationState !== 'half_click') {
+                cell.stopAnimation();
+            }
+        };
 
-    // @OTOD theres an issue with transition when click on key with mouse and hold focus
-    return (
-        <button
-            className={clsx(styles.container, styles[status])}
-            style={{ gridArea: value }}
-            onClick={handleOnClick}
-            data-keyboard-grid-cell-value={value}
-            data-keyboard-grid-cell-status={status}
-            data-is-clicking-transition={clickTransitionState.value}
-            onTransitionEnd={handleTransitionEnd}>
-            {value}
-        </button>
-    );
-};
+        const handleStopAllAnimations = () => {
+            cell.stopAnimation();
+        };
+
+        return (
+            <button
+                className={clsx(
+                    styles.container,
+                    styles[cell.status],
+                    styles[cell.animationState],
+                )}
+                style={cell.computedStyles}
+                onClick={handleOnClick}
+                onMouseEnter={startHalfClickAnimation}
+                onFocus={startHalfClickAnimation}
+                onTransitionEnd={handleStopGenericAnimations}
+                onMouseLeave={handleStopAllAnimations}
+                onBlur={handleStopAllAnimations}
+                onAnimationEnd={handleStopAllAnimations}>
+                {cell.label}
+            </button>
+        );
+    },
+);

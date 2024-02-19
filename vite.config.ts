@@ -6,7 +6,21 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react(), checker({ typescript: true })],
+    plugins: [
+        react({
+            babel: {
+                plugins: [
+                    [
+                        '@babel/plugin-proposal-decorators',
+                        {
+                            version: '2023-05',
+                        },
+                    ],
+                ],
+            },
+        }),
+        checker({ typescript: true }),
+    ],
     resolve: {
         alias: {
             '@styles': path.resolve('./src/shared/styles/base'),
