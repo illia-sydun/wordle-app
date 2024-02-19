@@ -37,3 +37,7 @@
     transition-delay: unset !important;
     animation-delay: unset !important;
 }
+
+@mixin font-wordle {
+    font-family: 'nytimes', 'Rubik', sans-serif;
+}
