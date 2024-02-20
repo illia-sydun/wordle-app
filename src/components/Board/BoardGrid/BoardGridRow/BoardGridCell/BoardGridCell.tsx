@@ -17,7 +17,7 @@ export const BoardGridCell = observer(({ cell }: BoardGridCellProps) => {
                 styles[cell.animationState],
                 cell.isActive && styles.active,
             )}
-            style={cell.animationDelayStyles}
+            style={cell.computedStyles}
             onAnimationEnd={cell.stopAnimation}>
             {cell.value}
         </div>

@@ -29,13 +29,30 @@
     }
 }
 
+@mixin animation-pulse {
+    animation: pulse 100ms 1 ease-in-out;
+}
+
 @mixin animation-shake {
     animation: shake 150ms 1 ease-in-out alternate;
 }
 
-@mixin animation-remove-delay {
+@mixin animation-flip {
+    animation: flip 750ms 1 linear;
+}
+
+@mixin animation-flip-infinite {
+    @include animation-flip;
+    @include animation-iteration-count-infinite;
+}
+
+@mixin animation-delay-unset {
     transition-delay: unset !important;
     animation-delay: unset !important;
+}
+
+@mixin animation-iteration-count-infinite {
+    animation-iteration-count: infinite;
 }
 
 @mixin font-wordle {

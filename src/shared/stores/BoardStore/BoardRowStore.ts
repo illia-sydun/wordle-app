@@ -94,8 +94,17 @@ export class BoardRowStore implements BoardRow {
     setStatus(status: BoardRow['status'], word?: WordOfTheDay['word']) {
         this.status = status;
 
+        // @TODO rework it all with delay as well. maybe add reaction instead of delay
         if (status === 'submitted' && word) {
             this.cells.forEach((cell) => cell.submit(word));
+
+            if (this.value === word) {
+                const delay = this.cells
+                    .slice(0, -1)
+                    .reduce((acc, item) => acc + item.transitionDelay, 0);
+
+                setTimeout(() => this.startAnimation('flip_infinite'), delay);
+            }
         } else if (status === 'invalid') {
             this.startAnimation('shake');
         }

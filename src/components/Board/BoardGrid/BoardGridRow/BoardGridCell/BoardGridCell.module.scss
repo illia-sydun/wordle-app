@@ -41,16 +41,16 @@
     }
 
     &.flip {
-        animation: flip 750ms 1 linear;
+        @include animation-flip;
     }
 
     &.pulse {
-        @include animation-remove-delay;
-        animation: pulse 100ms 1 ease-in-out;
+        @include animation-delay-unset;
+        @include animation-pulse;
     }
 
     &.shake {
-        @include animation-remove-delay;
+        @include animation-delay-unset;
         @include animation-shake;
     }
 }

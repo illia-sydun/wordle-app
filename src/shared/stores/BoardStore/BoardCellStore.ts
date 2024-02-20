@@ -59,11 +59,21 @@ export class BoardCellStore implements BoardCell {
     }
 
     @computed
-    get animationDelayStyles() {
+    get animationDelay() {
+        return this.index * 250;
+    }
+
+    @computed
+    get transitionDelay() {
+        return this.index * 300;
+    }
+
+    @computed
+    get computedStyles() {
         if (this.isSubmitted) {
             return {
-                transitionDelay: `${this.index * 300}ms`,
-                animationDelay: `${this.index * 250}ms`,
+                transitionDelay: `${this.transitionDelay}ms`,
+                animationDelay: `${this.animationDelay}ms`,
             };
         }
     }
