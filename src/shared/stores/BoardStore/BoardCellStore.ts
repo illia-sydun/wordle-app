@@ -1,10 +1,13 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { CellStatus } from '@shared/types/CellStatus.ts';
 import { AnimationState } from '@shared/types/AnimationState.ts';
-import { action, computed, observable, reaction } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
-import { keyboardStore } from '@shared/stores/KeyboardStore';
-import { boardStore } from '@shared/stores/BoardStore/BoardStore.ts';
+import { CELL_STATUS_SUBMITTED } from '@shared/constants/CellStatus.ts';
+import {
+    MobXRootStore,
+    MobxStore,
+} from '@shared/stores/RootStore/RootStore.ts';
 
 type BoardCell = {
     index: number;
@@ -14,7 +17,9 @@ type BoardCell = {
     animationState: AnimationState;
 };
 
-export class BoardCellStore implements BoardCell {
+export class BoardCellStore implements MobxStore, BoardCell {
+    @observable accessor rootStore: MobXRootStore;
+
     @observable accessor index: BoardCell['index'];
     @observable accessor rowIndex: BoardCell['rowIndex'];
     @observable accessor value: BoardCell['value'];
@@ -22,15 +27,20 @@ export class BoardCellStore implements BoardCell {
     @observable accessor animationState: BoardCell['animationState'];
 
     constructor(
+        rootStore: MobXRootStore,
         value: BoardCell['value'],
         index: BoardCell['index'],
         rowIndex: BoardCell['rowIndex'],
     ) {
+        this.rootStore = rootStore;
+
         this.value = value;
         this.index = index;
         this.rowIndex = rowIndex;
         this.status = 'empty';
         this.animationState = 'idle';
+
+        makeObservable(this);
     }
 
     @computed
@@ -38,24 +48,20 @@ export class BoardCellStore implements BoardCell {
         return this.value === '';
     }
 
-    // @TODO mobx emmmm IDK
+    // @TODO mobx emmmm IDK, somehow fix redundant access to boardStore
     @computed
     get isActive() {
         return (
-            this.rowIndex === boardStore.indexOfActiveRow &&
-            this.index === boardStore.activeRow.indexOfActiveCell
+            this.rowIndex === this.rootStore.boardStore.indexOfActiveRow &&
+            this.index === this.rootStore.boardStore.activeRow.indexOfActiveCell
         );
     }
 
     @computed
     get isSubmitted() {
-        // @TODO mobx extract array from here
-        const submittedStatuses: CellStatus[] = [
-            'match',
-            'no_match',
-            'close_match',
-        ];
-        return submittedStatuses.includes(this.status);
+        return Object.values(CELL_STATUS_SUBMITTED).some(
+            (status) => status === this.status,
+        );
     }
 
     @computed
@@ -81,7 +87,13 @@ export class BoardCellStore implements BoardCell {
     @action
     setValue(value: BoardCell['value']) {
         this.value = value;
-        this.setStatus(value ? 'touched' : 'empty');
+
+        if (value) {
+            this.setStatus('touched');
+            this.startAnimation('pulse');
+        } else {
+            this.setStatus('empty');
+        }
     }
 
     @action
@@ -115,15 +127,4 @@ export class BoardCellStore implements BoardCell {
     stopAnimation() {
         this.animationState = 'idle';
     }
-
-    // @TODO mobx no idea how this should be done properly
-    // maybe autorun? how to dispose it?
-    startPulseAnimation = reaction(
-        () => this.value,
-        () => {
-            if (!this.isEmpty) {
-                this.startAnimation('pulse');
-            }
-        },
-    );
 }

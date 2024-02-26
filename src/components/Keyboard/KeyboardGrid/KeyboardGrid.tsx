@@ -5,7 +5,7 @@ import type { KeyboardLayout } from '../Keyboard.types.ts';
 import { useKeyPress } from '@shared/hooks/useKeyPress.ts';
 import { clsx } from 'clsx';
 import { observer } from 'mobx-react-lite';
-import { useMobxStores } from '@shared/stores/useMobx.ts';
+import { useMobxStore } from '@shared/stores/useMobxStore.ts';
 
 type KeyboardGridProps = {
     keyboardLayout: KeyboardLayout;
@@ -16,17 +16,19 @@ type KeyboardGridProps = {
 // why flatKeyboardLayout
 // revise useKeyPress
 
-export const KeyboardGrid = observer(
-    ({ keyboardLayout, onKeyboardKeyPress }: KeyboardGridProps) => {
-        const {
-            keyboardStore: { keys },
-        } = useMobxStores();
+export const KeyboardGrid = observer(function KeyboardGrid({
+    keyboardLayout,
+    onKeyboardKeyPress,
+}: KeyboardGridProps) {
+    const {
+        keyboardStore: { keys },
+    } = useMobxStore();
 
-        useKeyPress((event, keyboardKey) => {
-            if (!event.repeat && event.target instanceof HTMLBodyElement) {
-                onKeyboardKeyPress(keyboardKey);
-            }
-        }, keyboardLayout.flat());
+    useKeyPress((event, keyboardKey) => {
+        if (!event.repeat && event.target instanceof HTMLBodyElement) {
+            onKeyboardKeyPress(keyboardKey);
+        }
+    }, keyboardLayout.flat());
 
         return (
             <div className={styles.container}>

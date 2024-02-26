@@ -6,11 +6,12 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     "plugin:react/recommended",
     'plugin:react-hooks/recommended',
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:mobx/recommended"
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react', 'react-hooks', 'react-refresh', 'prettier'],
+  plugins: ['react', 'react-hooks', 'react-refresh', 'prettier', 'mobx'],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -20,5 +21,10 @@ module.exports = {
     "react/display-name": "off",
     "react-hooks/exhaustive-deps": "off",
     "no-case-declarations": "off",
+    "mobx/exhaustive-make-observable": "warn",
+    "mobx/unconditional-make-observable": "error",
+    "mobx/missing-make-observable": "error",
+    "mobx/missing-observer": "warn",
+    "mobx/no-anonymous-observer": "warn"
   },
 }

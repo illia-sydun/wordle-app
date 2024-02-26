@@ -3,13 +3,14 @@ import { KeyboardGrid } from './KeyboardGrid';
 import { KEYBOARD_LAYOUT } from './Keyboard.constants.ts';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { observer } from 'mobx-react-lite';
-import { useMobxStores } from '@shared/stores/useMobx.ts';
+import { useMobxStore } from '@shared/stores/useMobxStore.ts';
 
 // @TODO mobx + it needs refactor
 // fix mobx wordStore word mess
 
-export const Keyboard = observer(() => {
-    const { keyboardStore, boardStore, wordStore } = useMobxStores();
+export const Keyboard = observer(function Keyboard() {
+    const { keyboardStore, boardStore, wordStore } = useMobxStore();
+
     const handleKeyboardKeyPress = (keyboardKey: KeyboardKey) => {
         if (!keyboardStore.keys[keyboardKey]) {
             return;

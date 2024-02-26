@@ -1,37 +1,54 @@
-import { AnswerStatus } from '@shared/types/Answer.ts';
 import { AnimationState } from '@shared/types/AnimationState.ts';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { BoardCellStore } from '@shared/stores/BoardStore/BoardCellStore.ts';
+import { RowStatus } from '@shared/types/RowStatus.ts';
+import {
+    MobXRootStore,
+    MobxStore,
+} from '@shared/stores/RootStore/RootStore.ts';
 
 type BoardRow = {
     index: number;
     cells: BoardCellStore[];
-    status: AnswerStatus;
+    status: RowStatus;
     animationState: AnimationState;
 };
 
-export class BoardRowStore implements BoardRow {
+export class BoardRowStore implements MobxStore, BoardRow {
+    @observable accessor rootStore: MobXRootStore;
+
     @observable accessor index: BoardRow['index'];
     @observable accessor cells: BoardRow['cells'];
     @observable accessor status: BoardRow['status'];
     @observable accessor animationState: BoardRow['animationState'];
 
     constructor(
+        rootStore: MobXRootStore,
         cells: BoardRow['cells'][number]['value'][],
         rowIndex: BoardRow['index'],
     ) {
+        this.rootStore = rootStore;
+
         this.index = rowIndex;
         this.cells = cells.map(
-            (cell, cellIndex) => new BoardCellStore(cell, cellIndex, rowIndex),
+            (cell, cellIndex) =>
+                new BoardCellStore(this.rootStore, cell, cellIndex, rowIndex),
         );
         this.status = 'empty';
         this.animationState = 'idle';
+
+        makeObservable(this);
+    }
+
+    @computed
+    get isInvalid() {
+        return this.status === 'invalid';
     }
 
     @computed
     get isActive() {
-        return this.status !== 'empty' && this.status !== 'submitted';
+        return this.index === this.rootStore.boardStore.indexOfActiveRow;
     }
 
     @computed
@@ -42,11 +59,6 @@ export class BoardRowStore implements BoardRow {
     @computed
     get canBeSubmitted() {
         return !this.cells.some((cell) => cell.isEmpty);
-    }
-
-    @computed
-    get isInvalid() {
-        return this.status === 'invalid';
     }
 
     @computed
@@ -96,7 +108,7 @@ export class BoardRowStore implements BoardRow {
 
         // @TODO rework it all with delay as well. maybe add reaction instead of delay
         if (status === 'submitted' && word) {
-            this.cells.forEach((cell) => cell.submit(word));
+            this.cells.forEach((cell, i) => cell.submit(word, i));
 
             if (this.value === word) {
                 const delay = this.cells

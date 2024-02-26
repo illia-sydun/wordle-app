@@ -1,20 +1,30 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { action, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { KEYBOARD_KEY } from '@shared/constants/KeyboardKey.ts';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
+import {
+    MobXRootStore,
+    MobxStore,
+} from '@shared/stores/RootStore/RootStore.ts';
 
 type Keyboard = {
     keys: Record<KeyboardKey, KeyStore>;
 };
 
-class KeyboardStore implements Keyboard {
+export class KeyboardStore implements MobxStore, Keyboard {
+    @observable accessor rootStore: MobXRootStore;
+
     @observable accessor keys: Keyboard['keys'];
 
     // @TODO mobx init and reset are overcomplicated.
     //  why create new stores all the time? just reset the states..
-    constructor() {
+    constructor(rootStore: MobXRootStore) {
+        this.rootStore = rootStore;
+
         this.keys = this.reset();
+
+        makeObservable(this);
     }
 
     @action
@@ -38,5 +48,3 @@ class KeyboardStore implements Keyboard {
         });
     }
 }
-
-export const keyboardStore = new KeyboardStore();
