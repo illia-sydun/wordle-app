@@ -1,18 +1,27 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { BoardRowStore } from '@shared/stores/BoardStore/BoardRowStore.ts';
-import { keyboardStore } from '@shared/stores/KeyboardStore';
+import {
+    MobXRootStore,
+    MobxStore,
+} from '@shared/stores/RootStore/RootStore.ts';
 
 export type Board = {
     rows: BoardRowStore[];
 };
 
-class BoardStore implements Board {
+export class BoardStore implements MobxStore, Board {
+    @observable accessor rootStore: MobXRootStore;
+
     @observable accessor rows: Board['rows'];
 
-    constructor() {
+    constructor(rootStore: MobXRootStore) {
+        this.rootStore = rootStore;
+
         this.rows = this.reset();
+
+        makeObservable(this);
     }
 
     private generateEmptyMatrix(rows = 6, columns = 5) {
@@ -27,10 +36,8 @@ class BoardStore implements Board {
     @action
     reset() {
         const rows = this.generateEmptyMatrix().map(
-            (row, index) => new BoardRowStore(row, index),
+            (row, index) => new BoardRowStore(this.rootStore, row, index),
         );
-
-        rows[0].setStatus('active');
 
         this.rows = rows;
 
@@ -45,21 +52,17 @@ class BoardStore implements Board {
     }
 
     @computed
-    get nextActiveRow() {
-        return this.rows[this.indexOfActiveRow + 1];
-    }
-
-    @computed
     get activeRow(): Board['rows'][number] {
         return this.rows[this.indexOfActiveRow];
     }
 
+    @computed
+    get nextActiveRow() {
+        return this.rows[this.indexOfActiveRow + 1];
+    }
+
     @action
     submitActiveRow(word: WordOfTheDay['word']) {
-        if (this.nextActiveRow) {
-            this.nextActiveRow.setStatus('active');
-        }
-
         this.activeRow.setStatus('submitted', word);
     }
 
@@ -80,9 +83,9 @@ class BoardStore implements Board {
         //     return;
         // }
 
-        if (!keyboardStore.keys[key].isClickable) {
+        if (!this.rootStore.keyboardStore.keys[key].isClickable) {
             this.activeRow.activeCell.startAnimation('shake');
-            keyboardStore.keys[key].startAnimation('shake');
+            this.rootStore.keyboardStore.keys[key].startAnimation('shake');
             return;
         }
 
@@ -98,5 +101,3 @@ class BoardStore implements Board {
         }
     }
 }
-
-export const boardStore = new BoardStore();

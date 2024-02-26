@@ -1,23 +1,28 @@
 import { WordOfTheDay } from '@shared/types/Word.ts';
-import { action, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
-import { keyboardStore } from '@shared/stores/KeyboardStore/KeyboardStore.ts';
-import { boardStore } from '@shared/stores/BoardStore/BoardStore.ts';
+import { MobXRootStore } from '@shared/stores/RootStore/RootStore.ts';
 
 type Word = {
     word: WordOfTheDay['word'];
     hints: WordOfTheDay['hints'];
 };
 
-class WordStore implements Word {
+export class WordStore implements Word {
+    @observable accessor rootStore: MobXRootStore;
+
     @observable accessor word: Word['word'];
     @observable accessor hints: Word['hints'];
 
-    constructor() {
+    constructor(rootStore: MobXRootStore) {
+        this.rootStore = rootStore;
+
         const { word, hints } = this.reset();
 
         this.word = word;
         this.hints = hints;
+
+        makeObservable(this);
     }
 
     // @TODO mobx not sure if this should be here or level higher.
@@ -30,8 +35,8 @@ class WordStore implements Word {
             ];
 
         if (word.length === 5) {
-            boardStore.reset();
-            keyboardStore.init(word);
+            this.rootStore.boardStore.reset();
+            this.rootStore.keyboardStore.init(word);
 
             this.word = word;
             this.hints = hints;
@@ -49,5 +54,3 @@ class WordStore implements Word {
         );
     }
 }
-
-export const wordStore = new WordStore();
