@@ -8,9 +8,7 @@ interface BoardGridCellProps {
 }
 
 // @TODO parse CellStatus and AnimationState.ts before using it in styles
-export const BoardGridCell = observer(function BoardGridCell({
-    cell,
-}: BoardGridCellProps) {
+export const BoardGridCell = observer(({ cell }: BoardGridCellProps) => {
     return (
         <div
             className={clsx(

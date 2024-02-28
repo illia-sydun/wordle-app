@@ -1,5 +1,5 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { BoardRowStore } from '@shared/stores/BoardStore/BoardRowStore.ts';
 import {
@@ -20,8 +20,6 @@ export class BoardStore implements MobxStore, Board {
         this.rootStore = rootStore;
 
         this.rows = this.reset();
-
-        makeObservable(this);
     }
 
     private generateEmptyMatrix(rows = 6, columns = 5) {

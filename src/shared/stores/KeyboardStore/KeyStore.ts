@@ -1,4 +1,4 @@
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { KeyStatus } from '@shared/types/KeyStatus.ts';
 import { CSSProperties } from 'react';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
@@ -30,8 +30,6 @@ export class KeyStore implements Key {
         this.label = label;
         this.animationState = animationState;
         this.state = state;
-
-        makeObservable(this);
     }
 
     @action

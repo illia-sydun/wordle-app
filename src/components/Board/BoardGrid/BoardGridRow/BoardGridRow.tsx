@@ -8,9 +8,7 @@ type BoardGridRowProps = {
     row: Board['rows'][number];
 };
 
-export const BoardGridRow = observer(function BoardGridRow({
-    row,
-}: BoardGridRowProps) {
+export const BoardGridRow = observer(({ row }: BoardGridRowProps) => {
     return (
         <div
             className={clsx(styles.container, styles[row.animationState])}

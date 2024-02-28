@@ -1,5 +1,5 @@
 import { AnimationState } from '@shared/types/AnimationState.ts';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { BoardCellStore } from '@shared/stores/BoardStore/BoardCellStore.ts';
 import { RowStatus } from '@shared/types/RowStatus.ts';
@@ -37,8 +37,6 @@ export class BoardRowStore implements MobxStore, BoardRow {
         );
         this.status = 'empty';
         this.animationState = 'idle';
-
-        makeObservable(this);
     }
 
     @computed

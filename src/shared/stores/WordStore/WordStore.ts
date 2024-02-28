@@ -1,5 +1,5 @@
 import { WordOfTheDay } from '@shared/types/Word.ts';
-import { action, makeObservable, observable } from 'mobx';
+import { action, observable } from 'mobx';
 import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
 import { MobXRootStore } from '@shared/stores/RootStore/RootStore.ts';
 
@@ -21,8 +21,6 @@ export class WordStore implements Word {
 
         this.word = word;
         this.hints = hints;
-
-        makeObservable(this);
     }
 
     // @TODO mobx not sure if this should be here or level higher.

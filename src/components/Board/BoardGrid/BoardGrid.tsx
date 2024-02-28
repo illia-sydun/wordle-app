@@ -3,7 +3,7 @@ import styles from './BoardGrid.module.scss';
 import { useMobxStore } from '@shared/stores/useMobxStore.ts';
 import { observer } from 'mobx-react-lite';
 
-export const BoardGrid = observer(function BoardGrid() {
+export const BoardGrid = observer(() => {
     const {
         boardStore: { rows },
     } = useMobxStore();
