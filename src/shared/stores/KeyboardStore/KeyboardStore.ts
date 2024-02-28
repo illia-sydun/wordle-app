@@ -1,5 +1,5 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { KEYBOARD_KEY } from '@shared/constants/KeyboardKey.ts';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
@@ -23,8 +23,6 @@ export class KeyboardStore implements MobxStore, Keyboard {
         this.rootStore = rootStore;
 
         this.keys = this.reset();
-
-        makeObservable(this);
     }
 
     @action

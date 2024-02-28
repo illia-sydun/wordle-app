@@ -1,15 +1,6 @@
 import { KeyboardStore } from '../KeyboardStore';
 import { BoardStore } from '../BoardStore';
 import { WordStore } from '../WordStore';
-import { configure } from 'mobx';
-
-configure({
-    enforceActions: 'always',
-    computedRequiresReaction: true,
-    reactionRequiresObservable: true,
-    observableRequiresReaction: true,
-    disableErrorBoundaries: true,
-});
 
 export type MobxStore = {
     rootStore: RootStore;

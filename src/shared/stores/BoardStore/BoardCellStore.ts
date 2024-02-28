@@ -1,7 +1,7 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { CellStatus } from '@shared/types/CellStatus.ts';
 import { AnimationState } from '@shared/types/AnimationState.ts';
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { CELL_STATUS_SUBMITTED } from '@shared/constants/CellStatus.ts';
 import {
@@ -39,8 +39,6 @@ export class BoardCellStore implements MobxStore, BoardCell {
         this.rowIndex = rowIndex;
         this.status = 'empty';
         this.animationState = 'idle';
-
-        makeObservable(this);
     }
 
     @computed
