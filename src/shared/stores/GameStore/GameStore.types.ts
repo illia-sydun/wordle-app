@@ -6,9 +6,9 @@ import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 type KeyState = Record<
     KeyboardKey,
     {
-        column: number;
-        found: boolean;
-        visited: boolean;
+        matchedAtWordIndex: number;
+        matched: boolean;
+        submitted: boolean;
     }
 >;
 

@@ -4,10 +4,7 @@ import { AnimationState } from '@shared/types/AnimationState.ts';
 import { action, computed, observable } from 'mobx';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { CELL_STATUS_SUBMITTED } from '@shared/constants/CellStatus.ts';
-import {
-    MobXRootStore,
-    MobxStore,
-} from '@shared/stores/RootStore/RootStore.ts';
+import { MobxStore } from '@shared/stores/RootStore/RootStore.ts';
 
 type BoardCell = {
     index: number;
@@ -18,7 +15,7 @@ type BoardCell = {
 };
 
 export class BoardCellStore implements MobxStore, BoardCell {
-    @observable accessor rootStore: MobXRootStore;
+    @observable accessor rootStore: MobxStore['rootStore'];
 
     @observable accessor index: BoardCell['index'];
     @observable accessor rowIndex: BoardCell['rowIndex'];
@@ -27,7 +24,7 @@ export class BoardCellStore implements MobxStore, BoardCell {
     @observable accessor animationState: BoardCell['animationState'];
 
     constructor(
-        rootStore: MobXRootStore,
+        rootStore: MobxStore['rootStore'],
         value: BoardCell['value'],
         index: BoardCell['index'],
         rowIndex: BoardCell['rowIndex'],
@@ -46,7 +43,6 @@ export class BoardCellStore implements MobxStore, BoardCell {
         return this.value === '';
     }
 
-    // @TODO mobx emmmm IDK, somehow fix redundant access to boardStore
     @computed
     get isActive() {
         return (
@@ -101,7 +97,7 @@ export class BoardCellStore implements MobxStore, BoardCell {
 
     // @TODO mobx fix word mess
     @action
-    submit(word: WordOfTheDay['word']) {
+    submit(word: WordOfTheDay['word'], submittedAtCell: number) {
         let status: BoardCell['status'] = 'no_match';
 
         if (word[this.index] === this.value) {
@@ -113,7 +109,11 @@ export class BoardCellStore implements MobxStore, BoardCell {
         this.setStatus(status);
         this.startAnimation('flip');
 
-        keyboardStore.keys[this.value as KeyboardKey].visit(this.index);
+        // @TODO mobx fix redundant keyboardStore access
+        this.rootStore.keyboardStore.keys[this.value as KeyboardKey].visit(
+            this.index,
+            submittedAtCell,
+        );
     }
 
     @action.bound

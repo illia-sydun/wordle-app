@@ -6,29 +6,35 @@ import { useKeyPress } from '@shared/hooks/useKeyPress.ts';
 import { clsx } from 'clsx';
 import { observer } from 'mobx-react-lite';
 import { useMobxStore } from '@shared/stores/useMobxStore.ts';
+import { KEYBOARD_LAYOUT } from '../Keyboard.constants.ts';
 
+// @TODO where to put props?
 type KeyboardGridProps = {
-    keyboardLayout: KeyboardLayout;
-    onKeyboardKeyPress: (keyboardKey: KeyboardKey) => void;
+    keyboardLayout?: KeyboardLayout;
 };
 
 // @TODO styling grid rows?
 // why flatKeyboardLayout
 // revise useKeyPress
 
-export const KeyboardGrid = observer(function KeyboardGrid({
-    keyboardLayout,
-    onKeyboardKeyPress,
-}: KeyboardGridProps) {
-    const {
-        keyboardStore: { keys },
-    } = useMobxStore();
+// @TODO mobx who should be responsible for handleKeyPress?
 
-    useKeyPress((event, keyboardKey) => {
-        if (!event.repeat && event.target instanceof HTMLBodyElement) {
-            onKeyboardKeyPress(keyboardKey);
-        }
-    }, keyboardLayout.flat());
+export const KeyboardGrid = observer(
+    ({ keyboardLayout = KEYBOARD_LAYOUT }: KeyboardGridProps) => {
+        const {
+            keyboardStore: { keys },
+            handleKeyPress,
+        } = useMobxStore();
+
+        const onKeyboardKeyPress = (keyboardKey: KeyboardKey) => {
+            handleKeyPress(keyboardKey);
+        };
+
+        useKeyPress((event, keyboardKey) => {
+            if (!event.repeat && event.target instanceof HTMLBodyElement) {
+                onKeyboardKeyPress(keyboardKey);
+            }
+        }, keyboardLayout.flat());
 
         return (
             <div className={styles.container}>
@@ -38,7 +44,7 @@ export const KeyboardGrid = observer(function KeyboardGrid({
                         className={clsx(styles.row, styles[`row-${index}`])}>
                         {row.map((key) => (
                             <KeyboardGridCell
-                                key={`key-${key}}`}
+                                key={`key-${key}`}
                                 cell={keys[key]}
                                 onClick={onKeyboardKeyPress}
                             />

@@ -1,20 +1,20 @@
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { action, observable } from 'mobx';
 import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
-import { MobXRootStore } from '@shared/stores/RootStore/RootStore.ts';
+import { MobxStore } from '@shared/stores/RootStore';
 
 type Word = {
     word: WordOfTheDay['word'];
     hints: WordOfTheDay['hints'];
 };
 
-export class WordStore implements Word {
-    @observable accessor rootStore: MobXRootStore;
+export class WordStore implements MobxStore, Word {
+    @observable accessor rootStore: MobxStore['rootStore'];
 
     @observable accessor word: Word['word'];
     @observable accessor hints: Word['hints'];
 
-    constructor(rootStore: MobXRootStore) {
+    constructor(rootStore: MobxStore['rootStore']) {
         this.rootStore = rootStore;
 
         const { word, hints } = this.reset();
@@ -23,8 +23,6 @@ export class WordStore implements Word {
         this.hints = hints;
     }
 
-    // @TODO mobx not sure if this should be here or level higher.
-    // theres no reason to use constructor in this implementation
     @action
     reset(): Word {
         const { word, hints } =
@@ -32,16 +30,14 @@ export class WordStore implements Word {
                 Math.ceil(Math.random() * WORD_DICTIONARY.length - 1)
             ];
 
+        // @TODO move 5 somewhere to env or to the store
         if (word.length === 5) {
-            this.rootStore.boardStore.reset();
-            this.rootStore.keyboardStore.init(word);
-
             this.word = word;
             this.hints = hints;
 
             return { word, hints };
         } else {
-            return this.reset();
+            throw Error(`Check "${word}" word in dictionary`);
         }
     }
 

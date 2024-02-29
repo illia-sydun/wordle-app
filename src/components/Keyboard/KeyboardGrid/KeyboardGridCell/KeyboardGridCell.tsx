@@ -2,7 +2,7 @@ import styles from './KeyboardGridCell.module.scss';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { clsx } from 'clsx';
 import { observer } from 'mobx-react-lite';
-import { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
+import type { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
 
 type KeyboardGridCellProps = {
     cell: KeyStore;
