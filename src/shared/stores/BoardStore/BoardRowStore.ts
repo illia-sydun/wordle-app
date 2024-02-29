@@ -1,12 +1,8 @@
 import { AnimationState } from '@shared/types/AnimationState.ts';
 import { action, computed, observable } from 'mobx';
-import { WordOfTheDay } from '@shared/types/Word.ts';
 import { BoardCellStore } from '@shared/stores/BoardStore/BoardCellStore.ts';
 import { RowStatus } from '@shared/types/RowStatus.ts';
-import {
-    MobXRootStore,
-    MobxStore,
-} from '@shared/stores/RootStore/RootStore.ts';
+import { MobxStore } from '@shared/stores/RootStore/RootStore.ts';
 
 type BoardRow = {
     index: number;
@@ -16,7 +12,7 @@ type BoardRow = {
 };
 
 export class BoardRowStore implements MobxStore, BoardRow {
-    @observable accessor rootStore: MobXRootStore;
+    @observable accessor rootStore: MobxStore['rootStore'];
 
     @observable accessor index: BoardRow['index'];
     @observable accessor cells: BoardRow['cells'];
@@ -24,7 +20,7 @@ export class BoardRowStore implements MobxStore, BoardRow {
     @observable accessor animationState: BoardRow['animationState'];
 
     constructor(
-        rootStore: MobXRootStore,
+        rootStore: MobxStore['rootStore'],
         cells: BoardRow['cells'][number]['value'][],
         rowIndex: BoardRow['index'],
     ) {
@@ -37,11 +33,6 @@ export class BoardRowStore implements MobxStore, BoardRow {
         );
         this.status = 'empty';
         this.animationState = 'idle';
-    }
-
-    @computed
-    get isInvalid() {
-        return this.status === 'invalid';
     }
 
     @computed
@@ -72,7 +63,7 @@ export class BoardRowStore implements MobxStore, BoardRow {
     }
 
     @computed
-    get prevActiveCell() {
+    get cellBeforeActive() {
         return this.cells[this.indexOfActiveCell - 1] ?? this.activeCell;
     }
 
@@ -82,8 +73,8 @@ export class BoardRowStore implements MobxStore, BoardRow {
             return this.activeCell;
         }
 
-        if (!this.prevActiveCell.isEmpty) {
-            return this.prevActiveCell;
+        if (!this.cellBeforeActive.isEmpty) {
+            return this.cellBeforeActive;
         }
 
         return null;
@@ -101,14 +92,16 @@ export class BoardRowStore implements MobxStore, BoardRow {
 
     // @TODO mobx fix that mess with word
     @action
-    setStatus(status: BoardRow['status'], word?: WordOfTheDay['word']) {
+    setStatus(status: BoardRow['status']) {
         this.status = status;
 
         // @TODO rework it all with delay as well. maybe add reaction instead of delay
-        if (status === 'submitted' && word) {
-            this.cells.forEach((cell, i) => cell.submit(word, i));
+        if (status === 'submitted') {
+            this.cells.forEach((cell, i) =>
+                cell.submit(this.rootStore.wordStore.word, i),
+            );
 
-            if (this.value === word) {
+            if (this.value === this.rootStore.wordStore.word) {
                 const delay = this.cells
                     .slice(0, -1)
                     .reduce((acc, item) => acc + item.transitionDelay, 0);

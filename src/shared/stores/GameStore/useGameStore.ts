@@ -6,7 +6,6 @@ export const useGameStore = () => {
 
     const stringifiedAnswers = JSON.stringify(state.answers);
 
-    // done in mobx
     const indexOfCurrentAnswer = useMemo(() => {
         const index = state.answers.findIndex(
             (answer) => answer.status !== 'submitted',
@@ -15,7 +14,6 @@ export const useGameStore = () => {
         return index === -1 ? lastIndex : index;
     }, [stringifiedAnswers]);
 
-    // done in mobx
     const currentAnswer = useMemo(() => {
         const answer = { ...state.answers[indexOfCurrentAnswer] };
         const lastAnswer = { ...state.answers[state.answers.length - 1] };
@@ -24,7 +22,6 @@ export const useGameStore = () => {
 
     const stringifiedCurrentAnswer = JSON.stringify(currentAnswer);
 
-    // done in mobx
     const indexOfCurrentAnswerActiveCell = useMemo(() => {
         const index = (currentAnswer?.value || []).findIndex(
             (character) => !character,

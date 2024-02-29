@@ -21,9 +21,9 @@ export const generateEmptyKeyState = (): GameStoreState['keyState'] => {
             (acc, item) => ({
                 ...acc,
                 [item]: {
-                    found: false,
-                    visited: false,
-                    column: -1,
+                    matched: false,
+                    submitted: false,
+                    matchedAtWordIndex: -1,
                 },
             }),
             {} as GameStoreState['keyState'],
@@ -48,7 +48,6 @@ export const GameStoreReducer = (
     const keyState = { ...state.keyState };
 
     switch (action.type) {
-        // done in mobx
         case 'UPDATE_ANSWER_VALUE':
             answers[action.payload.index].value = action.payload.value;
             answers[action.payload.index].status = 'active';
@@ -58,7 +57,6 @@ export const GameStoreReducer = (
                 answers,
             };
 
-        // done in mobx
         case 'UPDATE_ANSWER_STATUS':
             answers[action.payload.index].status = action.payload.status;
 
@@ -70,9 +68,9 @@ export const GameStoreReducer = (
 
             if (action.payload.status === 'submitted') {
                 answers[action.payload.index].value.forEach((key, i) => {
-                    keyState[key].visited = true;
-                    if (keyState[key].column === i) {
-                        keyState[key].found = true;
+                    keyState[key].submitted = true;
+                    if (keyState[key].matchedAtWordIndex === i) {
+                        keyState[key].matched = true;
                     }
                 });
             }
@@ -82,12 +80,11 @@ export const GameStoreReducer = (
                 answers,
             };
 
-        // done in mobx
         case 'SET_WORD_OF_THE_DAY':
             const wordOfTheDay = action.payload;
 
             Array.from(wordOfTheDay.word).forEach((char, i) => {
-                keyState[char as KeyboardKey].column = i;
+                keyState[char as KeyboardKey].matchedAtWordIndex = i;
             });
 
             return {
@@ -96,7 +93,6 @@ export const GameStoreReducer = (
                 gameStartedAt: Date.now(),
             };
 
-        // not ideally but done in mobx
         case 'RESET':
             return getGameStoreInitialState();
 

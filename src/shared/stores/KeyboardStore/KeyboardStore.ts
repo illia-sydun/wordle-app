@@ -3,23 +3,18 @@ import { action, computed, observable } from 'mobx';
 import { KEYBOARD_KEY } from '@shared/constants/KeyboardKey.ts';
 import { WordOfTheDay } from '@shared/types/Word.ts';
 import { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
-import {
-    MobXRootStore,
-    MobxStore,
-} from '@shared/stores/RootStore/RootStore.ts';
+import { MobxStore } from '@shared/stores/RootStore/RootStore.ts';
 
 type Keyboard = {
     keys: Record<KeyboardKey, KeyStore>;
 };
 
 export class KeyboardStore implements MobxStore, Keyboard {
-    @observable accessor rootStore: MobXRootStore;
+    @observable accessor rootStore: MobxStore['rootStore'];
 
     @observable accessor keys: Keyboard['keys'];
 
-    // @TODO mobx init and reset are overcomplicated.
-    //  why create new stores all the time? just reset the states..
-    constructor(rootStore: MobXRootStore) {
+    constructor(rootStore: MobxStore['rootStore']) {
         this.rootStore = rootStore;
 
         this.keys = this.reset();
@@ -37,12 +32,35 @@ export class KeyboardStore implements MobxStore, Keyboard {
         return keys;
     }
 
+    @computed
+    get foundKeys() {
+        return Object.values(this.keys)
+            .filter((key) => key.state.submittedAtCell > -1)
+            .sort((a, b) => a.state.submittedAtCell - b.state.submittedAtCell);
+    }
+
     @action
     init(word: WordOfTheDay['word']) {
-        this.reset();
+        const keys = Object.keys(this.keys) as KeyboardKey[];
 
-        Array.from(word).forEach((char, i) => {
-            this.keys[char as KeyboardKey].init(i);
+        const matchedKeys = Array.from(word).reduce(
+            (acc, key, matchedAtWordIndex) => {
+                return {
+                    ...acc,
+                    [key]: matchedAtWordIndex,
+                };
+            },
+            {} as Record<KeyboardKey, number>,
+        );
+
+        keys.forEach((key) => {
+            const matchedAtWordIndex = matchedKeys[key];
+
+            if (matchedAtWordIndex > -1) {
+                this.keys[key].setState(matchedAtWordIndex);
+            } else {
+                this.keys[key].resetState();
+            }
         });
     }
 }

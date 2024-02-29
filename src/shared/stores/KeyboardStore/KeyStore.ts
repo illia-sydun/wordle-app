@@ -12,9 +12,10 @@ type Key = {
 };
 
 type KeyState = {
-    column: number;
-    found: boolean;
-    visited: boolean;
+    submitted: boolean;
+    submittedAtCell: number;
+    matched: boolean;
+    matchedAtWordIndex: number;
 };
 
 export class KeyStore implements Key {
@@ -24,7 +25,7 @@ export class KeyStore implements Key {
     @observable accessor animationState: Key['animationState'];
 
     constructor(key: Key['value']) {
-        const { value, label, animationState, state } = this.reset(key);
+        const { value, label, animationState, state } = this.init(key);
 
         this.value = value;
         this.label = label;
@@ -33,12 +34,12 @@ export class KeyStore implements Key {
     }
 
     @action
-    reset(value: Key['value']) {
+    init(value: Key['value']) {
         const key: Key = {
             value,
             label: value.toUpperCase(),
             animationState: 'idle',
-            state: this.init(),
+            state: this.resetState(),
         };
 
         this.value = key.value;
@@ -50,11 +51,12 @@ export class KeyStore implements Key {
     }
 
     @action
-    init(column: Key['state']['column'] = -1) {
+    setState(matchedAtWordIndex: Key['state']['matchedAtWordIndex']) {
         const state: Key['state'] = {
-            found: false,
-            visited: false,
-            column,
+            matched: false,
+            submitted: false,
+            submittedAtCell: -1,
+            matchedAtWordIndex,
         };
 
         this.state = state;
@@ -62,12 +64,19 @@ export class KeyStore implements Key {
         return state;
     }
 
+    @action
+    resetState() {
+        return this.setState(-1);
+    }
+
     @computed
     get status(): KeyStatus {
-        if (this.state.found) {
+        if (this.state.matched) {
             return 'match';
-        } else if (this.state.visited) {
-            return this.state.column > -1 ? 'close_match' : 'no_match';
+        } else if (this.state.submitted) {
+            return this.state.matchedAtWordIndex > -1
+                ? 'close_match'
+                : 'no_match';
         } else {
             return 'empty';
         }
@@ -97,11 +106,18 @@ export class KeyStore implements Key {
     }
 
     @action
-    visit(column: Key['state']['column']) {
-        this.state.visited = true;
+    visit(
+        matchedAtWordIndex: Key['state']['matchedAtWordIndex'],
+        submittedAtCell: number,
+    ) {
+        this.state.submitted = true;
 
-        if (this.state.column === column) {
-            this.state.found = true;
+        if (this.state.matchedAtWordIndex > -1) {
+            this.state.submittedAtCell = submittedAtCell;
+        }
+
+        if (this.state.matchedAtWordIndex === matchedAtWordIndex) {
+            this.state.matched = true;
         }
     }
 

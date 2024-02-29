@@ -1,36 +1,33 @@
-import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { action, computed, observable } from 'mobx';
-import { WordOfTheDay } from '@shared/types/Word.ts';
 import { BoardRowStore } from '@shared/stores/BoardStore/BoardRowStore.ts';
-import {
-    MobXRootStore,
-    MobxStore,
-} from '@shared/stores/RootStore/RootStore.ts';
+import { MobxStore } from '@shared/stores/RootStore/RootStore.ts';
 
 export type Board = {
     rows: BoardRowStore[];
 };
 
 export class BoardStore implements MobxStore, Board {
-    @observable accessor rootStore: MobXRootStore;
+    @observable accessor rootStore: MobxStore['rootStore'];
 
     @observable accessor rows: Board['rows'];
 
-    constructor(rootStore: MobXRootStore) {
+    constructor(rootStore: MobxStore['rootStore']) {
         this.rootStore = rootStore;
 
         this.rows = this.reset();
     }
 
-    private generateEmptyMatrix(rows = 6, columns = 5) {
-        return Array.from({ length: rows }, () =>
-            Array.from(
-                { length: columns },
-                (): BoardRowStore['cells'][number]['value'] => '',
-            ),
-        );
+    @computed
+    get isActiveRowValueUnique(): boolean {
+        return !this.rows
+            .filter((row) => row.isSubmitted)
+            .some((row) => row.value === this.activeRow.value);
     }
 
+    // @TODO mobx how to rename reset to init?
+    //  how not to recreate all stores on reset?
+
+    //  we need to update a few things only i guess
     @action
     reset() {
         const rows = this.generateEmptyMatrix().map(
@@ -59,43 +56,9 @@ export class BoardStore implements MobxStore, Board {
         return this.rows[this.indexOfActiveRow + 1];
     }
 
-    @action
-    submitActiveRow(word: WordOfTheDay['word']) {
-        this.activeRow.setStatus('submitted', word);
-    }
-
-    @computed
-    get isActiveRowUnique(): boolean {
-        return !this.rows
-            .filter((row) => row.isSubmitted)
-            .some((row) => row.value === this.activeRow.value);
-    }
-
-    @action
-    handleKeyPress(key: KeyboardKey) {
-        console.log('handleKeyPress', key, this.activeRow);
-
-        // @TODO mobx wordStore init doesn't work. circular dependency?
-        // if (key === 'escape') {
-        //     setTimeout(() => wordStore.reset(), 150);
-        //     return;
-        // }
-
-        if (!this.rootStore.keyboardStore.keys[key].isClickable) {
-            this.activeRow.activeCell.startAnimation('shake');
-            this.rootStore.keyboardStore.keys[key].startAnimation('shake');
-            return;
-        }
-
-        if (key.length === 1 && this.activeRow.cellToUpdateOnKeyPress) {
-            this.activeRow.cellToUpdateOnKeyPress.setValue(key);
-        }
-
-        if (
-            key === 'backspace' &&
-            this.activeRow.cellToClearOnBackspaceKeyPress
-        ) {
-            this.activeRow.cellToClearOnBackspaceKeyPress.setValue('');
-        }
+    private generateEmptyMatrix(rows = 6, columns = 5) {
+        return Array.from({ length: rows }, () =>
+            Array.from({ length: columns }, () => '' as const),
+        );
     }
 }
