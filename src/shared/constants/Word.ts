@@ -1,3 +1,5 @@
+import { WordDictionaryEntry } from '@shared/types/Word.ts';
+
 export const WORD_DICTIONARY = [
     {
         word: 'lemon',
@@ -888,4 +890,809 @@ export const WORD_DICTIONARY = [
             },
         ],
     },
-] as const;
+    {
+        word: 'snack',
+        hints: [
+            { id: 'snack-hint-1', label: 'A small portion of food' },
+            { id: 'snack-hint-2', label: 'Eaten between meals' },
+            { id: 'snack-hint-3', label: 'Can be chips or fruit' },
+            { id: 'snack-hint-4', label: 'Often quick and convenient' },
+        ],
+    },
+    {
+        word: 'board',
+        hints: [
+            { id: 'board-hint-1', label: 'Flat piece of wood' },
+            { id: 'board-hint-2', label: 'Used for writing or games' },
+            { id: 'board-hint-3', label: 'To get on a plane or ship' },
+            { id: 'board-hint-4', label: 'Groups of directors' },
+        ],
+    },
+    {
+        word: 'shake',
+        hints: [
+            {
+                id: 'shake-hint-1',
+                label: 'To move with quick, short movements',
+            },
+            { id: 'shake-hint-2', label: 'A milk-based cold dessert' },
+            { id: 'shake-hint-3', label: 'An act of greeting or agreement' },
+            { id: 'shake-hint-4', label: 'To tremble or vibrate' },
+        ],
+    },
+    {
+        word: 'smurf',
+        hints: [
+            { id: 'smurf-hint-1', label: 'Small, blue fictional character' },
+            { id: 'smurf-hint-2', label: 'Lives in a mushroom-shaped house' },
+            { id: 'smurf-hint-3', label: 'Popular in cartoons and comics' },
+            {
+                id: 'smurf-hint-4',
+                label: 'Village of these beings led by a wise elder',
+            },
+        ],
+    },
+    {
+        word: 'black',
+        hints: [
+            { id: 'black-hint-1', label: 'Color of coal or night sky' },
+            {
+                id: 'black-hint-2',
+                label: 'Associated with elegance or formality',
+            },
+            { id: 'black-hint-3', label: 'Absence of light' },
+            { id: 'black-hint-4', label: 'A chess piece color' },
+        ],
+    },
+    {
+        word: 'stone',
+        hints: [
+            { id: 'stone-hint-1', label: 'Solid mineral matter' },
+            { id: 'stone-hint-2', label: 'Used in construction' },
+            { id: 'stone-hint-3', label: 'Hard seed in some fruits' },
+            { id: 'stone-hint-4', label: 'Unit of weight in the UK' },
+        ],
+    },
+    {
+        word: 'store',
+        hints: [
+            { id: 'store-hint-1', label: 'A place to purchase goods' },
+            { id: 'store-hint-2', label: 'To keep for future use' },
+            { id: 'store-hint-3', label: 'A large amount of stock' },
+            { id: 'store-hint-4', label: 'Digital app marketplace' },
+        ],
+    },
+    {
+        word: 'slick',
+        hints: [
+            { id: 'slick-hint-1', label: 'Smooth and glossy' },
+            { id: 'slick-hint-2', label: 'Clever in deception' },
+            { id: 'slick-hint-3', label: 'Type of oil spill' },
+            {
+                id: 'slick-hint-4',
+                label: 'Efficient and effective in performance',
+            },
+        ],
+    },
+    {
+        word: 'snail',
+        hints: [
+            { id: 'snail-hint-1', label: 'Slow-moving mollusk' },
+            { id: 'snail-hint-2', label: 'Carries its home on its back' },
+            { id: 'snail-hint-3', label: 'Eats plants or algae' },
+            { id: 'snail-hint-4', label: 'Symbol of sluggishness' },
+        ],
+    },
+    {
+        word: 'spine',
+        hints: [
+            { id: 'spine-hint-1', label: 'Central support of the body' },
+            { id: 'spine-hint-2', label: "Book's backbone" },
+            { id: 'spine-hint-3', label: 'Row of sharp points on an animal' },
+            {
+                id: 'spine-hint-4',
+                label: 'Associated with bravery metaphorically',
+            },
+        ],
+    },
+    {
+        word: 'blood',
+        hints: [
+            { id: 'blood-hint-1', label: 'Vital red fluid in bodies' },
+            { id: 'blood-hint-2', label: 'Type can be A, B, AB, or O' },
+            { id: 'blood-hint-3', label: 'Symbol of life or kinship' },
+            { id: 'blood-hint-4', label: 'Carries oxygen and nutrients' },
+        ],
+    },
+    {
+        word: 'brake',
+        hints: [
+            { id: 'brake-hint-1', label: 'Device for stopping a vehicle' },
+            { id: 'brake-hint-2', label: 'Can be pressed or pulled' },
+            { id: 'brake-hint-3', label: 'Found on bikes and cars' },
+            { id: 'brake-hint-4', label: 'Important for safety' },
+        ],
+    },
+    {
+        word: 'mouse',
+        hints: [
+            { id: 'mouse-hint-1', label: 'Small rodent' },
+            { id: 'mouse-hint-2', label: 'Computer input device' },
+            { id: 'mouse-hint-3', label: 'Quiet and timid' },
+            { id: 'mouse-hint-4', label: 'Cheese lover in cartoons' },
+        ],
+    },
+    {
+        word: 'block',
+        hints: [
+            { id: 'block-hint-1', label: 'A solid piece of material' },
+            { id: 'block-hint-2', label: 'To obstruct or stop movement' },
+            { id: 'block-hint-3', label: 'A section of a street or area' },
+            { id: 'block-hint-4', label: 'Used in building or play' },
+        ],
+    },
+    {
+        word: 'radar',
+        hints: [
+            {
+                id: 'radar-hint-1',
+                label: 'A system for detecting objects by radio waves',
+            },
+            {
+                id: 'radar-hint-2',
+                label: 'Used in weather forecasting and aviation',
+            },
+            {
+                id: 'radar-hint-3',
+                label: 'Detects distance, speed, and direction',
+            },
+            {
+                id: 'radar-hint-4',
+                label: 'Acronym standing for Radio Detection And Ranging',
+            },
+        ],
+    },
+    {
+        word: 'rally',
+        hints: [
+            {
+                id: 'rally-hint-1',
+                label: 'A large public gathering, often for a cause',
+            },
+            {
+                id: 'rally-hint-2',
+                label: 'To come together for common action or effort',
+            },
+            {
+                id: 'rally-hint-3',
+                label: 'In sports, a series of returns before a point',
+            },
+            {
+                id: 'rally-hint-4',
+                label: 'A recovery in price after a period of decline',
+            },
+        ],
+    },
+    {
+        word: 'rehab',
+        hints: [
+            { id: 'rehab-hint-1', label: 'Short for rehabilitation' },
+            {
+                id: 'rehab-hint-2',
+                label: 'Process of treatment for addictions',
+            },
+            { id: 'rehab-hint-3', label: 'Can also refer to physical therapy' },
+            {
+                id: 'rehab-hint-4',
+                label: 'Restoring something to its original state',
+            },
+        ],
+    },
+    {
+        word: 'bloom',
+        hints: [
+            { id: 'bloom-hint-1', label: 'To produce flowers' },
+            { id: 'bloom-hint-2', label: 'A state of flowering' },
+            {
+                id: 'bloom-hint-3',
+                label: 'A period of flourishing or thriving',
+            },
+            { id: 'bloom-hint-4', label: 'Can also refer to a youthful glow' },
+        ],
+    },
+    {
+        word: 'crane',
+        hints: [
+            { id: 'crane-hint-1', label: 'A type of large bird' },
+            {
+                id: 'crane-hint-2',
+                label: 'A machine for lifting heavy objects',
+            },
+            {
+                id: 'crane-hint-3',
+                label: 'To stretch the neck to see something',
+            },
+            {
+                id: 'crane-hint-4',
+                label: 'Commonly used in construction sites',
+            },
+        ],
+    },
+    {
+        word: 'glide',
+        hints: [
+            { id: 'glide-hint-1', label: 'To move smoothly and continuously' },
+            {
+                id: 'glide-hint-2',
+                label: 'A form of flight with minimal wing flapping',
+            },
+            { id: 'glide-hint-3', label: 'Effortless movement' },
+            { id: 'glide-hint-4', label: 'Can refer to using a glider' },
+        ],
+    },
+    {
+        word: 'pride',
+        hints: [
+            {
+                id: 'pride-hint-1',
+                label: 'A feeling of self-respect and personal worth',
+            },
+            {
+                id: 'pride-hint-2',
+                label: 'Satisfaction derived from achievements',
+            },
+            { id: 'pride-hint-3', label: 'A group of lions' },
+            { id: 'pride-hint-4', label: 'The opposite of shame' },
+        ],
+    },
+    {
+        word: 'cliff',
+        hints: [
+            {
+                id: 'cliff-hint-1',
+                label: 'A high, steep face of rock or earth',
+            },
+            { id: 'cliff-hint-2', label: 'Edge of a mountain or sea' },
+            { id: 'cliff-hint-3', label: 'Often offers scenic views' },
+            {
+                id: 'cliff-hint-4',
+                label: 'Dangerous to climb without proper gear',
+            },
+        ],
+    },
+    {
+        word: 'eagle',
+        hints: [
+            {
+                id: 'eagle-hint-1',
+                label: 'A large bird of prey with a massive wingspan',
+            },
+            {
+                id: 'eagle-hint-2',
+                label: 'Symbol of freedom in the United States',
+            },
+            { id: 'eagle-hint-3', label: 'Known for keen eyesight' },
+            { id: 'eagle-hint-4', label: 'Two under par in golf' },
+        ],
+    },
+    {
+        word: 'grape',
+        hints: [
+            { id: 'grape-hint-1', label: 'A fruit used in wine making' },
+            { id: 'grape-hint-2', label: 'Can be green or purple' },
+            { id: 'grape-hint-3', label: 'Grows in clusters on vines' },
+            {
+                id: 'grape-hint-4',
+                label: 'Eaten fresh, dried as raisins, or juiced',
+            },
+        ],
+    },
+    {
+        word: 'hover',
+        hints: [
+            { id: 'hover-hint-1', label: 'To remain in one place in the air' },
+            { id: 'hover-hint-2', label: 'Drones and helicopters can do this' },
+            { id: 'hover-hint-3', label: 'To linger close at hand' },
+            { id: 'hover-hint-4', label: 'Floating without direct support' },
+        ],
+    },
+    {
+        word: 'beach',
+        hints: [
+            { id: 'beach-hint-1', label: 'Sandy shore by the ocean' },
+            {
+                id: 'beach-hint-2',
+                label: 'Location for sunbathing and swimming',
+            },
+            { id: 'beach-hint-3', label: 'Often visited during summer' },
+        ],
+    },
+    {
+        word: 'cloud',
+        hints: [
+            {
+                id: 'cloud-hint-1',
+                label: 'Visible mass of condensed water vapor',
+            },
+            { id: 'cloud-hint-2', label: 'Can be found in the sky' },
+            { id: 'cloud-hint-3', label: 'Type can be cumulus, stratus, etc.' },
+        ],
+    },
+    {
+        word: 'grass',
+        hints: [
+            { id: 'grass-hint-1', label: 'Green and commonly found on lawns' },
+            { id: 'grass-hint-2', label: 'Needs sunlight and water to grow' },
+            { id: 'grass-hint-3', label: 'Often cut to maintain appearance' },
+        ],
+    },
+    {
+        word: 'shell',
+        hints: [
+            {
+                id: 'shell-hint-1',
+                label: 'Hard outer covering of some animals',
+            },
+            { id: 'shell-hint-2', label: 'Can be found on beaches' },
+            {
+                id: 'shell-hint-3',
+                label: 'Used by sea creatures for protection',
+            },
+        ],
+    },
+    {
+        word: 'glare',
+        hints: [
+            { id: 'glare-hint-1', label: 'Strong, dazzling light' },
+            { id: 'glare-hint-2', label: 'To stare in an angry or fierce way' },
+            { id: 'glare-hint-3', label: 'Problem for drivers facing the sun' },
+        ],
+    },
+    {
+        word: 'light',
+        hints: [
+            { id: 'light-hint-1', label: 'Opposite of heavy' },
+            {
+                id: 'light-hint-2',
+                label: 'Natural agent that stimulates sight',
+            },
+            { id: 'light-hint-3', label: 'Can be artificial or natural' },
+        ],
+    },
+    {
+        word: 'peach',
+        hints: [
+            {
+                id: 'peach-hint-1',
+                label: 'A soft, sweet fruit with fuzzy skin',
+            },
+            { id: 'peach-hint-2', label: 'Color named after this fruit' },
+            { id: 'peach-hint-3', label: 'Commonly used in pies and jams' },
+        ],
+    },
+    {
+        word: 'quake',
+        hints: [
+            { id: 'quake-hint-1', label: 'Another term for earthquake' },
+            { id: 'quake-hint-2', label: 'Sudden shaking of the ground' },
+            {
+                id: 'quake-hint-3',
+                label: "Caused by movements within the earth's crust",
+            },
+        ],
+    },
+    {
+        word: 'river',
+        hints: [
+            { id: 'river-hint-1', label: 'Large natural stream of water' },
+            {
+                id: 'river-hint-2',
+                label: 'Flows towards an ocean, sea, or lake',
+            },
+            {
+                id: 'river-hint-3',
+                label: 'Important for ecosystems and human settlements',
+            },
+        ],
+    },
+    {
+        word: 'shine',
+        hints: [
+            { id: 'shine-hint-1', label: 'To emit light or glow brightly' },
+            { id: 'shine-hint-2', label: 'Polished surfaces do this' },
+            {
+                id: 'shine-hint-3',
+                label: 'Clear weather is often described as this',
+            },
+        ],
+    },
+    {
+        word: 'storm',
+        hints: [
+            {
+                id: 'storm-hint-1',
+                label: 'Severe weather condition with wind, rain, or snow',
+            },
+            { id: 'storm-hint-2', label: 'Can include thunder and lightning' },
+            { id: 'storm-hint-3', label: 'A disturbance of the atmosphere' },
+        ],
+    },
+    {
+        word: 'trace',
+        hints: [
+            { id: 'trace-hint-1', label: 'A very small amount' },
+            {
+                id: 'trace-hint-2',
+                label: 'To outline or follow the path of something',
+            },
+            {
+                id: 'trace-hint-3',
+                label: 'Evidence or indication of a former presence',
+            },
+        ],
+    },
+    {
+        word: 'voice',
+        hints: [
+            {
+                id: 'voice-hint-1',
+                label: "Sound produced in a person's larynx",
+            },
+            {
+                id: 'voice-hint-2',
+                label: 'Means of expressing opinion or feeling',
+            },
+            { id: 'voice-hint-3', label: 'Can be unique to individuals' },
+        ],
+    },
+    {
+        word: 'wheat',
+        hints: [
+            {
+                id: 'wheat-hint-1',
+                label: 'Cereal plant that is a worldwide staple food',
+            },
+            {
+                id: 'wheat-hint-2',
+                label: 'Grains ground to make flour for bread',
+            },
+            { id: 'wheat-hint-3', label: 'Golden in color when ripe' },
+        ],
+    },
+    {
+        word: 'brick',
+        hints: [
+            {
+                id: 'brick-hint-1',
+                label: 'Building material made of fired clay',
+            },
+            {
+                id: 'brick-hint-2',
+                label: 'Commonly red or brown and used for walls',
+            },
+            { id: 'brick-hint-3', label: 'Symbol of sturdy construction' },
+        ],
+    },
+    {
+        word: 'charm',
+        hints: [
+            {
+                id: 'charm-hint-1',
+                label: 'Quality of being pleasant or attractive',
+            },
+            { id: 'charm-hint-2', label: 'Small ornament worn on a bracelet' },
+            { id: 'charm-hint-3', label: 'A spell or incantation' },
+        ],
+    },
+    {
+        word: 'dream',
+        hints: [
+            { id: 'dream-hint-1', label: 'A series of thoughts during sleep' },
+            { id: 'dream-hint-2', label: 'To imagine or hope for something' },
+            { id: 'dream-hint-3', label: 'An aspiration or goal' },
+        ],
+    },
+    {
+        word: 'heart',
+        hints: [
+            { id: 'heart-hint-1', label: 'Organ that pumps blood' },
+            { id: 'heart-hint-2', label: 'Symbol of love and affection' },
+            { id: 'heart-hint-3', label: 'Central or most important part' },
+        ],
+    },
+    {
+        word: 'kneel',
+        hints: [
+            { id: 'kneel-hint-1', label: "To go down on one's knees" },
+            {
+                id: 'kneel-hint-2',
+                label: 'Act of showing respect or submission',
+            },
+            { id: 'kneel-hint-3', label: 'Common posture in prayer' },
+        ],
+    },
+    {
+        word: 'laugh',
+        hints: [
+            {
+                id: 'laugh-hint-1',
+                label: 'To express mirth or joy with vocal sound',
+            },
+            { id: 'laugh-hint-2', label: 'A response to humor or happiness' },
+            { id: 'laugh-hint-3', label: 'Can be infectious in groups' },
+        ],
+    },
+    {
+        word: 'maple',
+        hints: [
+            { id: 'maple-hint-1', label: 'Type of tree with sap for syrup' },
+            { id: 'maple-hint-2', label: 'Leaves turn vibrant colors in fall' },
+            { id: 'maple-hint-3', label: 'Symbol of Canada' },
+        ],
+    },
+    {
+        word: 'nurse',
+        hints: [
+            {
+                id: 'nurse-hint-1',
+                label: 'Healthcare professional assisting doctors',
+            },
+            { id: 'nurse-hint-2', label: 'To care for the sick or injured' },
+            { id: 'nurse-hint-3', label: 'Can also mean to feed a baby' },
+        ],
+    },
+    {
+        word: 'queen',
+        hints: [
+            { id: 'queen-hint-1', label: 'Female monarch or ruler' },
+            { id: 'queen-hint-2', label: 'Highest-ranking piece in chess' },
+            {
+                id: 'queen-hint-3',
+                label: 'Term of respect in various cultures',
+            },
+        ],
+    },
+    {
+        word: 'roast',
+        hints: [
+            { id: 'roast-hint-1', label: 'To cook food with dry heat' },
+            { id: 'roast-hint-2', label: 'A large piece of cooked meat' },
+            { id: 'roast-hint-3', label: 'Humorous criticism of someone' },
+        ],
+    },
+    {
+        word: 'scarf',
+        hints: [
+            {
+                id: 'scarf-hint-1',
+                label: 'Long piece of cloth worn around the neck',
+            },
+            { id: 'scarf-hint-2', label: 'Can be used for warmth or fashion' },
+            {
+                id: 'scarf-hint-3',
+                label: 'Varies in material from wool to silk',
+            },
+        ],
+    },
+    {
+        word: 'tiger',
+        hints: [
+            { id: 'tiger-hint-1', label: 'Large striped feline predator' },
+            { id: 'tiger-hint-2', label: 'Native to Asia' },
+            { id: 'tiger-hint-3', label: 'Symbol of strength and bravery' },
+        ],
+    },
+    {
+        word: 'urban',
+        hints: [
+            { id: 'urban-hint-1', label: 'Related to cities or towns' },
+            { id: 'urban-hint-2', label: 'Densely populated area' },
+            { id: 'urban-hint-3', label: 'Opposite of rural' },
+        ],
+    },
+    {
+        word: 'vowel',
+        hints: [
+            { id: 'vowel-hint-1', label: 'A, E, I, O, U, and sometimes Y' },
+            { id: 'vowel-hint-2', label: 'Type of letter in the alphabet' },
+            { id: 'vowel-hint-3', label: 'Essential for syllable formation' },
+        ],
+    },
+    {
+        word: 'watch',
+        hints: [
+            { id: 'watch-hint-1', label: 'A portable timepiece' },
+            { id: 'watch-hint-2', label: 'To observe attentively' },
+            { id: 'watch-hint-3', label: 'Guard duty or vigil' },
+        ],
+    },
+    {
+        word: 'yield',
+        hints: [
+            {
+                id: 'yield-hint-1',
+                label: 'To produce or provide (e.g., crops)',
+            },
+            { id: 'yield-hint-2', label: 'To give way to another vehicle' },
+            { id: 'yield-hint-3', label: 'Rate of return on investment' },
+        ],
+    },
+    {
+        word: 'zebra',
+        hints: [
+            {
+                id: 'zebra-hint-1',
+                label: 'African animal with black and white stripes',
+            },
+            { id: 'zebra-hint-2', label: 'Belongs to the horse family' },
+            { id: 'zebra-hint-3', label: 'Uses stripes as camouflage' },
+        ],
+    },
+    {
+        word: 'angle',
+        hints: [
+            {
+                id: 'angle-hint-1',
+                label: 'Space between two intersecting lines',
+            },
+            { id: 'angle-hint-2', label: 'Measured in degrees' },
+            { id: 'angle-hint-3', label: 'Right, acute, and obtuse are types' },
+        ],
+    },
+    {
+        word: 'badge',
+        hints: [
+            {
+                id: 'badge-hint-1',
+                label: 'A symbol or indicator of an achievement',
+            },
+            {
+                id: 'badge-hint-2',
+                label: 'Worn to show authority or membership',
+            },
+            { id: 'badge-hint-3', label: 'Often seen on uniforms' },
+        ],
+    },
+    {
+        word: 'craft',
+        hints: [
+            {
+                id: 'craft-hint-1',
+                label: 'Activity involving skill in making things by hand',
+            },
+            { id: 'craft-hint-2', label: 'A boat, ship, or aircraft' },
+            { id: 'craft-hint-3', label: 'To skillfully create or construct' },
+        ],
+    },
+    {
+        word: 'fancy',
+        hints: [
+            { id: 'fancy-hint-1', label: 'To imagine or desire something' },
+            {
+                id: 'fancy-hint-2',
+                label: 'Elaborate in structure or decoration',
+            },
+            {
+                id: 'fancy-hint-3',
+                label: 'A term expressing liking or preference',
+            },
+        ],
+    },
+    {
+        word: 'clone',
+        hints: [
+            {
+                id: 'clone-hint-1',
+                label: 'An exact copy of a biological entity',
+            },
+            {
+                id: 'clone-hint-2',
+                label: 'Produced through genetic replication',
+            },
+            { id: 'clone-hint-3', label: 'Common theme in science fiction' },
+        ],
+    },
+    {
+        word: 'truck',
+        hints: [
+            {
+                id: 'truck-hint-1',
+                label: 'Large vehicle for transporting goods',
+            },
+            {
+                id: 'truck-hint-2',
+                label: 'Can be seen on highways and construction sites',
+            },
+            { id: 'truck-hint-3', label: 'Variants include pickup and semi' },
+        ],
+    },
+    {
+        word: 'train',
+        hints: [
+            { id: 'train-hint-1', label: 'Connected series of rail vehicles' },
+            {
+                id: 'train-hint-2',
+                label: 'Travels on tracks to transport people or goods',
+            },
+            {
+                id: 'train-hint-3',
+                label: 'Can be powered by steam, diesel, or electricity',
+            },
+        ],
+    },
+    {
+        word: 'super',
+        hints: [
+            {
+                id: 'super-hint-1',
+                label: 'Above, beyond, or exceeding in quality',
+            },
+            { id: 'super-hint-2', label: "Prefix meaning 'higher in degree'" },
+            {
+                id: 'super-hint-3',
+                label: 'Informal term for excellent or very good',
+            },
+        ],
+    },
+    {
+        word: 'shark',
+        hints: [
+            { id: 'shark-hint-1', label: 'A large predatory marine fish' },
+            { id: 'shark-hint-2', label: 'Known for sharp teeth and fins' },
+            { id: 'shark-hint-3', label: 'Commonly found in oceans worldwide' },
+        ],
+    },
+    {
+        word: 'shore',
+        hints: [
+            {
+                id: 'shore-hint-1',
+                label: 'Land edge bordering a sea, lake, or river',
+            },
+            { id: 'shore-hint-2', label: 'Place where water meets land' },
+            { id: 'shore-hint-3', label: 'Can be sandy, rocky, or pebbly' },
+        ],
+    },
+    {
+        word: 'shame',
+        hints: [
+            {
+                id: 'shame-hint-1',
+                label: 'A feeling of guilt, regret, or sadness',
+            },
+            {
+                id: 'shame-hint-2',
+                label: 'Result of doing something wrong or foolish',
+            },
+            {
+                id: 'shame-hint-3',
+                label: 'Can be used to express disappointment',
+            },
+        ],
+    },
+    {
+        word: 'hippo',
+        hints: [
+            { id: 'hippo-hint-1', label: 'Large, mostly herbivorous mammal' },
+            { id: 'hippo-hint-2', label: 'Short for hippopotamus' },
+            { id: 'hippo-hint-3', label: 'Native to sub-Saharan Africa' },
+        ],
+    },
+    {
+        word: 'staff',
+        hints: [
+            {
+                id: 'staff-hint-1',
+                label: 'Group of people working for an organization',
+            },
+            {
+                id: 'staff-hint-2',
+                label: 'Long stick used as support when walking',
+            },
+            {
+                id: 'staff-hint-3',
+                label: 'Can refer to the personnel of a business',
+            },
+        ],
+    },
+] as const satisfies WordDictionaryEntry[];
