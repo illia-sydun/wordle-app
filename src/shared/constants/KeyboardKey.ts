@@ -29,4 +29,4 @@ export const KEYBOARD_KEY = {
     META: 'meta',
     BACKSPACE: 'backspace',
     ESCAPE: 'escape',
-} as const;
+} as const satisfies Record<string, string>;
