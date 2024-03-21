@@ -13,6 +13,8 @@ export const useKeyPress = (
                 (key) => key === key.toLowerCase(),
             );
             if (isWantedKeyPressed) {
+                event.preventDefault();
+                event.stopPropagation();
                 callback(event, key);
             }
         },
