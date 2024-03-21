@@ -14,10 +14,10 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
-      "tsc",
+      "bash -c 'tsc'",
       "npm run lint:fix"
     ],
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss}": [
+    "src/**/*.{js,jsx,ts,tsx,json,scss}": [
       "npm run prettier"
     ]
   },
