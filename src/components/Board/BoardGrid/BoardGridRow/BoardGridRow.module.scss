@@ -9,8 +9,4 @@
     &.shake {
         @include animation-shake;
     }
-
-    &.flip_infinite {
-        @include animation-flip-infinite;
-    }
 }

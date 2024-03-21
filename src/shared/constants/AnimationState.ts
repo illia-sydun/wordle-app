@@ -1,9 +1,9 @@
 export const ANIMATION_STATE = [
     'idle',
     'flip',
-    'flip_infinite',
     'shake',
+    'jump',
     'half_click',
     'click',
     'pulse',
-] as const;
+] as const satisfies string[];
