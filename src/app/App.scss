@@ -5,36 +5,19 @@
 }
 
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Rubik, sans-serif;
     line-height: 1.5;
     font-weight: 400;
 
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    color: $font-primary;
+    background-color: $background-primary;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    @media (prefers-color-scheme: light) {
-        & {
-            color: #213547;
-            background-color: #ffffff;
-        }
-    }
-}
-
-html {
-    font-size: 62.5%;
-    font-family: Rubik, sans-serif;
-}
-
-body {
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -44,6 +27,18 @@ body,
     height: 100%;
     width: 100%;
     background-color: inherit;
+    overflow: hidden;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-y: auto;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
 }
 
 #main {
@@ -51,6 +46,7 @@ body,
     grid-template: 6rem 1fr / minmax(320px, 1fr);
     margin: 0 auto;
     background-color: $background-primary;
+    overflow: auto;
 }
 
 button {
@@ -59,35 +55,17 @@ button {
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background-color: $background-primary;
+    color: $font-primary;
     cursor: pointer;
     transition: border-color 0.25s;
 
     &:hover {
-        border-color: #646cff;
+        border-color: $white;
     }
 
     &:is(:focus, :focus-visible) {
-        outline: 4px auto -webkit-focus-ring-color;
-    }
-
-    @media (prefers-color-scheme: light) {
-        background-color: #f9f9f9;
-    }
-}
-
-a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-
-    &:hover {
-        color: #535bf2;
-    }
-
-    @media (prefers-color-scheme: light) {
-        &:hover {
-            color: #747bff;
-        }
+        outline: 2px auto $white;
+        border-color: $white;
     }
 }

@@ -16,7 +16,9 @@ export const KeyboardGridCell = observer(
         };
 
         const startHalfClickAnimation = () => {
-            cell.startAnimation('half_click');
+            if (cell.isClickable) {
+                cell.startAnimation('half_click');
+            }
         };
 
         const handleStopGenericAnimations = () => {
@@ -24,13 +26,18 @@ export const KeyboardGridCell = observer(
                 cell.stopAnimation();
             }
         };
-
+        // @TODO something is wrong with animations
+        // sometimes shake doesn't run
         const handleStopAllAnimations = () => {
             cell.stopAnimation();
         };
 
         return (
             <button
+                // @TODO data-is-large-key makes sense? maybe use flex for mobile view
+                data-is-large-key={cell.isLargeKey}
+                // @TODO i decided to revert this logic with disabing non clickable keys. it needs to be removed and fixed
+                disabled={!cell.isClickable}
                 className={clsx(
                     styles.container,
                     styles[cell.status],
@@ -43,7 +50,8 @@ export const KeyboardGridCell = observer(
                 onTransitionEnd={handleStopGenericAnimations}
                 onMouseLeave={handleStopAllAnimations}
                 onBlur={handleStopAllAnimations}
-                onAnimationEnd={handleStopAllAnimations}>
+                onAnimationEnd={handleStopAllAnimations}
+            >
                 {cell.label}
             </button>
         );

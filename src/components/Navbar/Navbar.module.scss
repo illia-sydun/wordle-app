@@ -9,8 +9,9 @@
     border-right: unset;
 
     & .title {
-        @include font-wordle;
+        @include font-secondary;
         font-size: 3.5rem;
+        line-height: 3.5rem;
         text-align: center;
         margin: 0;
     }
