@@ -33,17 +33,16 @@
     animation: pulse 100ms 1 ease-in-out;
 }
 
+@mixin animation-jump {
+    animation: jump 1.25s infinite ease-out;
+}
+
 @mixin animation-shake {
     animation: shake 150ms 1 ease-in-out alternate;
 }
 
 @mixin animation-flip {
     animation: flip 750ms 1 linear;
-}
-
-@mixin animation-flip-infinite {
-    @include animation-flip;
-    @include animation-iteration-count-infinite;
 }
 
 @mixin animation-delay-unset {

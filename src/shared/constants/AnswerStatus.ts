@@ -4,4 +4,4 @@ export const ANSWER_STATUS = {
     VALID: 'valid',
     INVALID: 'invalid',
     SUBMITTED: 'submitted',
-} as const;
+} as const satisfies Record<string, string>;
