@@ -10,4 +10,14 @@
     & .keyboard {
         flex: 4;
     }
+
+    @media screen and (max-width: 700px) {
+        & .board {
+            flex: 4;
+        }
+
+        & .keyboard {
+            flex: 4;
+        }
+    }
 }

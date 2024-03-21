@@ -7,14 +7,15 @@
     padding: 1.25rem 1.75rem;
 
     color: $font-primary;
+    background-color: $black;
+    box-shadow: 1px 1px 3px $gray;
+
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
 
-    background-color: transparent;
-    box-shadow: 1px 1px 3px $gray;
-
+    border: 1.5px solid transparent;
     border-radius: 0.5rem;
 
     transform-style: preserve-3d;
@@ -40,11 +41,26 @@
         transition: 100ms cubic-bezier(0, 0, 0.6, 1);
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-        outline-color: $lightgray;
-        border-color: unset;
+    &:not([disabled]) {
+        &:hover,
+        &:focus {
+            outline: unset;
+            border-color: unset;
+        }
+    }
+
+    &[disabled] {
+        outline: unset !important;
+        border-color: transparent !important;
+        cursor: default;
+    }
+
+    &.static {
+        cursor: default;
+
+        &::before {
+            content: unset;
+        }
     }
 
     &.match {
@@ -63,6 +79,22 @@
         border-color: $disabled;
     }
 
+    &:is(.match, .close_match, .no_match) {
+        &::before {
+            background-color: inherit;
+            opacity: 0.25;
+        }
+    }
+
+    &.pulse {
+        @include animation-pulse;
+        animation-duration: 250ms;
+
+        &::before {
+            content: unset;
+        }
+    }
+
     &.shake {
         @include animation-shake;
     }
@@ -77,9 +109,38 @@
 
     &.click {
         transform: translate(0.5rem, 0.5rem);
+        border-color: unset;
 
         &::before {
             transform: translate3d(0, 0, -1rem);
         }
+    }
+
+    // @TODO is-large-key needed?
+    @media screen and (max-width: 1080px) {
+        &[data-is-large-key='true'] {
+            //display: none;
+            //font-size: 0;
+            //width: 5px;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        padding: 1.75rem 1rem;
+    }
+
+    @media screen and (max-width: 450px) {
+        padding: 1rem 0.75rem;
+        font-size: 1.5rem;
+        &:before {
+            content: unset;
+        }
+        &:is(.click, .half_click) {
+            transform: unset;
+        }
+    }
+
+    @media screen and (max-width: 370px) {
+        font-size: 1.25rem;
     }
 }
