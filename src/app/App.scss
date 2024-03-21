@@ -63,9 +63,4 @@ button {
     &:hover {
         border-color: $white;
     }
-
-    &:is(:focus, :focus-visible) {
-        outline: 2px auto $white;
-        border-color: $white;
-    }
 }

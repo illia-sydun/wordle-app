@@ -46,10 +46,8 @@ export const KeyboardGridCell = observer(
                 style={cell.computedStyles}
                 onClick={handleOnClick}
                 onMouseEnter={startHalfClickAnimation}
-                onFocus={startHalfClickAnimation}
                 onTransitionEnd={handleStopGenericAnimations}
                 onMouseLeave={handleStopAllAnimations}
-                onBlur={handleStopAllAnimations}
                 onAnimationEnd={handleStopAllAnimations}
             >
                 {cell.label}

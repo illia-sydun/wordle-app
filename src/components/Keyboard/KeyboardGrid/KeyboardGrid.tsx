@@ -31,7 +31,7 @@ export const KeyboardGrid = observer(
         };
 
         useKeyPress((event, keyboardKey) => {
-            if (!event.repeat && event.target instanceof HTMLBodyElement) {
+            if (!event.repeat) {
                 onKeyboardKeyPress(keyboardKey);
             }
         }, keyboardLayout.flat());
@@ -41,7 +41,8 @@ export const KeyboardGrid = observer(
                 {keyboardLayout.map((row, index) => (
                     <div
                         key={index}
-                        className={clsx(styles.row, styles[`row-${index}`])}>
+                        className={clsx(styles.row, styles[`row-${index}`])}
+                    >
                         {row.map((key) => (
                             <KeyboardGridCell
                                 key={`key-${key}`}
