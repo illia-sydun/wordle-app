@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useEffect, useMemo } from 'react';
 import { initParticlesEngine } from '@tsparticles/react';
-import { loadAll } from '@tsparticles/all';
+import { loadFull } from 'tsparticles';
 import { useBooleanState } from '@shared/hooks/useBooleanState.ts';
 
 type ParticlesContextValue = {
@@ -16,7 +16,7 @@ export const ParticlesContextProvider = ({ children }: PropsWithChildren) => {
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            await loadAll(engine);
+            await loadFull(engine);
         }).then(isParticlesEngineInitialised.handleSetTrue);
     }, []);
 
