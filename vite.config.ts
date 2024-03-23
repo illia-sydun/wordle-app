@@ -9,7 +9,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     registerType: 'autoUpdate',
     strategies: 'generateSW',
     workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,woff2,ttf}'],
     },
     manifest: {
         name: 'Wordle',
