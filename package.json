@@ -28,6 +28,11 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.23.9",
+    "@capacitor/android": "^5.7.4",
+    "@capacitor/cli": "^5.7.4",
+    "@capacitor/core": "^5.7.4",
+    "@capacitor/haptics": "^5.0.7",
+    "@capacitor/ios": "^5.7.4",
     "@tsparticles/all": "^3.3.0",
     "@tsparticles/engine": "^3.3.0",
     "@tsparticles/react": "^3.0.0",
