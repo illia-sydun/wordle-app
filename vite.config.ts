@@ -1,7 +1,9 @@
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
+import { envDtsGen } from '@liuli-util/vite-plugin-env-dts-gen';
 
 import path from 'path';
 
@@ -42,6 +44,7 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
             },
         ],
         background_color: '#222222',
+        theme_color: '#222222',
         display: 'standalone',
         scope: '/',
         start_url: '/',
@@ -66,11 +69,19 @@ export default defineConfig({
         }),
         checker({ typescript: true }),
         VitePWA(manifestForPlugIn),
+        sentryVitePlugin({
+            org: 'illinois-inter',
+            project: 'wordle',
+        }),
+        envDtsGen(),
     ],
     resolve: {
         alias: {
             '@styles': path.resolve('./src/shared/styles/base'),
             '@shared': path.resolve('./src/shared'),
         },
+    },
+    build: {
+        sourcemap: true,
     },
 });
