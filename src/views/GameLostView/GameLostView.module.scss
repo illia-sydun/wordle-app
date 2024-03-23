@@ -1,0 +1,23 @@
+@import '@styles';
+
+.container {
+    @include view;
+    @include centered;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    .text {
+        z-index: 1;
+
+        padding: 2rem;
+
+        font-size: 6.5rem;
+        line-height: 9rem;
+        font-weight: 700;
+        text-align: center;
+        color: $font-primary;
+        user-select: none;
+    }
+}
