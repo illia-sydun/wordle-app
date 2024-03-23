@@ -1,0 +1,10 @@
+@import '@styles';
+
+.container {
+    @include view;
+    @include centered;
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
