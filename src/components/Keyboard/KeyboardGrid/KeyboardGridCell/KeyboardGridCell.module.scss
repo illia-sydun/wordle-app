@@ -11,6 +11,7 @@
     box-shadow: 1px 1px 3px $gray;
 
     font-size: 2rem;
+    line-height: 2rem;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
@@ -120,20 +121,26 @@
 
     @media screen and (max-width: 700px) {
         padding: 1.75rem 1rem;
+        &:before {
+            content: unset;
+        }
+        &.half_click {
+            transform: unset;
+        }
+        &.click {
+            transform: unset;
+            @include animation-pulse;
+        }
     }
 
     @media screen and (max-width: 450px) {
         padding: 1rem 0.75rem;
         font-size: 1.5rem;
-        &:before {
-            content: unset;
-        }
-        &:is(.click, .half_click) {
-            transform: unset;
-        }
+        line-height: 1.5rem;
     }
 
     @media screen and (max-width: 370px) {
         font-size: 1.25rem;
+        line-height: 1.25rem;
     }
 }

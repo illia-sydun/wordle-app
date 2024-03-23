@@ -10,10 +10,11 @@
 
     @media screen and (max-width: 1080px) {
         grid-template-areas:
-            'escape escape escape escape backspace backspace backspace backspace enter enter enter enter'
+            '. escape escape escape escape . . backspace backspace backspace backspace .'
             '. q w e r t y u i o p .'
             '. . a s d f g h j k l .'
-            ' . . . z x c v b n m . .';
+            ' . . . z x c v b n m . .'
+            ' . . . enter enter enter enter enter enter . . .';
     }
 
     @media screen and (max-width: 560px) {
