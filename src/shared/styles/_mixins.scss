@@ -49,6 +49,10 @@
     animation: flip 750ms 1 linear;
 }
 
+@mixin animation-blink {
+    animation: 1.35s blink step-end infinite;
+}
+
 @mixin animation-delay-unset {
     transition-delay: unset !important;
     animation-delay: unset !important;
