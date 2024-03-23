@@ -1634,14 +1634,7 @@ export const WORD_DICTIONARY = [
             },
         ],
     },
-    {
-        word: 'shark',
-        hints: [
-            { id: 'shark-hint-1', label: 'A large predatory marine fish' },
-            { id: 'shark-hint-2', label: 'Known for sharp teeth and fins' },
-            { id: 'shark-hint-3', label: 'Commonly found in oceans worldwide' },
-        ],
-    },
+
     {
         word: 'shore',
         hints: [
@@ -1692,6 +1685,680 @@ export const WORD_DICTIONARY = [
             {
                 id: 'staff-hint-3',
                 label: 'Can refer to the personnel of a business',
+            },
+        ],
+    },
+
+    {
+        word: 'shark',
+        hints: [
+            { id: 'shark-hint-1', label: 'Predator of the sea' },
+            { id: 'shark-hint-2', label: 'Sharp teeth' },
+            { id: 'shark-hint-3', label: 'Fins' },
+        ],
+    },
+
+    {
+        word: 'rebel',
+        hints: [
+            { id: 'rebel-hint-1', label: 'Opposes authority' },
+            { id: 'rebel-hint-2', label: 'Revolutionary' },
+            { id: 'rebel-hint-3', label: 'Nonconformist' },
+        ],
+    },
+    {
+        word: 'brain',
+        hints: [
+            { id: 'brain-hint-1', label: 'Organ of thought' },
+            { id: 'brain-hint-2', label: 'Intellectual center' },
+            { id: 'brain-hint-3', label: 'Grey matter' },
+        ],
+    },
+    {
+        word: 'clock',
+        hints: [
+            { id: 'clock-hint-1', label: 'Tells time' },
+            { id: 'clock-hint-2', label: 'Tick-tock' },
+            { id: 'clock-hint-3', label: 'Cuckoo' },
+        ],
+    },
+    {
+        word: 'spoon',
+        hints: [
+            { id: 'spoon-hint-1', label: 'Utensil for eating soup' },
+            { id: 'spoon-hint-2', label: 'Scooping tool' },
+            { id: 'spoon-hint-3', label: 'Silverware' },
+        ],
+    },
+    {
+        word: 'spark',
+        hints: [
+            { id: 'spark-hint-1', label: 'Tiny fire' },
+            { id: 'spark-hint-2', label: 'Ignition' },
+            { id: 'spark-hint-3', label: 'Electric discharge' },
+        ],
+    },
+    {
+        word: 'tuple',
+        hints: [
+            { id: 'tuple-hint-1', label: 'Ordered list' },
+            { id: 'tuple-hint-2', label: 'Data structure' },
+            { id: 'tuple-hint-3', label: 'Ordered pair' },
+        ],
+    },
+    {
+        word: 'drain',
+        hints: [
+            { id: 'drain-hint-1', label: 'Remove liquid' },
+            { id: 'drain-hint-2', label: 'Pipe exit' },
+            { id: 'drain-hint-3', label: 'Sewer' },
+        ],
+    },
+    {
+        word: 'husky',
+        hints: [
+            { id: 'husky-hint-1', label: 'Dog breed' },
+            { id: 'husky-hint-2', label: 'Strong and burly' },
+            { id: 'husky-hint-3', label: 'Sled puller' },
+        ],
+    },
+    {
+        word: 'trick',
+        hints: [
+            { id: 'trick-hint-1', label: 'Deception' },
+            { id: 'trick-hint-2', label: 'Illusion' },
+            { id: 'trick-hint-3', label: 'Prank' },
+        ],
+    },
+    {
+        word: 'turbo',
+        hints: [
+            { id: 'turbo-hint-1', label: 'Engine booster' },
+            { id: 'turbo-hint-2', label: 'Speed enhancement' },
+            { id: 'turbo-hint-3', label: 'Forced induction' },
+        ],
+    },
+    {
+        word: 'goose',
+        hints: [
+            { id: 'goose-hint-1', label: 'Waterfowl' },
+            { id: 'goose-hint-2', label: 'Honks' },
+            { id: 'goose-hint-3', label: 'Feathers' },
+        ],
+    },
+    {
+        word: 'loose',
+        hints: [
+            { id: 'loose-hint-1', label: 'Not tight' },
+            { id: 'loose-hint-2', label: 'Opposite of tight' },
+            { id: 'loose-hint-3', label: 'Not fastened' },
+        ],
+    },
+    {
+        word: 'prank',
+        hints: [
+            { id: 'prank-hint-1', label: 'Mischievous joke' },
+            { id: 'prank-hint-2', label: 'Practical joke' },
+            { id: 'prank-hint-3', label: 'Hoax' },
+        ],
+    },
+    {
+        word: 'break',
+        hints: [
+            { id: 'break-hint-1', label: 'Pause' },
+            { id: 'break-hint-2', label: 'Crack' },
+            { id: 'break-hint-3', label: 'Fracture' },
+        ],
+    },
+    {
+        word: 'stuck',
+        hints: [
+            { id: 'stuck-hint-1', label: 'Unable to move' },
+            { id: 'stuck-hint-2', label: 'Jam' },
+            { id: 'stuck-hint-3', label: 'Trapped' },
+        ],
+    },
+    {
+        word: 'faith',
+        hints: [
+            { id: 'faith-hint-1', label: 'Belief' },
+            { id: 'faith-hint-2', label: 'Religion' },
+            { id: 'faith-hint-3', label: 'Trust' },
+        ],
+    },
+    {
+        word: 'snake',
+        hints: [
+            { id: 'snake-hint-1', label: 'Reptile without legs' },
+            { id: 'snake-hint-2', label: 'Slithers' },
+            { id: 'snake-hint-3', label: 'Venomous' },
+        ],
+    },
+    {
+        word: 'jumbo',
+        hints: [
+            { id: 'jumbo-hint-1', label: 'Large in size' },
+            { id: 'jumbo-hint-2', label: 'Often used to describe elephants' },
+            { id: 'jumbo-hint-3', label: "Synonym for 'big'" },
+            {
+                id: 'jumbo-hint-4',
+                label: 'Commonly used in the context of airplanes',
+            },
+        ],
+    },
+    {
+        word: 'toast',
+        hints: [
+            {
+                id: 'toast-hint-1',
+                label: 'Bread that has been browned by exposure to heat',
+            },
+            { id: 'toast-hint-2', label: 'Often eaten for breakfast' },
+            { id: 'toast-hint-3', label: 'Can be topped with butter or jam' },
+            { id: 'toast-hint-4', label: 'A common accompaniment to eggs' },
+        ],
+    },
+    {
+        word: 'mocha',
+        hints: [
+            { id: 'mocha-hint-1', label: 'A type of coffee' },
+            { id: 'mocha-hint-2', label: 'Often contains chocolate flavor' },
+            { id: 'mocha-hint-3', label: 'Named after a city in Yemen' },
+            { id: 'mocha-hint-4', label: 'Can be served hot or cold' },
+        ],
+    },
+    {
+        word: 'greet',
+        hints: [
+            { id: 'greet-hint-1', label: 'To say hello to someone' },
+            { id: 'greet-hint-2', label: 'A form of welcoming' },
+            { id: 'greet-hint-3', label: "To acknowledge someone's presence" },
+            {
+                id: 'greet-hint-4',
+                label: 'Often involves a verbal or physical gesture',
+            },
+        ],
+    },
+    {
+        word: 'rhino',
+        hints: [
+            {
+                id: 'rhino-hint-1',
+                label: 'A large, herbivorous mammal with a horn on its nose',
+            },
+            { id: 'rhino-hint-2', label: 'Found in Africa and Asia' },
+            { id: 'rhino-hint-3', label: 'Known for its thick skin' },
+            { id: 'rhino-hint-4', label: 'An endangered species' },
+        ],
+    },
+    {
+        word: 'comet',
+        hints: [
+            { id: 'comet-hint-1', label: 'A celestial object with a tail' },
+            { id: 'comet-hint-2', label: 'Made of ice, dust, and rock' },
+            { id: 'comet-hint-3', label: 'Orbits the sun' },
+            {
+                id: 'comet-hint-4',
+                label: 'Visible as a bright streak against the night sky',
+            },
+        ],
+    },
+    {
+        word: 'oasis',
+        hints: [
+            { id: 'oasis-hint-1', label: 'A fertile spot in a desert' },
+            { id: 'oasis-hint-2', label: 'Usually has water and vegetation' },
+            {
+                id: 'oasis-hint-3',
+                label: 'Provides relief from the surrounding arid environment',
+            },
+            { id: 'oasis-hint-4', label: 'A place of refuge or relief' },
+        ],
+    },
+    {
+        word: 'spicy',
+        hints: [
+            {
+                id: 'spicy-hint-1',
+                label: 'Containing strong flavors or heat from spices',
+            },
+            {
+                id: 'spicy-hint-2',
+                label: 'Can cause a burning sensation in the mouth',
+            },
+            {
+                id: 'spicy-hint-3',
+                label: 'Common in certain cuisines like Mexican, Indian, and Thai',
+            },
+            {
+                id: 'spicy-hint-4',
+                label: 'May include ingredients like chili peppers, ginger, or garlic',
+            },
+        ],
+    },
+    {
+        word: 'chirp',
+        hints: [
+            {
+                id: 'chirp-hint-1',
+                label: 'A short, high-pitched sound made by birds',
+            },
+            {
+                id: 'chirp-hint-2',
+                label: 'Often associated with smaller bird species',
+            },
+            { id: 'chirp-hint-3', label: 'Used by birds for communication' },
+            {
+                id: 'chirp-hint-4',
+                label: 'Can be heard in the early morning or during mating season',
+            },
+        ],
+    },
+    {
+        word: 'stout',
+        hints: [
+            { id: 'stout-hint-1', label: 'Dark and strong beer' },
+            {
+                id: 'stout-hint-2',
+                label: 'Often characterized by its roasted malt flavor',
+            },
+            {
+                id: 'stout-hint-3',
+                label: 'Popular in Ireland and the United Kingdom',
+            },
+            {
+                id: 'stout-hint-4',
+                label: 'Can have hints of chocolate or coffee',
+            },
+        ],
+    },
+    {
+        word: 'quack',
+        hints: [
+            { id: 'quack-hint-1', label: 'The sound a duck makes' },
+            {
+                id: 'quack-hint-2',
+                label: 'Often associated with fraudulent medical practices',
+            },
+            {
+                id: 'quack-hint-3',
+                label: "Used to describe someone pretending to be something they're not",
+            },
+            {
+                id: 'quack-hint-4',
+                label: 'Commonly heard near ponds and lakes',
+            },
+        ],
+    },
+    {
+        word: 'novel',
+        hints: [
+            { id: 'novel-hint-1', label: 'A fictional story' },
+            { id: 'novel-hint-2', label: 'Often longer than a short story' },
+            {
+                id: 'novel-hint-3',
+                label: 'Can be based on real events or completely imagined',
+            },
+            { id: 'novel-hint-4', label: 'Usually divided into chapters' },
+        ],
+    },
+    {
+        word: 'cider',
+        hints: [
+            { id: 'cider-hint-1', label: 'A beverage made from apples' },
+            {
+                id: 'cider-hint-2',
+                label: 'Often associated with autumn and fall festivals',
+            },
+            { id: 'cider-hint-3', label: 'Can be served hot or cold' },
+            { id: 'cider-hint-4', label: 'Comes in sweet and dry varieties' },
+        ],
+    },
+    {
+        word: 'flash',
+        hints: [
+            { id: 'flash-hint-1', label: 'A sudden burst of light' },
+            { id: 'flash-hint-2', label: 'Commonly associated with lightning' },
+            {
+                id: 'flash-hint-3',
+                label: 'Can also refer to a quick moment or instance',
+            },
+            { id: 'flash-hint-4', label: 'Often used in photography' },
+        ],
+    },
+    {
+        word: 'sushi',
+        hints: [
+            {
+                id: 'sushi-hint-1',
+                label: 'A Japanese dish made with vinegared rice and various fillings',
+            },
+            {
+                id: 'sushi-hint-2',
+                label: 'Often includes raw fish, seafood, or vegetables',
+            },
+            {
+                id: 'sushi-hint-3',
+                label: 'Served with soy sauce, wasabi, and pickled ginger',
+            },
+            {
+                id: 'sushi-hint-4',
+                label: 'Popular worldwide as a healthy and flavorful meal',
+            },
+        ],
+    },
+    {
+        word: 'pixel',
+        hints: [
+            {
+                id: 'pixel-hint-1',
+                label: 'The smallest unit of a digital image',
+            },
+            {
+                id: 'pixel-hint-2',
+                label: 'Arranged in a grid to form images on screens',
+            },
+            {
+                id: 'pixel-hint-3',
+                label: 'The more pixels, the higher the resolution',
+            },
+            {
+                id: 'pixel-hint-4',
+                label: 'Can be square or rectangular in shape',
+            },
+        ],
+    },
+    {
+        word: 'candy',
+        hints: [
+            { id: 'candy-hint-1', label: 'Sweet treats often made from sugar' },
+            {
+                id: 'candy-hint-2',
+                label: 'Comes in various shapes, sizes, and flavors',
+            },
+            {
+                id: 'candy-hint-3',
+                label: 'Commonly associated with holidays like Halloween and Christmas',
+            },
+            { id: 'candy-hint-4', label: 'Can be hard, chewy, or soft' },
+        ],
+    },
+    {
+        word: 'fairy',
+        hints: [
+            {
+                id: 'fairy-hint-1',
+                label: 'A mythical creature often depicted as small and magical',
+            },
+            {
+                id: 'fairy-hint-2',
+                label: 'Often associated with folklore and fairy tales',
+            },
+            {
+                id: 'fairy-hint-3',
+                label: 'Known for granting wishes or causing mischief',
+            },
+            { id: 'fairy-hint-4', label: 'Has wings and can fly' },
+        ],
+    },
+    {
+        word: 'chess',
+        hints: [
+            {
+                id: 'chess-hint-1',
+                label: 'A strategic board game played by two players',
+            },
+            {
+                id: 'chess-hint-2',
+                label: 'Involves moving pieces with different abilities across the board',
+            },
+            {
+                id: 'chess-hint-3',
+                label: 'Requires critical thinking and planning ahead',
+            },
+            {
+                id: 'chess-hint-4',
+                label: 'One of the oldest and most popular games in the world',
+            },
+        ],
+    },
+    {
+        word: 'mango',
+        hints: [
+            {
+                id: 'mango-hint-1',
+                label: 'A tropical fruit with a sweet and tangy flavor',
+            },
+            {
+                id: 'mango-hint-2',
+                label: 'Native to South Asia but grown in many tropical regions',
+            },
+            {
+                id: 'mango-hint-3',
+                label: 'Comes in different varieties, shapes, and sizes',
+            },
+            {
+                id: 'mango-hint-4',
+                label: 'Often used in salads, smoothies, and desserts',
+            },
+        ],
+    },
+    {
+        word: 'oasis',
+        hints: [
+            { id: 'oasis-hint-1', label: 'A fertile area in a desert' },
+            { id: 'oasis-hint-2', label: 'Contains water and vegetation' },
+            { id: 'oasis-hint-3', label: 'A welcome sight for travelers' },
+            {
+                id: 'oasis-hint-4',
+                label: 'Provides relief from the harsh desert environment',
+            },
+        ],
+    },
+    {
+        word: 'salsa',
+        hints: [
+            { id: 'salsa-hint-1', label: 'A spicy tomato-based sauce' },
+            {
+                id: 'salsa-hint-2',
+                label: 'Often used as a dip for tortilla chips',
+            },
+            { id: 'salsa-hint-3', label: 'Common in Mexican cuisine' },
+            {
+                id: 'salsa-hint-4',
+                label: 'Can be mild, medium, or hot in terms of spiciness',
+            },
+        ],
+    },
+    {
+        word: 'pesto',
+        hints: [
+            {
+                id: 'pesto-hint-1',
+                label: 'A green sauce made from basil, pine nuts, and garlic',
+            },
+            { id: 'pesto-hint-2', label: 'Originated in Italy' },
+            { id: 'pesto-hint-3', label: 'Often used as a pasta sauce' },
+            { id: 'pesto-hint-4', label: 'Has a fresh and aromatic flavor' },
+        ],
+    },
+    {
+        word: 'paste',
+        hints: [
+            { id: 'paste-hint-1', label: 'A thick, viscous substance' },
+            { id: 'paste-hint-2', label: 'Used for adhering objects together' },
+            { id: 'paste-hint-3', label: 'Commonly found in tubes or jars' },
+            {
+                id: 'paste-hint-4',
+                label: 'Examples include toothpaste and glue',
+            },
+        ],
+    },
+    {
+        word: 'toast',
+        hints: [
+            { id: 'toast-hint-1', label: 'Bread heated until crisp and brown' },
+            { id: 'toast-hint-2', label: 'Often eaten for breakfast' },
+            { id: 'toast-hint-3', label: 'Can be topped with butter or jam' },
+            {
+                id: 'toast-hint-4',
+                label: 'Made by exposing bread to radiant heat',
+            },
+        ],
+    },
+    {
+        word: 'broth',
+        hints: [
+            {
+                id: 'broth-hint-1',
+                label: 'A savory liquid made by simmering meat or vegetables',
+            },
+            {
+                id: 'broth-hint-2',
+                label: 'Commonly used as a base for soups and stews',
+            },
+            {
+                id: 'broth-hint-3',
+                label: 'Can be seasoned with herbs and spices',
+            },
+            {
+                id: 'broth-hint-4',
+                label: 'May contain nutrients extracted from the ingredients',
+            },
+        ],
+    },
+    {
+        word: 'coast',
+        hints: [
+            {
+                id: 'coast-hint-1',
+                label: 'The land along the edge of a sea or ocean',
+            },
+            {
+                id: 'coast-hint-2',
+                label: 'Characterized by beaches, cliffs, or marshes',
+            },
+            {
+                id: 'coast-hint-3',
+                label: 'Popular for recreational activities like swimming and surfing',
+            },
+            {
+                id: 'coast-hint-4',
+                label: 'Subject to erosion and influenced by tides',
+            },
+        ],
+    },
+    {
+        word: 'loose',
+        hints: [
+            { id: 'loose-hint-1', label: 'Not firmly fixed in place' },
+            { id: 'loose-hint-2', label: 'Opposite of tight or secure' },
+            {
+                id: 'loose-hint-3',
+                label: 'Can refer to clothing that is too large',
+            },
+            {
+                id: 'loose-hint-4',
+                label: 'May also describe freedom from constraint',
+            },
+        ],
+    },
+    {
+        word: 'boost',
+        hints: [
+            { id: 'boost-hint-1', label: 'To increase or raise something' },
+            {
+                id: 'boost-hint-2',
+                label: 'Commonly used in the context of energy or morale',
+            },
+            {
+                id: 'boost-hint-3',
+                label: 'Can refer to enhancing performance or effectiveness',
+            },
+            {
+                id: 'boost-hint-4',
+                label: 'Often sought after for productivity or motivation',
+            },
+        ],
+    },
+    {
+        word: 'burst',
+        hints: [
+            { id: 'burst-hint-1', label: 'A sudden release of something' },
+            { id: 'burst-hint-2', label: 'To break open or apart suddenly' },
+            { id: 'burst-hint-3', label: 'A quick and sudden movement' },
+            { id: 'burst-hint-4', label: 'Often associated with explosions' },
+        ],
+    },
+    {
+        word: 'spike',
+        hints: [
+            { id: 'spike-hint-1', label: 'A pointed piece of metal or wood' },
+            { id: 'spike-hint-2', label: 'A sharp increase or rise' },
+            { id: 'spike-hint-3', label: 'To impale or pierce with a spike' },
+            {
+                id: 'spike-hint-4',
+                label: 'Commonly used in sports and construction',
+            },
+        ],
+    },
+    {
+        word: 'gloss',
+        hints: [
+            { id: 'gloss-hint-1', label: 'A shiny or reflective surface' },
+            { id: 'gloss-hint-2', label: 'To give a shiny appearance to' },
+            {
+                id: 'gloss-hint-3',
+                label: 'A superficially attractive appearance',
+            },
+            { id: 'gloss-hint-4', label: 'A type of finish or sheen' },
+        ],
+    },
+    {
+        word: 'mount',
+        hints: [
+            { id: 'mount-hint-1', label: 'To climb or ascend' },
+            {
+                id: 'mount-hint-2',
+                label: 'A landform that rises above its surroundings',
+            },
+            { id: 'mount-hint-3', label: 'To set up or organize' },
+            {
+                id: 'mount-hint-4',
+                label: 'To attach or fix something in place',
+            },
+        ],
+    },
+    {
+        word: 'grain',
+        hints: [
+            { id: 'grain-hint-1', label: 'Small, hard seed or fruit' },
+            { id: 'grain-hint-2', label: 'A texture or pattern of fibers' },
+            {
+                id: 'grain-hint-3',
+                label: 'Used to make flour or feed livestock',
+            },
+            {
+                id: 'grain-hint-4',
+                label: 'A unit of weight equal to 1/7000th of a pound',
+            },
+        ],
+    },
+    {
+        word: 'clerk',
+        hints: [
+            {
+                id: 'clerk-hint-1',
+                label: 'An employee who performs administrative duties',
+            },
+            { id: 'clerk-hint-2', label: 'Works in a store or office' },
+            {
+                id: 'clerk-hint-3',
+                label: 'Handles paperwork and record-keeping',
+            },
+            {
+                id: 'clerk-hint-4',
+                label: 'Assists customers with inquiries or purchases',
             },
         ],
     },
