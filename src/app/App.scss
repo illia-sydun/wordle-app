@@ -58,9 +58,4 @@ button {
     background-color: $background-primary;
     color: $font-primary;
     cursor: pointer;
-    transition: border-color 0.25s;
-
-    &:hover {
-        border-color: $white;
-    }
 }
