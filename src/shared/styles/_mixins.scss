@@ -28,7 +28,7 @@
 @mixin clickable {
     user-select: none;
     cursor: pointer;
-    &:hover {
+    @include hover {
         @include clicked;
     }
 }
@@ -76,5 +76,19 @@
     /* Chrome, Safari and Opera */
     &::-webkit-scrollbar {
         display: none;
+    }
+}
+
+@mixin hover {
+    @media (hover: none) {
+        &:active {
+            @content;
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
     }
 }
