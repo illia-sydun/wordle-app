@@ -1,25 +1,31 @@
-//$white: white;
+@import './helpers';
+
 $white: #cfcfcf;
+
 $black: #101010;
-$lightblack: #10101020;
+$black-light: makeTransparent($black, 0.13);
+
+$gray: #3a3a3a;
+$gray-light: colorShade($gray, 28.05%);
+$gray-lighter: colorShade($gray, 25.3%);
 
 $green: #538d4e;
-
 $yellow: #b59f3b;
-
-$gray: #3a3a3c;
-$lightgray: #818384;
-$lightgrey: #6f6f6f;
+$orange: #c87b37;
+$red: #b03c3c;
+$blue: #2187c0;
 
 $font-primary: $white;
+$background-primary: $black;
 
 $border: $gray;
-$border-light: $lightgrey;
-$disabled: $gray;
-$shadow: $lightblack;
+$shadow: $black-light;
 
+$match: $green;
+$close-match: $yellow;
+$no-match: $gray;
+
+$info: $blue;
+$error: $red;
+$warning: $orange;
 $success: $green;
-$warning: $yellow;
-
-$background-primary: $black;
-$background-secondary: $gray;

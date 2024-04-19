@@ -3,14 +3,32 @@ import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { clsx } from 'clsx';
 import { observer } from 'mobx-react-lite';
 import type { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
+import {
+    MdOutlineBackspace,
+    MdOutlineKeyboardReturn,
+    MdOutlineRestartAlt,
+} from 'react-icons/md';
+// import useMediaQuery from '@shared/hooks/useMediaQuery.ts';
+import useLongPress from '@shared/hooks/useLongPress.ts';
+import { useEffect } from 'react';
 
 type KeyboardGridCellProps = {
     cell: KeyStore;
-    onClick: (value: KeyboardKey) => void;
+    onClick: (value: KeyboardKey, isLongPress?: boolean) => void;
 };
 
 export const KeyboardGridCell = observer(
     ({ cell, onClick }: KeyboardGridCellProps) => {
+        // const isMobile = useMediaQuery('screen and (max-width: 650px)');
+
+        const [handlers, { isLongPress }] = useLongPress();
+
+        useEffect(() => {
+            if (cell.value === 'backspace' && isLongPress) {
+                onClick(cell.value, isLongPress);
+            }
+        }, [isLongPress]);
+
         const handleOnClick = () => {
             onClick(cell.value);
         };
@@ -26,22 +44,33 @@ export const KeyboardGridCell = observer(
                 cell.stopAnimation();
             }
         };
-        // @TODO something is wrong with animations
-        // sometimes shake doesn't run
+
         const handleStopAllAnimations = () => {
             cell.stopAnimation();
         };
 
+        const renderIcon = () => {
+            switch (cell.value) {
+                case 'backspace':
+                    return <MdOutlineBackspace />;
+                case 'enter':
+                    return <MdOutlineKeyboardReturn />;
+                case 'escape':
+                    return <MdOutlineRestartAlt />;
+            }
+            return undefined;
+        };
+
         return (
             <button
-                // @TODO data-is-large-key makes sense? maybe use flex for mobile view
-                data-is-large-key={cell.isLargeKey}
+                aria-label={cell.value}
                 // @TODO i decided to revert this logic with disabing non clickable keys. it needs to be removed and fixed
                 disabled={!cell.isClickable}
                 className={clsx(
                     styles.container,
                     styles[cell.status],
                     styles[cell.animationState],
+                    styles[cell.value],
                 )}
                 style={cell.computedStyles}
                 onClick={handleOnClick}
@@ -49,8 +78,12 @@ export const KeyboardGridCell = observer(
                 onTransitionEnd={handleStopGenericAnimations}
                 onMouseLeave={handleStopAllAnimations}
                 onAnimationEnd={handleStopAllAnimations}
+                {...handlers}
             >
-                {cell.label}
+                {/*{isMobile ? renderIcon() ?? cell.label : cell.label}*/}
+                <span className={styles.label}>
+                    {renderIcon() ?? cell.label}
+                </span>
             </button>
         );
     },

@@ -6,40 +6,43 @@
         'escape q w e r t y u i o p backspace'
         '. . a s d f g h j k l enter'
         '. . . z x c v b n m . .';
-    gap: 1.25rem;
+    column-gap: 1.25cqw;
+    row-gap: 1.75cqw;
+    grid-auto-columns: 1fr;
+    width: 100%;
 
-    @media screen and (max-width: 1080px) {
-        grid-template-areas:
-            '. escape escape escape escape . . backspace backspace backspace backspace .'
-            '. q w e r t y u i o p .'
-            '. . a s d f g h j k l .'
-            ' . . . z x c v b n m . .'
-            ' . . . enter enter enter enter enter enter . . .';
-    }
-
-    @media screen and (max-width: 560px) {
-        gap: 0.8rem;
-        row-gap: 2rem;
-    }
-
-    @media screen and (max-width: 370px) {
-        gap: 0.35rem;
-        row-gap: 1.5rem;
-    }
-}
-
-.row {
-    display: contents;
-    &.row-1 {
-        & > * {
-            margin-left: -50%;
-            margin-right: 50%;
+    .row {
+        display: contents;
+        &.row-1 {
+            & > * {
+                margin-left: -50%;
+                margin-right: 50%;
+            }
+        }
+        &.row-2 {
+            & > * {
+                margin-left: -100%;
+                margin-right: 100%;
+            }
         }
     }
-    &.row-2 {
-        & > * {
-            margin-left: -100%;
-            margin-right: 100%;
+
+    @media screen and (max-width: 650px) {
+        grid-template-areas:
+            'q w e r t y u i o p'
+            'a s d f g h j k l backspace'
+            'z x c v b n m enter enter enter';
+
+        column-gap: 1.75cqw;
+        row-gap: 3.5cqw;
+
+        & .row {
+            &.row-1,
+            &.row-2 {
+                & > * {
+                    margin: unset;
+                }
+            }
         }
     }
 }

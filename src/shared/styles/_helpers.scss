@@ -1,9 +1,17 @@
-@mixin color-shade($color, $percentage) {
+@function colorShade($color, $percentage) {
     @if $percentage > 0 {
-        color: lighten($color, $percentage);
+        @return lighten($color, $percentage);
     } @else if $percentage < 0 {
-        color: darken($color, -$percentage);
+        @return darken($color, -$percentage);
     } @else {
-        color: $color;
+        @return $color;
     }
+}
+
+@function makeTransparent($hex, $opacity) {
+    $red: red($hex);
+    $green: green($hex);
+    $blue: blue($hex);
+
+    @return rgba($red, $green, $blue, $opacity);
 }

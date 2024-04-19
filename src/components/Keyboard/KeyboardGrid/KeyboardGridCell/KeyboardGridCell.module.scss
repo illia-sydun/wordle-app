@@ -4,14 +4,11 @@
     @include clickable;
 
     position: relative;
-    padding: 1.25rem 1.75rem;
 
     color: $font-primary;
-    background-color: $black;
+    background-color: $gray-lighter;
     box-shadow: 1px 1px 3px $gray;
 
-    font-size: 2rem;
-    line-height: 2rem;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
@@ -25,6 +22,14 @@
         background-color,
         border-color,
         color 100ms;
+
+    aspect-ratio: 1 / 1;
+    container-type: inline-size;
+    padding: unset;
+
+    & .label {
+        font-size: 45cqw;
+    }
 
     &::before {
         content: '';
@@ -57,19 +62,19 @@
     }
 
     &.match {
-        background-color: $success;
-        border-color: $success;
+        background-color: $match;
+        border-color: $match;
     }
 
     &.close_match {
-        background-color: $warning;
-        border-color: $warning;
+        background-color: $close-match;
+        border-color: $close-match;
     }
 
     &.no_match {
-        background-color: $disabled;
-        color: $lightgray;
-        border-color: $disabled;
+        background-color: $no-match;
+        color: $gray-light;
+        border-color: $no-match;
     }
 
     &:is(.match, .close_match, .no_match) {
@@ -110,17 +115,25 @@
         }
     }
 
-    // @TODO is-large-key needed?
-    @media screen and (max-width: 1080px) {
-        &[data-is-large-key='true'] {
-            //display: none;
-            //font-size: 0;
-            //width: 5px;
-        }
-    }
+    @media screen and (max-width: 650px) {
+        aspect-ratio: 3 / 5;
 
-    @media screen and (max-width: 700px) {
-        padding: 1.75rem 1rem;
+        & .label {
+            font-size: 2.5cqh;
+        }
+
+        &.escape {
+            display: none;
+        }
+
+        &.backspace {
+            aspect-ratio: auto;
+        }
+
+        &.enter {
+            aspect-ratio: auto;
+        }
+
         &:before {
             content: unset;
         }
@@ -133,14 +146,9 @@
         }
     }
 
-    @media screen and (max-width: 450px) {
-        padding: 1rem 0.75rem;
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-    }
-
-    @media screen and (max-width: 370px) {
-        font-size: 1.25rem;
-        line-height: 1.25rem;
+    @media screen and (max-height: 650px) {
+        aspect-ratio: 1 / 1;
+        column-gap: 1cqw;
+        row-gap: 1cqw;
     }
 }

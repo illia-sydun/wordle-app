@@ -26,14 +26,15 @@ export const KeyboardGrid = observer(
             handleKeyPress,
         } = useMobxStore();
 
-        const onKeyboardKeyPress = (keyboardKey: KeyboardKey) => {
-            handleKeyPress(keyboardKey);
+        const onKeyboardKeyPress = (
+            keyboardKey: KeyboardKey,
+            isLongPress?: boolean,
+        ) => {
+            handleKeyPress(keyboardKey, isLongPress);
         };
 
         useKeyPress((event, keyboardKey) => {
-            if (!event.repeat) {
-                onKeyboardKeyPress(keyboardKey);
-            }
+            onKeyboardKeyPress(keyboardKey, event.repeat);
         }, keyboardLayout.flat());
 
         return (

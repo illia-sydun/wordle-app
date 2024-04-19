@@ -74,7 +74,7 @@ export const PARTICLES_PRESET = {
             },
         },
         background: {
-            color: '#000000',
+            color: 'transparent',
         },
     },
     GAME_WON: {

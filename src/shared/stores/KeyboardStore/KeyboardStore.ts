@@ -1,7 +1,7 @@
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { action, computed, observable } from 'mobx';
 import { KEYBOARD_KEY } from '@shared/constants/KeyboardKey.ts';
-import { WordOfTheDay } from '@shared/types/Word.ts';
+import { WordOfTheDay } from '@shared/types/WordDictionary.ts';
 import { KeyStore } from '@shared/stores/KeyboardStore/KeyStore.ts';
 import { MobxStore } from '@shared/stores/RootStore/RootStore.ts';
 

@@ -6,9 +6,8 @@
 
     flex: 1;
 
-    font-size: 3.5rem;
-    line-height: 3.5rem;
-    min-height: 5rem;
+    font-size: 10cqw;
+    line-height: 10cqw;
 
     font-weight: 700;
     text-align: center;
@@ -18,7 +17,7 @@
     user-select: none;
 
     &:not(:empty) {
-        border-color: $lightgrey;
+        border-color: $gray-lighter;
     }
 
     &.active:empty {
@@ -31,18 +30,18 @@
     }
 
     &.no_match {
-        background-color: $disabled;
-        border-color: $disabled;
+        background-color: $no-match;
+        border-color: $no-match;
     }
 
     &.match {
-        background-color: $success;
-        border-color: $success;
+        background-color: $match;
+        border-color: $match;
     }
 
     &.close_match {
-        background-color: $warning;
-        border-color: $warning;
+        background-color: $close-match;
+        border-color: $close-match;
     }
 
     &.flip {
@@ -61,10 +60,5 @@
     &.shake {
         @include animation-delay-unset;
         @include animation-shake;
-    }
-
-    @media screen and (max-width: 700px) {
-        font-size: 3rem;
-        line-height: 3rem;
     }
 }

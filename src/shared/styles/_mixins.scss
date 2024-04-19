@@ -12,8 +12,8 @@
     flex-direction: column;
     padding: 3rem;
 
-    @media screen and (max-width: 700px) {
-        padding-inline: 0;
+    @media screen and (max-width: 650px) {
+        padding-inline: 1.5rem;
     }
 }
 
@@ -35,6 +35,10 @@
 
 @mixin animation-pulse {
     animation: pulse 100ms 1 ease-in-out;
+}
+
+@mixin animation-pulse-small {
+    animation: pulse-small 100ms 1 ease-in-out;
 }
 
 @mixin animation-jump {
