@@ -4,9 +4,14 @@
     @include centered;
     @include border;
 
+    position: relative;
+    z-index: 1;
+
     border-top: unset;
     border-left: unset;
     border-right: unset;
+
+    user-select: none;
 
     & .title {
         @include font-secondary;
