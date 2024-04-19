@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
+    "build:deploy": "curl -X POST -d {} https://api.netlify.com/build_hooks/6622a3e8427b5f09f830f3fe",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint \"./src/**/*.{ts,tsx,js,jsx}\" --fix --max-warnings 0",
     "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss}' --config ./.prettierrc.json",
