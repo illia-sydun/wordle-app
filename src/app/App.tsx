@@ -1,17 +1,23 @@
 import './App.scss';
 
 import { GameViewAsync } from '../views/GameView';
-import { GameStoreProvider } from '@shared/stores/GameStore';
 import { Navbar } from '../components/Navbar/Navbar.tsx';
+import { Snackbar } from '../components/Snackbar/Snackbar.tsx';
+import { GameLostViewAsync } from '../views/GameLostView';
+import { GameWonViewAsync } from '../views/GameWonView';
+import { ParticlesContextProvider } from '@shared/contexts/Particles';
 
 const App = () => {
     return (
-        <main id='main'>
-            <Navbar />
-            <GameStoreProvider>
+        <ParticlesContextProvider>
+            <main id='main'>
+                <Snackbar />
+                <Navbar />
                 <GameViewAsync />
-            </GameStoreProvider>
-        </main>
+                <GameLostViewAsync />
+                <GameWonViewAsync />
+            </main>
+        </ParticlesContextProvider>
     );
 };
 

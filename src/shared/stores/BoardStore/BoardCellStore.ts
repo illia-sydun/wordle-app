@@ -2,9 +2,11 @@ import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { CellStatus } from '@shared/types/CellStatus.ts';
 import { AnimationState } from '@shared/types/AnimationState.ts';
 import { action, computed, observable } from 'mobx';
-import { WordOfTheDay } from '@shared/types/Word.ts';
+import { WordOfTheDay } from '@shared/types/WordDictionary.ts';
 import { CELL_STATUS_SUBMITTED } from '@shared/constants/CellStatus.ts';
 import { MobxStore } from '@shared/stores/RootStore/RootStore.ts';
+import { AnimationEvent } from 'react';
+import { vibrationService } from '../../../services/vibration';
 
 type BoardCell = {
     index: number;
@@ -46,6 +48,7 @@ export class BoardCellStore implements MobxStore, BoardCell {
     @computed
     get isActive() {
         return (
+            this.rootStore.isGamePending &&
             this.rowIndex === this.rootStore.boardStore.indexOfActiveRow &&
             this.index === this.rootStore.boardStore.activeRow.indexOfActiveCell
         );
@@ -87,6 +90,7 @@ export class BoardCellStore implements MobxStore, BoardCell {
             this.startAnimation('pulse');
         } else {
             this.setStatus('empty');
+            vibrationService.vibrate('deleting');
         }
     }
 
@@ -97,7 +101,7 @@ export class BoardCellStore implements MobxStore, BoardCell {
 
     // @TODO mobx fix word mess
     @action
-    submit(word: WordOfTheDay['word'], submittedAtCell: number) {
+    submit(word: WordOfTheDay['word']) {
         let status: BoardCell['status'] = 'no_match';
 
         if (word[this.index] === this.value) {
@@ -110,19 +114,24 @@ export class BoardCellStore implements MobxStore, BoardCell {
         this.startAnimation('flip');
 
         // @TODO mobx fix redundant keyboardStore access
-        this.rootStore.keyboardStore.keys[this.value as KeyboardKey].visit(
-            this.index,
-            submittedAtCell,
-        );
+        this.rootStore.keyboardStore.keys[
+            this.value as KeyboardKey
+        ].delayedVisit(this.index, this.transitionDelay);
     }
 
     @action.bound
     startAnimation(animationState: BoardCell['animationState']) {
+        switch (animationState) {
+            case 'pulse':
+            case 'shake':
+                vibrationService.vibrate(animationState);
+        }
         this.animationState = animationState;
     }
 
     @action.bound
-    stopAnimation() {
+    stopAnimation(event?: AnimationEvent) {
+        event?.stopPropagation();
         this.animationState = 'idle';
     }
 }

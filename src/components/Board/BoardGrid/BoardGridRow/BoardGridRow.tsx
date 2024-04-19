@@ -12,7 +12,8 @@ export const BoardGridRow = observer(({ row }: BoardGridRowProps) => {
     return (
         <div
             className={clsx(styles.container, styles[row.animationState])}
-            onAnimationEnd={row.stopAnimation}>
+            onAnimationEnd={row.stopAnimation}
+        >
             {row.cells.map((cell) => {
                 return (
                     <BoardGridCell

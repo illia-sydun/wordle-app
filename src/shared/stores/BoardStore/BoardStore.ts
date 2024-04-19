@@ -11,17 +11,16 @@ export class BoardStore implements MobxStore, Board {
 
     @observable accessor rows: Board['rows'];
 
+    private generateEmptyMatrix(rows = 6, columns = 5) {
+        return Array.from({ length: rows }, () =>
+            Array.from({ length: columns }, () => '' as const),
+        );
+    }
+
     constructor(rootStore: MobxStore['rootStore']) {
         this.rootStore = rootStore;
 
         this.rows = this.reset();
-    }
-
-    @computed
-    get isActiveRowValueUnique(): boolean {
-        return !this.rows
-            .filter((row) => row.isSubmitted)
-            .some((row) => row.value === this.activeRow.value);
     }
 
     // @TODO mobx how to rename reset to init?
@@ -52,13 +51,29 @@ export class BoardStore implements MobxStore, Board {
     }
 
     @computed
+    get isActiveRowValueUnique(): boolean {
+        return !this.rows
+            .filter((row) => row.isSubmitted)
+            .some((row) => row.value === this.activeRow.value);
+    }
+
+    @computed
     get nextActiveRow() {
         return this.rows[this.indexOfActiveRow + 1];
     }
 
-    private generateEmptyMatrix(rows = 6, columns = 5) {
-        return Array.from({ length: rows }, () =>
-            Array.from({ length: columns }, () => '' as const),
-        );
+    @computed
+    get lastRow() {
+        return this.rows[this.rows.length - 1];
+    }
+
+    @computed
+    get lastSubmittedRow() {
+        return this.rows.findLast((row) => row.isSubmitted) || this.lastRow;
+    }
+
+    @computed
+    get areAllRowsSubmitted(): boolean {
+        return this.lastRow.isSubmitted;
     }
 }
