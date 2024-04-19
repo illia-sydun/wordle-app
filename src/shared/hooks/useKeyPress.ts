@@ -8,6 +8,11 @@ export const useKeyPress = (
 ) => {
     const onKeyDown = useCallback(
         (event: KeyboardEvent) => {
+            // @TODO ts
+            // @ts-expect-error poor sentry integration
+            if (event.target?.id === 'sentry-feedback') {
+                return false;
+            }
             const key = event.key.toLowerCase() as KeyboardKey;
             const isWantedKeyPressed = keys.some(
                 (key) => key === key.toLowerCase(),
