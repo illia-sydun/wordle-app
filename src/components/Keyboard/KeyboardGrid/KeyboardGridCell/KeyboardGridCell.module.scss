@@ -132,6 +132,7 @@
 
         &.enter {
             aspect-ratio: auto;
+            background-color: $match;
         }
 
         &:before {
