@@ -7,6 +7,15 @@
     }
 }
 
+@keyframes pulse-small {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
 @keyframes blink {
     from,
     to {

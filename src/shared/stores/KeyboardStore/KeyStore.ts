@@ -1,8 +1,9 @@
 import { action, computed, observable } from 'mobx';
 import { KeyStatus } from '@shared/types/KeyStatus.ts';
-import { CSSProperties } from 'react';
+import { AnimationEvent, CSSProperties } from 'react';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { AnimationState } from '@shared/types/AnimationState.ts';
+import { MobxStore } from '@shared/stores/RootStore';
 
 type Key = {
     value: KeyboardKey;
@@ -18,13 +19,17 @@ type KeyState = {
     matchedAtWordIndex: number;
 };
 
-export class KeyStore implements Key {
+export class KeyStore implements MobxStore, Key {
+    @observable accessor rootStore: MobxStore['rootStore'];
+
     @observable accessor value: Key['value'];
     @observable accessor label: Key['label'];
     @observable accessor state: Key['state'];
     @observable accessor animationState: Key['animationState'];
 
-    constructor(key: Key['value']) {
+    constructor(rootStore: MobxStore['rootStore'], key: Key['value']) {
+        this.rootStore = rootStore;
+
         const { value, label, animationState, state } = this.init(key);
 
         this.value = value;
@@ -83,42 +88,53 @@ export class KeyStore implements Key {
     }
 
     @computed
+    get isNotMatched() {
+        return this.status === 'no_match';
+    }
+
+    @computed
     get isMatched() {
-        return this.status !== 'empty' && this.status !== 'no_match';
+        return this.status !== 'empty' && !this.isNotMatched;
     }
 
     @computed
     get isClickable() {
-        return this.status !== 'no_match';
+        if (this.value === 'escape') {
+            return true;
+        }
+        // return !this.isNotMatched;
+        return this.rootStore.isGamePending;
     }
 
     @computed
-    get computedStyles() {
-        const styles: CSSProperties = { gridArea: this.value };
-
-        switch (this.value) {
-            case 'backspace':
-            case 'enter':
-                styles.margin = 'unset';
-        }
-
-        return styles;
+    get computedStyles(): CSSProperties {
+        return { gridArea: this.value };
     }
 
     @action
-    visit(
-        matchedAtWordIndex: Key['state']['matchedAtWordIndex'],
-        submittedAtCell: number,
-    ) {
+    visit(matchedAtWordIndex: Key['state']['matchedAtWordIndex']) {
         this.state.submitted = true;
-
-        if (this.state.matchedAtWordIndex > -1) {
-            this.state.submittedAtCell = submittedAtCell;
-        }
 
         if (this.state.matchedAtWordIndex === matchedAtWordIndex) {
             this.state.matched = true;
         }
+
+        if (this.isMatched) {
+            this.startAnimation('pulse');
+        }
+    }
+
+    @action
+    delayedVisit(
+        matchedAtWordIndex: Key['state']['matchedAtWordIndex'],
+        delay: number,
+    ) {
+        setTimeout(
+            action(() => {
+                this.visit(matchedAtWordIndex);
+            }),
+            delay,
+        );
     }
 
     @action.bound
@@ -127,7 +143,8 @@ export class KeyStore implements Key {
     }
 
     @action.bound
-    stopAnimation() {
+    stopAnimation(event?: AnimationEvent) {
+        event?.stopPropagation();
         this.animationState = 'idle';
     }
 }

@@ -4,4 +4,10 @@
     @include centered;
     height: 100%;
     width: 100%;
+    container-type: inline-size;
+    max-width: 100vh;
+
+    @media screen and (max-width: 650px) {
+        align-items: flex-start;
+    }
 }

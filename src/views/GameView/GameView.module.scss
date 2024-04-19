@@ -3,21 +3,27 @@
 .container {
     @include view;
 
+    gap: 5cqh;
+
     & .board {
         flex: 6;
+        flex-basis: 20rem;
     }
 
     & .keyboard {
+        @include centered;
         flex: 4;
     }
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 650px) {
         & .board {
-            flex: 4;
+            flex: 5;
+            flex-basis: 20rem;
         }
 
         & .keyboard {
-            flex: 4;
+            flex: 3;
+            margin-inline: -0.5rem;
         }
     }
 }
