@@ -1,0 +1,17 @@
+@import '@styles';
+
+.container {
+    @include centered;
+    @include clickable;
+
+    position: absolute;
+    right: 5rem;
+    height: 100%;
+    width: 5rem;
+    font-size: 3.5rem;
+    transition: 200ms;
+
+    @include hover {
+        transform: scale(1.1);
+    }
+}
