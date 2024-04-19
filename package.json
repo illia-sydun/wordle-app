@@ -33,7 +33,7 @@
     "@capacitor/core": "^5.7.4",
     "@capacitor/haptics": "^5.0.7",
     "@capacitor/ios": "^5.7.4",
-    "@sentry/react": "^7.108.0",
+    "@sentry/react": "^7.110.0",
     "@sentry/vite-plugin": "^2.16.0",
     "@tsparticles/all": "^3.3.0",
     "@tsparticles/engine": "^3.3.0",
@@ -44,6 +44,7 @@
     "mobx-react-lite": "^4.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
     "react-simple-typewriter": "^5.0.1"
   },
   "devDependencies": {
