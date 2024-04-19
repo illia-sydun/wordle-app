@@ -8,6 +8,9 @@
     height: 100%;
     width: 100%;
 
+    background-color: $background-primary;
+    animation: fadeInBackground 600ms forwards;
+
     .text {
         z-index: 1;
 
@@ -19,5 +22,15 @@
         text-align: center;
         color: $font-primary;
         user-select: none;
+    }
+}
+
+// @TODO added quickly
+@keyframes fadeInBackground {
+    0% {
+        background-color: makeTransparent($background-primary, 0.1);
+    }
+    100% {
+        background-color: $background-primary;
     }
 }
