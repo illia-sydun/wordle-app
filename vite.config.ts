@@ -10,7 +10,9 @@ import path from 'path';
 const manifestForPlugIn: Partial<VitePWAOptions> = {
     registerType: 'prompt',
     strategies: 'generateSW',
+    injectRegister: null,
     workbox: {
+        cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,ico,png,woff2,ttf}'],
     },
     manifest: {
