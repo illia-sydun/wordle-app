@@ -1,0 +1,107 @@
+@import '@styles';
+
+.container {
+    @include clickable;
+
+    position: absolute;
+    top: 6rem;
+
+    display: flex;
+    gap: 0.75rem;
+
+    & .innerContainer {
+        @include without-scrollbar;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        max-height: 50vh;
+        max-width: 50rem;
+        overflow: auto;
+
+        @media screen and (max-width: 650px) {
+            align-items: center;
+            width: 100vw;
+            max-width: unset;
+            max-height: 50vh;
+            gap: 1.5rem;
+        }
+    }
+
+    & .empty {
+        @include border;
+        height: 50px;
+        width: 50px;
+    }
+}
+
+.snackbar {
+    @include centered;
+    gap: 1.5rem;
+    padding: 0.75rem 1.5rem 0.75rem 3rem;
+    border: 2px solid makeTransparent($gray-light, 0.7);
+
+    background-color: makeTransparent($background-primary, 0.7);
+    backdrop-filter: blur(5px);
+
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transform: translateX(-100%);
+    z-index: 100;
+
+    animation: 1s slide-right forwards;
+
+    &.info {
+        border-color: makeTransparent($info, 0.7);
+    }
+
+    &.warning {
+        border-color: makeTransparent($warning, 0.7);
+    }
+
+    &.error {
+        border-color: makeTransparent($error, 0.7);
+    }
+
+    &.success {
+        border-color: makeTransparent($success, 0.7);
+    }
+
+    &.closing {
+        animation: 1s slide-left;
+    }
+
+    & .close {
+        @include clickable;
+        @include centered;
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin: -1rem;
+        @include hover {
+            transform: scale(1.15);
+        }
+    }
+
+    @media screen and (max-width: 650px) {
+        padding: 1rem 1.75rem 1rem 3rem;
+    }
+}
+
+@keyframes slide-right {
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-left {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-150%);
+    }
+}
