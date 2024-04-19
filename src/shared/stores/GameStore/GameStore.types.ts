@@ -1,6 +1,9 @@
 import { Dispatch } from 'react';
 import type { Answer } from '@shared/types/Answer.ts';
-import type { WordOfTheDay, WordDictionary } from '@shared/types/Word.ts';
+import type {
+    WordOfTheDay,
+    WordDictionary,
+} from '@shared/types/WordDictionary.ts';
 import { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 
 type KeyState = Record<

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { ParticlesContext } from '@shared/context/Particles';
+import { ParticlesContext } from '@shared/contexts/Particles';
 
 export const useParticles = () => {
     const particles = useContext(ParticlesContext);
