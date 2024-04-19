@@ -1,8 +1,31 @@
-*   1. style keyboard status reveal effect
-    2. add hints
-    3. add fonts
+* + 1. style keyboard status reveal effect
+  ~ 2. add hints
+* + 3. add fonts
     4. remove setTimeout on enter press.  maybe show a dialog with confirmation first
         to give escape time to animate and prevent mistake presses
-*   5. handle game over state, fail and success states.
+* ~ 5. handle game over state, fail and success states.
   + 6. get rid of repeat key press
-    7.  add dark mode switch
+    7. add dark mode switch
+    8. add react router
+    9. add react form hook
+    10. add zod
+    11. add tests
+  ~ 12. add snackbar store to make it global?
+  ~ 13. make it responsive.
+  ~ 14. add pwa
+  ? 15. add suspense
+    16. make layout scale with different screen sizes
+    17. add icons for large buttons
+    18. rework keyboard layout for mobile devices from grid to flex
+    19. add i18n
+    20. add introduction screen with carousel and instructions
+    21. add word themes
+    22. put mobx into context
+    23. remove mobx global store and chaining
+
+
+    add words: start,
+
+    notes:
+    Start firework from gamewonscreen
+    Disable typing after word has been guessed

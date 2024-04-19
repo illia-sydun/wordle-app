@@ -1,7 +1,6 @@
 import { rootStore } from '@shared/stores/RootStore';
 
+// @TODO mobx move it to context
 export const useMobxStore = () => {
-    console.log(rootStore);
-
     return rootStore;
 };

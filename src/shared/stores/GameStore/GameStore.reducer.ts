@@ -1,4 +1,4 @@
-import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
+import { WORD_DICTIONARY } from '@shared/constants/WordDictionary.ts';
 import type { GameStoreAction, GameStoreState } from './GameStore.types.ts';
 import type { KeyboardKey } from '@shared/types/KeyboardKey.ts';
 import { KEYBOARD_KEY } from '@shared/constants/KeyboardKey.ts';
