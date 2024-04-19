@@ -1,4 +1,4 @@
-import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
+import { WORD_DICTIONARY } from '@shared/constants/WordDictionary.ts';
 
 export type WordDictionaryEntry = {
     word: string;

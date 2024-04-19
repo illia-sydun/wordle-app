@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect } from 'react';
 import { GameStoreContext } from '@shared/stores/GameStore/GameStore.context.ts';
-import { WORD_DICTIONARY } from '@shared/constants/Word.ts';
+import { WORD_DICTIONARY } from '@shared/constants/WordDictionary.ts';
 
 export const useGameView = () => {
     const { state, dispatch } = useContext(GameStoreContext);
