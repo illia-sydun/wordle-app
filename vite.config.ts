@@ -8,7 +8,7 @@ import { envDtsGen } from '@liuli-util/vite-plugin-env-dts-gen';
 import path from 'path';
 
 const manifestForPlugIn: Partial<VitePWAOptions> = {
-    registerType: 'autoUpdate',
+    registerType: 'prompt',
     strategies: 'generateSW',
     workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,woff2,ttf}'],
@@ -43,8 +43,8 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
                 purpose: 'any maskable',
             },
         ],
-        background_color: '#222222',
-        theme_color: '#222222',
+        background_color: '#e6e3e2',
+        theme_color: '#e6e3e2',
         display: 'standalone',
         scope: '/',
         start_url: '/',
