@@ -1,13 +1,12 @@
 import { clsx } from 'clsx';
 import { observer } from 'mobx-react-lite';
-import { Board } from '@shared/stores/BoardStore/BoardStore.ts';
+import { Board } from '@shared/stores/BoardStore';
 import styles from './BoardGridCell.module.scss';
 
 interface BoardGridCellProps {
     cell: Board['rows'][number]['cells'][number];
 }
 
-// @TODO parse CellStatus and AnimationState.ts before using it in styles
 export const BoardGridCell = observer(({ cell }: BoardGridCellProps) => {
     return (
         <div
@@ -18,7 +17,8 @@ export const BoardGridCell = observer(({ cell }: BoardGridCellProps) => {
                 cell.isActive && styles.active,
             )}
             style={cell.computedStyles}
-            onAnimationEnd={cell.stopAnimation}>
+            onAnimationEnd={cell.stopAnimation}
+        >
             {cell.value}
         </div>
     );

@@ -14,7 +14,6 @@ type Key = {
 
 type KeyState = {
     submitted: boolean;
-    submittedAtCell: number;
     matched: boolean;
     matchedAtWordIndex: number;
 };
@@ -60,7 +59,6 @@ export class KeyStore implements MobxStore, Key {
         const state: Key['state'] = {
             matched: false,
             submitted: false,
-            submittedAtCell: -1,
             matchedAtWordIndex,
         };
 
