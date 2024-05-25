@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/react';
 
-// @TODO rewrite it a bit
 class LoggingService {
     private captureMessage(
         ...props: Parameters<typeof Sentry.captureMessage>
